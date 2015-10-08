@@ -1,0 +1,144 @@
+\documentclass[a4paper]{article}
+
+%use the english line for english reports
+%usepackage[english]{babel}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+
+\begin{document}
+
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{22cm}
+
+\title{\Huge\textbf{Sixteen Stones}\linebreak\linebreak\linebreak
+\Large\textbf{Relatório Intercalar}\linebreak\linebreak
+\linebreak\linebreak
+\includegraphics[scale=0.1]{feup-logo.png}\linebreak\linebreak
+\linebreak\linebreak
+\Large{Mestrado Integrado em Engenharia Informática e Computação} \linebreak\linebreak
+\Large{Programação em Lógica}\linebreak
+}
+
+\author{\textbf{Grupo Sixteen\_Stones\_3:}\\
+Diogo Filipe Costa - ei11014 \\
+Maria Teresa Chaves - up201306842 \\
+\linebreak\linebreak \\
+ \\ Faculdade de Engenharia da Universidade do Porto \\ Rua Roberto Frias, s\/n, 4200-465 Porto, Portugal \linebreak\linebreak\linebreak
+\linebreak\linebreak\vspace{1cm}}
+
+\maketitle
+\thispagestyle{empty}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\newpage
+
+%Todas as figuras devem ser referidas no texto. %\ref{fig:codigoFigura}
+%
+%%Exemplo de código para inserção de figuras
+%%\begin{figure}[h!]
+%%\begin{center}
+%%escolher entre uma das seguintes três linhas:
+%%\includegraphics[height=20cm,width=15cm]{path relativo da imagem}
+%%\includegraphics[scale=0.5]{path relativo da imagem}
+%%\includegraphics{path relativo da imagem}
+%%\caption{legenda da figura}
+%%\label{fig:codigoFigura}
+%%\end{center}
+%%\end{figure}
+%
+%
+%\textit{Para escrever em itálico}
+%\textbf{Para escrever em negrito}
+%Para escrever em letra normal
+%``Para escrever texto entre aspas''
+%
+%Para fazer parágrafo, deixar uma linha em branco.
+%
+%Como fazer bullet points:
+%\begin{itemize}
+	%\item Item1
+	%\item Item2
+%\end{itemize}
+%
+%Como enumerar itens:
+%\begin{enumerate}
+	%\item Item 1
+	%\item Item 2
+%\end{enumerate}
+%
+%\begin{quote}``Isto é uma citação''\end{quote}
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{O Jogo Sixteen Stones}
+
+
+Sixteen Stones é o nome de um jogo de tabuleiro abstrato de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 peças vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das "casas" livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as peças estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de peças em jogo do adversário.
+
+\subsection{Regras}
+
+\begin{itemize}
+	\item Os jogadores têm turnos para fazer cada jogada
+	\item Cada jogador pode no seu respetivo realizar cada uma das seguintes jogadas:
+			\begin{itemize}
+				\item[] \textbf{\textit{Push}}
+				\begin{itemize}
+					\item Para realizar um \textit{Push} é necessário que o jogador tenha mais peças nessa linha que o adversário
+					\item Quando uma peça é empurrada para fora do tabuleiro, vai para o "banco" do respetivo jogador
+					\item As peças que são empurradas, apenas se movem uma "casa" na direção do \textit{Push}
+					\item É possível realizar um \textit{Push} em qualquer direção
+					\item O número de peças máximo que um jogador pode empurrar é igual ao número das suas peças nessa linha menos um
+					\item Um jogador não pode realizar um \textit{Push} nas suas próprias peças
+					\item Para realizar um \textit{Push} é necessário que exista uma peça para ser empurrada
+				\end{itemize}
+				\item[] \textbf{\textit{Move}}
+				\begin{itemize}
+					\item É possível realizar um \textit{move} para qualquer "casa" desde que esta esteja vazia
+					\item Uma peça pode ser movida em qualquer direção nas "casas" vizinhas
+					\item Se, após um \textit{move}, alguma peça ficar cercada por peças adversárias, então esta é capturada.
+					\item Uma peça capturada é substituída por uma peça do "banco" do jogador que a capturou
+					\item Num \textit{move} em que a peça fica voluntariamente cercada, esta não é capturada
+				\end{itemize}
+				\item[] \textbf{\textit{Sacrifice}}
+				\begin{itemize}
+					\item Um jogador pode sacrificar uma peça do seu "banco", permanentemente, para poder realizar mais um \textit{push} ou um \textit{move} adicional
+				\end{itemize}
+			\end{itemize}
+	\item No primeiro turno de cada jogador, deve ser feito um \textit{push} ou um \textit{move}, mas nunca ambos
+	\item Se após um jogador realizar um \textit{Push}, uma das suas peças movidas não ocupa uma "casa" anteriormente ocupada por outra das suas peças,e esta cercar uma peça adversária, então esta é capturada
+	\item Se um jogador empurrar uma peça adversária para uma posição de cerco, então esta é capturada
+	\item Quando um jogador após uma captura substitui a peça capturada por uma do seu banco, esta não pode ser utilizada para capturar outra peça enquanto não for movida
+	\item Se um jogador não tem peças no banco então este não pode capturar peças adversárias
+\end{itemize}
+
+Descrever detalhadamente o jogo, a sua história e, principalmente, as suas regras.
+Devem ser incluidas imagens apropriadas para explicar o funcionamento do jogo.
+Devem ser incluidas as fontes de informação (e.g. URLs em rodapé).
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Representação do Estado do Jogo}
+
+Descrever a forma de representação do estado do tabuleiro (tipicamente uma lista de listas), com exemplificação em Prolog de posições iniciais do jogo, posições intermédias e finais, acompanhadas de imagens ilustrativas.
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Visualização do Tabuleiro}
+
+Descrever a forma de visualização do tabuleiro em modo de texto e o(s) predicado(s) Prolog construídos para o efeito.
+Deve ser incluída pelo menos uma imagem correspondente ao output produzido pelo predicado de visualização.
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Movimentos}
+
+Elencar os movimentos (tipos de jogadas) possíveis e definir os cabeçalhos dos predicados que serão utilizados (ainda não precisam de estar implementados).
+
+
+\end{document}
