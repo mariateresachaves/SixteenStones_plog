@@ -90,11 +90,21 @@ Sixteen Stones é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrat
 
 \subsection{Tabuleiro de jogo}
 
+Esta secção tem como objetivo introduzir o tabuleiro de jogo e os elementos que dele fazem parte.
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.3]{board_explained.png} 
 	\caption{Explicação do tabuleiro.}
 \end{figure}
+
+Elementos do tabuleiro:
+
+\begin{itemize}
+	\item \textbf{Pedras} - cada jogador possui um certo número de pedras, sendo que o jogador 1 possui as pedras vermelhas e o 2 as pedras azuis
+	\item \textbf{Banco} - cada jogador possui um banco onde estão guardadas as pedras que não estão em jogo.
+	\item \textbf{Tabuleiro} -  onde os jogadores colocam as suas pedras de jogo e podem efetuar vários movimentos.
+\end{itemize}
 
 \newpage
 
@@ -113,12 +123,12 @@ Quando as pedras estiverem todas colocadas no tabuleiro, o jogador vermelho come
 \subsubsection{Jogadas possíveis}
 
 Um jogador pode no seu respetivo turno realizar cada uma das seguintes jogadas: \textit{Push}, \textit{Move} e \textit{Sacrifice}.
-No primeiro turno de cada jogador, deve ser feito um \textit{push} ou um \textit{move}, mas nunca ambos.
+No primeiro turno de cada jogador, deve ser feito um \textit{Push} ou um \textit{Move}, mas nunca ambos.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{push2.png}
-	\caption{Jogador vermelha realiza um \textit{move} no seu primeiro turno.}
+	\includegraphics[scale=0.3]{first_move.png}
+	\caption{Jogador vermelho realiza um \textit{Move} no seu primeiro turno.}
 \end{figure}
 
 \subsubsection{\textit{Push}}
@@ -127,20 +137,20 @@ Para realizar um  \textit{Push} é necessário que o jogador tenha mais pedras n
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{push.png} 
-	\caption{Direções possíveis de um \textit{Push} e representação do "banco".}
+	\includegraphics[scale=0.3]{push_dirs.png} 
+	\caption{Direções possíveis de um \textit{Push}.}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{push.png} 
-	\caption{Exemplo de \textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
+	\includegraphics[scale=0.3]{first_move.png} 
+	\caption{\textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
 \end{figure}
 
 O número de pedras máximo (PE) que um jogador pode "empurrar" é igual:
 
 \begin{equation}
-PE = P - 1 \text{\hspace{7mm}(sendo P o número das suas pedras nessa linha)}
+	PE = P - 1 \text{\hspace{7mm}(sendo P o número das suas pedras nessa linha)}
 \end{equation}
 
 Isto é, por exemplo, caso numa linha o jogador azul tenha três pedras, então pode realizar um  \textit{Push} a uma pedra ou a duas do adversário. Mas caso tenha duas apenas pode realizar um  \textit{Push} a uma pedra vermelha.
