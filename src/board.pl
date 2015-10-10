@@ -1,3 +1,8 @@
+
+
+
+
+
 make_line(0, []).
 make_line(Size, Line):- NewSize is Size-1,
                         make_line(NewSize, NewLine), 
@@ -13,6 +18,14 @@ print_line([H|T]):- write('| _ '),
                     write(' _ '),
                     print_line(T).
 
+make_board(Size, Board):- make_board(Size, 0, Board).
+
+make_board(S, S, []).
+
+make_board(Size, Counter, Board):- NewCounter is Counter + 1,
+                                   make_line(Size, Line),
+                                   make_board(Size, NewCounter, NewBoard),
+                                   append(NewBoard, Line, Board).
 
         
 /*

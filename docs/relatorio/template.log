@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  9 OCT 2015 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  10 OCT 2015 17:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -382,18 +382,18 @@ LaTeX Info: Redefining \] on input line 2666.
 (./template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -489,68 +489,82 @@ e
 <feup-logo.png, id=1, 2252.415pt x 742.775pt>
 File: feup-logo.png Graphic file (type png)
  <use feup-logo.png>
-Package pdftex.def Info: feup-logo.png used on input line 35.
+Package pdftex.def Info: feup-logo.png used on input line 34.
 (pdftex.def)             Requested size: 225.2547pt x 74.28185pt.
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./feup-
 logo.png>]
-<board_prep.png, id=11, 803.0pt x 602.25pt>
-File: board_prep.png Graphic file (type png)
- <use board_prep.png>
-Package pdftex.def Info: board_prep.png used on input line 91.
-(pdftex.def)             Requested size: 240.90186pt x 180.67639pt.
+(./template.toc)
+\tf@toc=\write3
+\openout3 = `template.toc'.
 
-<push.png, id=12, 314.17375pt x 299.1175pt>
+ [2] <board_prep.png, id=16, 803.0pt x 602.25pt>
+File: board_prep.png Graphic file (type png)
+
+<use board_prep.png>
+Package pdftex.def Info: board_prep.png used on input line 97.
+(pdftex.def)             Requested size: 240.90186pt x 180.67639pt.
+ <push.png, id=17, 314.17375pt x 299.1175pt>
+File: push.png Graphic file (type png)
+
+<use push.png>
+Package pdftex.def Info: push.png used on input line 109.
+(pdftex.def)             Requested size: 94.25284pt x 89.73593pt.
 File: push.png Graphic file (type png)
  <use push.png>
-Package pdftex.def Info: push.png used on input line 103.
+Package pdftex.def Info: push.png used on input line 115.
 (pdftex.def)             Requested size: 94.25284pt x 89.73593pt.
- [2 <./board_prep.png> <./push.png>] <push2.png, id=23, 343.2825pt x 338.26375p
-t>
+ [3 <./board_prep.png> <./push.png>]
+<push2.png, id=27, 343.2825pt x 338.26375pt>
 File: push2.png Graphic file (type png)
  <use push2.png>
-Package pdftex.def Info: push2.png used on input line 121.
+Package pdftex.def Info: push2.png used on input line 131.
+(pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
+File: push2.png Graphic file (type png)
+ <use push2.png>
+Package pdftex.def Info: push2.png used on input line 139.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
 File: push2.png Graphic file (type png)
 
 <use push2.png>
-Package pdftex.def Info: push2.png used on input line 129.
+Package pdftex.def Info: push2.png used on input line 147.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 139.
+ [4 <./push2.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 154.
 
- (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
-
-[3
-
- <./push2.png>] [4] (./template.aux) ) 
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 154.
+ [5] [6]
+(./template.aux) ) 
 Here is how much of TeX's memory you used:
- 3299 strings out of 493089
- 44433 string characters out of 6134842
- 122066 words of memory out of 5000000
- 6724 multiletter control sequences out of 15000+600000
+ 3303 strings out of 493089
+ 44493 string characters out of 6134842
+ 124066 words of memory out of 5000000
+ 6725 multiletter control sequences out of 15000+600000
  10334 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,32p,619b,303s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmti10.pfb>
-Output written on template.pdf (4 pages, 2366030 bytes).
+ 38i,8n,32p,618b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
+>
+Output written on template.pdf (6 pages, 2382203 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

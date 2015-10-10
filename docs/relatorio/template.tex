@@ -10,7 +10,6 @@
 \usepackage[margin=0.8in]{geometry}
 \usepackage{amsmath}
 
-
 \begin{document}
 
 \setlength{\textwidth}{16cm}
@@ -78,6 +77,13 @@ Maria Teresa Chaves - up201306842 \\
 
 
 %----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\tableofcontents
+
+\newpage
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 \section{O Jogo Sixteen Stones}
 
 Sixteen Stones é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrato - jogo de estratégia que tenta minimizar a sorte e não possui tema.} de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
@@ -89,7 +95,7 @@ No início do jogo distribui-se 8 pedras (vermelhas ou azuis) para cada jogador.
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{board_prep.png} 
-\caption{Exemplo de preparação do tabuleiro}
+\caption{Preparação do tabuleiro}
 \end{figure}
 
 Quando as pedras estiverem todas colocadas no tabuleiro, o jogador vermelho começa a jogar e alterna de turno com o jogador adversário.
@@ -101,10 +107,16 @@ Para realizar um  \textit{Push} é necessário que o jogador tenha mais pedras n
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push.png} 
-\caption{Push com duas pedras}
+\caption{Direções possíveis de um \textit{Push} e representação do "banco"}
 \end{figure}
 
-\clearpage
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.3]{push.png} 
+\caption{Exemplo de \textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro}
+\end{figure}
+
+\newpage
 
 O número de pedras máximo (PE) que um jogador pode "empurrar" é igual:
 
@@ -112,28 +124,31 @@ O número de pedras máximo (PE) que um jogador pode "empurrar" é igual:
 PE = P - 1 \text{\hspace{7mm}(sendo P o número das suas pedras nessa linha)}
 \end{equation}
 
-
-
-Isto é, por exemplo caso numa linha o jogador azul tenha 3 pedras, então pode realizar um  \textit{Push} a uma pedra ou a duas do adversário. Mas caso tenha 2 apenas pode realizar um  \textit{Push} a uma pedra vermelha.
+Isto é, por exemplo, caso numa linha o jogador azul tenha 3 pedras, então pode realizar um  \textit{Push} a uma pedra ou a duas do adversário. Mas caso tenha 2 apenas pode realizar um  \textit{Push} a uma pedra vermelha.
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=0.3]{push2.png} 
+\includegraphics[scale=0.3]{push2.png}
 \caption{Push com três pedras}
 \end{figure}
 
-Um jogador não pode realizar um  \textit{Push} nas suas próprias pedras. Por exemplo caso numa linha o jogador azul tenha 3 pedras, mas nessa linha o jogador vermelho não tem pedras, então é realizar um  \textit{Push} é uma jogada inválida.
+Um jogador não pode realizar um  \textit{Push} nas suas próprias pedras.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push2.png} 
-\caption{Push inválido por falta de peças do adversário}
+\caption{Push inválido por realizar um \textit{Push} nas suas próprias pedras}
 \end{figure}
 
-Um jogador não pode realizar um  \textit{Push} nas suas próprias peças. Por exemplo caso numa linha o jogador azul tenha 3 pedras, mas nessa linha o jogador vermelho tem uma pedra e depois dessa existe uma azul, então é realizar um  \textit{Push} é uma jogada inválida.
+Para realizar um \textit{Push} é necessário que exista uma pedra para ser empurrada. Por exemplo caso numa linha o jogador azul tenha 3 pedras, mas nessa linha o jogador vermelho não tem pedras, então é realizar um  \textit{Push} é uma jogada inválida.
 
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.3]{push2.png} 
+\caption{Push inválido por falta de pedras do adversário}
+\end{figure}
 
-
+\newpage
 
 \begin{itemize}
 	\item Os jogadores têm turnos para fazer cada jogada

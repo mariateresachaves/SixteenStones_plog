@@ -1,0 +1,7 @@
+\select@language {portuguese}
+\contentsline {figure}{\numberline {1}{\ignorespaces Prepara\IeC {\c c}\IeC {\~a}o do tabuleiro\relax }}{3}
+\contentsline {figure}{\numberline {2}{\ignorespaces Dire\IeC {\c c}\IeC {\~o}es poss\IeC {\'\i }veis de um \textit {Push} e representa\IeC {\c c}\IeC {\~a}o do "banco"\relax }}{3}
+\contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de \textit {Push} sem que a pedra advers\IeC {\'a}ria seja "empurrada" para fora do tabuleiro\relax }}{4}
+\contentsline {figure}{\numberline {4}{\ignorespaces Push com tr\IeC {\^e}s pedras\relax }}{4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Push inv\IeC {\'a}lido por realizar um \textit {Push} nas suas pr\IeC {\'o}prias pedras\relax }}{4}
+\contentsline {figure}{\numberline {6}{\ignorespaces Push inv\IeC {\'a}lido por falta de pedras do advers\IeC {\'a}rio\relax }}{5}
