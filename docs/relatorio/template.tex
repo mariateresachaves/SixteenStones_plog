@@ -95,7 +95,7 @@ No início do jogo distribui-se 8 pedras (vermelhas ou azuis) para cada jogador.
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{board_prep.png} 
-\caption{Preparação do tabuleiro}
+\caption{Preparação do tabuleiro.}
 \end{figure}
 
 Quando as pedras estiverem todas colocadas no tabuleiro, o jogador vermelho começa a jogar e alterna de turno com o jogador adversário.
@@ -103,6 +103,13 @@ Quando as pedras estiverem todas colocadas no tabuleiro, o jogador vermelho come
 \subsubsection{Jogadas possíveis}
 
 Um jogador pode no seu respetivo turno realizar cada uma das seguintes jogadas: \textit{Push}, \textit{Move} e \textit{Sacrifice}.
+No primeiro turno de cada jogador, deve ser feito um \textit{push} ou um \textit{move}, mas nunca ambos.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.3]{push2.png}
+\caption{Jogador vermelha realiza um \textit{move} no seu primeiro turno.}
+\end{figure}
 
 \subsubsection{\textit{Push}}
 
@@ -111,16 +118,14 @@ Para realizar um  \textit{Push} é necessário que o jogador tenha mais pedras n
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push.png} 
-\caption{Direções possíveis de um \textit{Push} e representação do "banco"}
+\caption{Direções possíveis de um \textit{Push} e representação do "banco".}
 \end{figure}
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push.png} 
-\caption{Exemplo de \textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro}
+\caption{Exemplo de \textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
 \end{figure}
-
-\newpage
 
 O número de pedras máximo (PE) que um jogador pode "empurrar" é igual:
 
@@ -133,7 +138,7 @@ Isto é, por exemplo, caso numa linha o jogador azul tenha três pedras, então 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push2.png}
-\caption{Push com três pedras}
+\caption{Push com três pedras.}
 \end{figure}
 
 Além das regras referidas anteriormente, um jogador não pode realizar um  \textit{Push} nas suas próprias pedras.
@@ -141,7 +146,7 @@ Além das regras referidas anteriormente, um jogador não pode realizar um  \tex
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push2.png} 
-\caption{Push inválido por realizar um \textit{Push} nas suas próprias pedras}
+\caption{Push inválido por realizar um \textit{Push} nas suas próprias pedras.}
 \end{figure}
 
 Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para ser empurrada. Por exemplo caso numa linha o jogador azul tenha 3 pedras, mas nessa linha o jogador vermelho não tem pedras, então é realizar um  \textit{Push} é uma jogada inválida.
@@ -149,28 +154,53 @@ Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push2.png} 
-\caption{Push inválido por falta de pedras do adversário}
+\caption{Push inválido por falta de pedras do adversário.}
 \end{figure}
 
 \subsubsection{\textit{Move}}
 
-É possível realizar um  \textit{Move} para qualquer célula, desde que esteja vazia. Se o jogador tentar realizar um \textit{Move} para uma célula ocupada, então é considerado uma jogada inválida.
+É possível realizar um  \textit{Move} para uma célula vazia em qualquer direção. Se o jogador tentar realizar um \textit{Move} para uma célula ocupada, então é considerado uma jogada inválida.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.3]{push2.png} 
-\caption{Exemplo de um \textit{Move} válido (a) e um \textit{Move} inválido (b)}
+\caption{Exemplo de um \textit{Move} válido (a) e um \textit{Move} inválido (b).}
 \end{figure}
 
+Após um \textit{Move} se alguma das pedras adversárias ficar cercada\footnote{Uma pedra fica cercada quando numa das direções existem pedras adversárias nos dois sentidos.}, então esta é capturada e substituída por uma pedra do "banco" do jogador que a capturou.
 
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.3]{push2.png} 
+\caption{Exemplo de uma pedra capturada após um \textit{Move}.}
+\end{figure}
 
+\newpage
+
+Se um jogador realizar um \textit{Move} e a sua pedra ficar voluntariamente cercada, esta não é capturada.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.3]{push2.png} 
+\caption{Exemplo de uma pedra que após um \textit{Move} não é capturada.}
+\end{figure}
 
 \subsubsection{\textit{Sacrifice}}
 
+Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder realizar um \textit{Push} ou um \textit{Move} adicional.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.3]{push2.png} 
+\caption{Jogador azul realiza um \textit{Sacrifice} e depois um \textit{Push}}
+\end{figure}
+
+\newpage
+
 \begin{itemize}
-	\item Os jogadores têm turnos para fazer cada jogada
-	\item Cada jogador pode no seu respetivo realizar cada uma das seguintes jogadas:
-			\begin{itemize}
+	%\item Os jogadores têm turnos para fazer cada jogada
+	%\item Cada jogador pode no seu respetivo realizar cada uma das seguintes jogadas:
+			%\begin{itemize}
 				%\item[] \textbf{\textit{Push}}
 				%\begin{itemize}
 					%\item Para realizar um \textit{Push} é necessário que o jogador tenha mais peças nessa linha que o adversário
@@ -181,19 +211,19 @@ Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para
 					%\item Um jogador não pode realizar um \textit{Push} nas suas próprias peças
 					%\item Para realizar um \textit{Push} é necessário que exista uma peça para ser empurrada
 				%\end{itemize}
-				\item[] \textbf{\textit{Move}}
-				\begin{itemize}
-					\item É possível realizar um \textit{move} para qualquer "casa" desde que esta esteja vazia
-					\item Uma peça pode ser movida em qualquer direção nas "casas" vizinhas
-					\item Se, após um \textit{move}, alguma peça ficar cercada por peças adversárias, então esta é capturada.
-					\item Uma peça capturada é substituída por uma peça do "banco" do jogador que a capturou
-					\item Num \textit{move} em que a peça fica voluntariamente cercada, esta não é capturada
-				\end{itemize}
-				\item[] \textbf{\textit{Sacrifice}}
-				\begin{itemize}
-					\item Um jogador pode sacrificar uma peça do seu "banco", permanentemente, para poder realizar mais um \textit{push} ou um \textit{move} adicional
-				\end{itemize}
-			\end{itemize}
+				%\item[] \textbf{\textit{Move}}
+				%\begin{itemize}
+					%\item É possível realizar um \textit{move} para qualquer "casa" desde que esta esteja vazia
+					%\item Uma peça pode ser movida em qualquer direção nas "casas" vizinhas
+					%\item Se, após um \textit{move}, alguma peça ficar cercada por peças adversárias, então esta é capturada.
+					%\item Uma peça capturada é substituída por uma peça do "banco" do jogador que a capturou
+					%\item Num \textit{move} em que a peça fica voluntariamente cercada, esta não é capturada
+				%\end{itemize}
+				%\item[] \textbf{\textit{Sacrifice}}
+				%\begin{itemize}
+					%\item Um jogador pode sacrificar uma peça do seu "banco", permanentemente, para poder realizar mais um \textit{push} ou um \textit{move} adicional
+				%\end{itemize}
+			%\end{itemize}
 	\item No primeiro turno de cada jogador, deve ser feito um \textit{push} ou um \textit{move}, mas nunca ambos
 	\item Se após um jogador realizar um \textit{Push}, uma das suas peças movidas não ocupa uma "casa" anteriormente ocupada por outra das suas peças,e esta cercar uma peça adversária, então esta é capturada
 	\item Se um jogador empurrar uma peça adversária para uma posição de cerco, então esta é capturada
