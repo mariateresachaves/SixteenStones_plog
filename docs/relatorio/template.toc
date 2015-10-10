@@ -1,10 +1,11 @@
 \select@language {portuguese}
 \contentsline {section}{\numberline {1}O Jogo Sixteen Stones}{3}
-\contentsline {subsection}{\numberline {1.1}Regras}{3}
-\contentsline {subsubsection}{\numberline {1.1.1}Jogadas poss\IeC {\'\i }veis}{3}
-\contentsline {subsubsection}{\numberline {1.1.2}\textit {Push}}{4}
-\contentsline {subsubsection}{\numberline {1.1.3}\textit {Move}}{5}
-\contentsline {subsubsection}{\numberline {1.1.4}\textit {Sacrifice}}{6}
-\contentsline {section}{\numberline {2}Representa\IeC {\c c}\IeC {\~a}o do Estado do Jogo}{7}
-\contentsline {section}{\numberline {3}Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{7}
-\contentsline {section}{\numberline {4}Movimentos}{7}
+\contentsline {subsection}{\numberline {1.1}Tabuleiro de jogo}{3}
+\contentsline {subsection}{\numberline {1.2}Regras}{4}
+\contentsline {subsubsection}{\numberline {1.2.1}Jogadas poss\IeC {\'\i }veis}{4}
+\contentsline {subsubsection}{\numberline {1.2.2}\textit {Push}}{4}
+\contentsline {subsubsection}{\numberline {1.2.3}\textit {Move}}{6}
+\contentsline {subsubsection}{\numberline {1.2.4}\textit {Sacrifice}}{7}
+\contentsline {section}{\numberline {2}Representa\IeC {\c c}\IeC {\~a}o do Estado do Jogo}{8}
+\contentsline {section}{\numberline {3}Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{8}
+\contentsline {section}{\numberline {4}Movimentos}{8}

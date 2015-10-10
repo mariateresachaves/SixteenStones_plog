@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  10 OCT 2015 22:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  10 OCT 2015 23:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -499,75 +499,84 @@ logo.png>]
 \tf@toc=\write3
 \openout3 = `template.toc'.
 
- [2] <board_prep.png, id=17, 803.0pt x 602.25pt>
+ [2] <board_explained.png, id=17, 967.615pt x 853.1875pt>
+File: board_explained.png Graphic file (type png)
+
+<use board_explained.png>
+Package pdftex.def Info: board_explained.png used on input line 95.
+(pdftex.def)             Requested size: 290.28674pt x 255.95822pt.
+ [3 <./board_explained.png>]
+<board_prep.png, id=24, 803.0pt x 602.25pt>
 File: board_prep.png Graphic file (type png)
-
-<use board_prep.png>
-Package pdftex.def Info: board_prep.png used on input line 97.
+ <use board_prep.png>
+Package pdftex.def Info: board_prep.png used on input line 107.
 (pdftex.def)             Requested size: 240.90186pt x 180.67639pt.
- <push2.png, id=18, 343.2825pt x 338.26375pt>
-File: push2.png Graphic file (type png)
 
-<use push2.png>
-Package pdftex.def Info: push2.png used on input line 110.
+<push2.png, id=25, 343.2825pt x 338.26375pt>
+File: push2.png Graphic file (type png)
+ <use push2.png>
+Package pdftex.def Info: push2.png used on input line 120.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
- [3 <./board_prep.png> <./push2.png>]
-<push.png, id=27, 314.17375pt x 299.1175pt>
+
+<push.png, id=26, 314.17375pt x 299.1175pt>
 File: push.png Graphic file (type png)
  <use push.png>
-Package pdftex.def Info: push.png used on input line 120.
+Package pdftex.def Info: push.png used on input line 130.
 (pdftex.def)             Requested size: 94.25284pt x 89.73593pt.
 File: push.png Graphic file (type png)
  <use push.png>
-Package pdftex.def Info: push.png used on input line 126.
+Package pdftex.def Info: push.png used on input line 136.
 (pdftex.def)             Requested size: 94.25284pt x 89.73593pt.
 File: push2.png Graphic file (type png)
 
 <use push2.png>
-Package pdftex.def Info: push2.png used on input line 140.
+Package pdftex.def Info: push2.png used on input line 150.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
+ [4 <./board_prep.png> <./push2.png>]
 File: push2.png Graphic file (type png)
  <use push2.png>
-Package pdftex.def Info: push2.png used on input line 148.
+Package pdftex.def Info: push2.png used on input line 158.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
 File: push2.png Graphic file (type png)
- <use push2.png>
-Package pdftex.def Info: push2.png used on input line 156.
-(pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
-File: push2.png Graphic file (type png)
- <use push2.png>
+
+<use push2.png>
 Package pdftex.def Info: push2.png used on input line 166.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
- [4 <./push.png>]
 File: push2.png Graphic file (type png)
  <use push2.png>
-Package pdftex.def Info: push2.png used on input line 174.
+Package pdftex.def Info: push2.png used on input line 176.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
- [5]
+ [5 <./push.png>]
 File: push2.png Graphic file (type png)
  <use push2.png>
 Package pdftex.def Info: push2.png used on input line 184.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
+ [6]
 File: push2.png Graphic file (type png)
- <use push2.png>
+
+<use push2.png>
 Package pdftex.def Info: push2.png used on input line 194.
 (pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
- [6]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 227.
+File: push2.png Graphic file (type png)
+ <use push2.png>
+Package pdftex.def Info: push2.png used on input line 204.
+(pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
+ [7]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 237.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 227.
- [7]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 237.
+ [8]
 (./template.aux) ) 
 Here is how much of TeX's memory you used:
- 3300 strings out of 493089
- 44423 string characters out of 6134842
+ 3305 strings out of 493089
+ 44537 string characters out of 6134842
  121066 words of memory out of 5000000
- 6722 multiletter control sequences out of 15000+600000
+ 6726 multiletter control sequences out of 15000+600000
  10334 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,8n,32p,618b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -583,10 +592,10 @@ cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 >
-Output written on template.pdf (7 pages, 2385172 bytes).
+Output written on template.pdf (8 pages, 3149702 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 85 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

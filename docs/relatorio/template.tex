@@ -88,14 +88,24 @@ Maria Teresa Chaves - up201306842 \\
 
 Sixteen Stones é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrato - jogo de estratégia que tenta minimizar a sorte e não possui tema.} de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
 
+\subsection{Tabuleiro de jogo}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.3]{board_explained.png} 
+	\caption{Explicação do tabuleiro.}
+\end{figure}
+
+\newpage
+
 \subsection{Regras}
 
 No início do jogo distribui-se 8 pedras (vermelhas ou azuis) para cada jogador. De forma alternada os jogadores devem colocá-las em qualquer uma das células livres, começando as pedras vermelhas.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{board_prep.png} 
-\caption{Preparação do tabuleiro.}
+	\centering
+	\includegraphics[scale=0.3]{board_prep.png}
+	\caption{Preparação do tabuleiro.}
 \end{figure}
 
 Quando as pedras estiverem todas colocadas no tabuleiro, o jogador vermelho começa a jogar e alterna de turno com o jogador adversário.
@@ -106,9 +116,9 @@ Um jogador pode no seu respetivo turno realizar cada uma das seguintes jogadas: 
 No primeiro turno de cada jogador, deve ser feito um \textit{push} ou um \textit{move}, mas nunca ambos.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png}
-\caption{Jogador vermelha realiza um \textit{move} no seu primeiro turno.}
+	\centering
+	\includegraphics[scale=0.3]{push2.png}
+	\caption{Jogador vermelha realiza um \textit{move} no seu primeiro turno.}
 \end{figure}
 
 \subsubsection{\textit{Push}}
@@ -116,15 +126,15 @@ No primeiro turno de cada jogador, deve ser feito um \textit{push} ou um \textit
 Para realizar um  \textit{Push} é necessário que o jogador tenha mais pedras nessa linha que o adversário. Assim, se após um  \textit{Push}, a pedra do adversário é "empurrada" para fora do tabuleiro, então vai para o "banco" do respetivo jogador. As pedras que são "empurradas" apenas se movem uma célula na direção do \textit{Push}, que pode ser realizado em qualquer direção.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push.png} 
-\caption{Direções possíveis de um \textit{Push} e representação do "banco".}
+	\centering
+	\includegraphics[scale=0.3]{push.png} 
+	\caption{Direções possíveis de um \textit{Push} e representação do "banco".}
 \end{figure}
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push.png} 
-\caption{Exemplo de \textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
+	\centering
+	\includegraphics[scale=0.3]{push.png} 
+	\caption{Exemplo de \textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
 \end{figure}
 
 O número de pedras máximo (PE) que um jogador pode "empurrar" é igual:
@@ -136,25 +146,25 @@ PE = P - 1 \text{\hspace{7mm}(sendo P o número das suas pedras nessa linha)}
 Isto é, por exemplo, caso numa linha o jogador azul tenha três pedras, então pode realizar um  \textit{Push} a uma pedra ou a duas do adversário. Mas caso tenha duas apenas pode realizar um  \textit{Push} a uma pedra vermelha.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png}
-\caption{Push com três pedras.}
+	\centering
+	\includegraphics[scale=0.3]{push2.png}
+	\caption{Push com três pedras.}
 \end{figure}
 
 Além das regras referidas anteriormente, um jogador não pode realizar um  \textit{Push} nas suas próprias pedras.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png} 
-\caption{Push inválido por realizar um \textit{Push} nas suas próprias pedras.}
+	\centering
+	\includegraphics[scale=0.3]{push2.png} 
+	\caption{Push inválido por realizar um \textit{Push} nas suas próprias pedras.}
 \end{figure}
 
 Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para ser empurrada. Por exemplo caso numa linha o jogador azul tenha 3 pedras, mas nessa linha o jogador vermelho não tem pedras, então é realizar um  \textit{Push} é uma jogada inválida.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png} 
-\caption{Push inválido por falta de pedras do adversário.}
+	\centering
+	\includegraphics[scale=0.3]{push2.png} 
+	\caption{Push inválido por falta de pedras do adversário.}
 \end{figure}
 
 \subsubsection{\textit{Move}}
@@ -162,17 +172,17 @@ Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para
 É possível realizar um  \textit{Move} para uma célula vazia em qualquer direção. Se o jogador tentar realizar um \textit{Move} para uma célula ocupada, então é considerado uma jogada inválida.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png} 
-\caption{Exemplo de um \textit{Move} válido (a) e um \textit{Move} inválido (b).}
+	\centering
+	\includegraphics[scale=0.3]{push2.png} 
+	\caption{Exemplo de um \textit{Move} válido (a) e um \textit{Move} inválido (b).}
 \end{figure}
 
 Após um \textit{Move} se alguma das pedras adversárias ficar cercada\footnote{Uma pedra fica cercada quando numa das direções existem pedras adversárias nos dois sentidos.}, então esta é capturada e substituída por uma pedra do "banco" do jogador que a capturou.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png} 
-\caption{Exemplo de uma pedra capturada após um \textit{Move}.}
+	\centering
+	\includegraphics[scale=0.3]{push2.png} 
+	\caption{Exemplo de uma pedra capturada após um \textit{Move}.}
 \end{figure}
 
 \newpage
@@ -180,9 +190,9 @@ Após um \textit{Move} se alguma das pedras adversárias ficar cercada\footnote{
 Se um jogador realizar um \textit{Move} e a sua pedra ficar voluntariamente cercada, esta não é capturada.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png} 
-\caption{Exemplo de uma pedra que após um \textit{Move} não é capturada.}
+	\centering
+	\includegraphics[scale=0.3]{push2.png} 
+	\caption{Exemplo de uma pedra que após um \textit{Move} não é capturada.}
 \end{figure}
 
 \subsubsection{\textit{Sacrifice}}
@@ -190,9 +200,9 @@ Se um jogador realizar um \textit{Move} e a sua pedra ficar voluntariamente cerc
 Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder realizar um \textit{Push} ou um \textit{Move} adicional.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.3]{push2.png} 
-\caption{Jogador azul realiza um \textit{Sacrifice} e depois um \textit{Push}}
+	\centering
+	\includegraphics[scale=0.3]{push2.png} 
+	\caption{Jogador azul realiza um \textit{Sacrifice} e depois um \textit{Push}}
 \end{figure}
 
 \newpage
