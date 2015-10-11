@@ -218,11 +218,11 @@ Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder
 \section{Representação do Estado do Jogo}
 
 O tabuleiro é representado por uma lista de listas  $L = \{L_1, L_2, ... , L_n\} , n > 0  \wedge n$ é múltiplo de $5$, em que $n$ é a dimensão do tabuleiro. \par
-Com predicado make\_board é possível criar um tabuleiro (\textit{Board}) com um tamanho \textit{Size}. Para isso o make\_board utiliza o predicado make\_line para criar uma linha e depois usa o make\_board recursivamente. De forma a tornar mais clara a visualização do tabuleiro de jogo, após criá-lo com o make\_board utiliza-se o predicado print\_board que o imprime no ecrã.
+Com o predicado \texttt{make\_board} é possível criar um tabuleiro (\textit{Board}) com um tamanho \textit{Size}. Para isso o \texttt{make\_board} utiliza o predicado \texttt{make\_line} para criar uma linha e depois usa o \texttt{make\_board} recursivamente. De forma a tornar mais clara a visualização do tabuleiro de jogo, após criá-lo com o \texttt{make\_board} utiliza-se o predicado \texttt{print\_board} que o imprime no ecrã.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{images/make_board.png}
+	\includegraphics[scale=0.7]{images/make_board.png}
 	\caption{Estado inicial do jogo.}
 \end{figure}
 
