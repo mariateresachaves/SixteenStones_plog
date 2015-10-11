@@ -15,16 +15,16 @@
 \setlength{\textwidth}{16cm}
 \setlength{\textheight}{22cm}
 
-\title{\Huge\textbf{Sixteen Stones}\linebreak\linebreak\linebreak
+\title{\Huge\textbf{Sixteen Stone}\linebreak\linebreak\linebreak
 \Large\textbf{Relatório Intercalar}\linebreak\linebreak
 \linebreak\linebreak
-\includegraphics[scale=0.1]{feup-logo.png}\linebreak\linebreak
+\includegraphics[scale=0.1]{images/feup-logo.png}\linebreak\linebreak
 \linebreak\linebreak
 \Large{Mestrado Integrado em Engenharia Informática e Computação} \linebreak\linebreak
 \Large{Programação em Lógica}\linebreak
 }
 
-\author{\textbf{Grupo Sixteen\_Stones\_3:}\\
+\author{\textbf{Grupo Sixteen\_Stone\_3:}\\
 Diogo Filipe Costa - ei11014 \\
 Maria Teresa Chaves - up201306842 \\
 \linebreak\linebreak \\
@@ -84,9 +84,9 @@ Maria Teresa Chaves - up201306842 \\
 
 %----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-\section{O Jogo Sixteen Stones}
+\section{O Jogo Sixteen Stone}
 
-Sixteen Stones é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrato - jogo de estratégia que tenta minimizar a sorte e não possui tema.}\footnote{Informação obtida em https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato} de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
+Sixteen Stone é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrato - jogo de estratégia que tenta minimizar a sorte e não possui tema.}\footnote{Informação obtida em https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato} de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
 
 \subsection{Tabuleiro de jogo}
 
@@ -94,7 +94,7 @@ Esta secção tem como objetivo introduzir o tabuleiro de jogo e os elementos qu
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{board_explained.png} 
+	\includegraphics[scale=0.3]{images/board_explained.png} 
 	\caption{Explicação do tabuleiro.}
 \end{figure}
 
@@ -114,7 +114,7 @@ No início do jogo distribui-se 8 pedras (vermelhas ou azuis) para cada jogador.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{board_prep.png}
+	\includegraphics[scale=0.3]{images/board_prep.png}
 	\caption{Preparação do tabuleiro.}
 \end{figure}
 
@@ -127,7 +127,7 @@ No primeiro turno de cada jogador, deve ser feito um \textit{Push} ou um \textit
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{first_move.png}
+	\includegraphics[scale=0.3]{images/first_move.png}
 	\caption{Jogador vermelho realiza um \textit{Move} no seu primeiro turno.}
 \end{figure}
 
@@ -139,13 +139,13 @@ Para realizar um  \textit{Push} é necessário que o jogador tenha mais pedras n
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{push_dirs.png} 
+	\includegraphics[scale=0.3]{images/push_dirs.png} 
 	\caption{Direções possíveis de um \textit{Push} e situações em que a pedra do adversário é "empurrada" para fora do tabuleiro.}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{push_not_poll.png} 
+	\includegraphics[scale=0.3]{images/push_not_poll.png} 
 	\caption{\textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
 \end{figure}
 
@@ -161,7 +161,7 @@ Isto é, por exemplo, caso numa linha o jogador azul tenha três pedras, então 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{push_3_stones.png}
+	\includegraphics[scale=0.3]{images/push_3_stones.png}
 	\caption{Push com três pedras.}
 \end{figure}
 
@@ -170,7 +170,7 @@ Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{invalid_push.png} 
+	\includegraphics[scale=0.3]{images/invalid_push.png} 
 	\caption{Push inválido: nas suas próprias pedras (a); numa célula vazia (b).}
 \end{figure}
 
@@ -182,7 +182,7 @@ Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.2]{valid_invalid_move.png} 
+	\includegraphics[scale=0.2]{images/valid_invalid_move.png} 
 	\caption{\textit{Move} válido (a) e um \textit{Move} inválido (b).}
 \end{figure}
 
@@ -190,7 +190,7 @@ Após um \textit{Move} se alguma das pedras adversárias ficar cercada\footnote{
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{move_cap.png} 
+	\includegraphics[scale=0.3]{images/move_cap.png} 
 	\caption{Pedra azul capturada após um \textit{Move} de uma pedra vermelha.}
 \end{figure}
 
@@ -198,7 +198,7 @@ Se um jogador realizar um \textit{Move} e a sua pedra ficar voluntariamente cerc
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{move_no_cap.png} 
+	\includegraphics[scale=0.3]{images/move_no_cap.png} 
 	\caption{Pedra que após um \textit{Move} não é capturada.}
 \end{figure}
 
@@ -208,14 +208,9 @@ Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{sacrifice.png} 
+	\includegraphics[scale=0.3]{images/sacrifice.png} 
 	\caption{Jogador azul realiza um \textit{Move} (I), um \textit{Sacrifice} (II) e depois um \textit{Push} (III) e ganha o jogo.}
 \end{figure}
-
-Descrever detalhadamente o jogo, a sua história e, principalmente, as suas regras.
-Devem ser incluidas imagens apropriadas para explicar o funcionamento do jogo.
-Devem ser incluidas as fontes de informação (e.g. URLs em rodapé).
-
 
 %----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{Representação do Estado do Jogo}
@@ -239,10 +234,10 @@ Elencar os movimentos (tipos de jogadas) possíveis e definir os cabeçalhos dos
 
 \section*{Bibliografia}
 
-https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato \newline
+"Jogo de estratégia abstrato", https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato (acedido em 7 de Outubro de 2015) \newline
 
-http://www.boardgamegeek.com/boardgame/173193/sixteen-stone \newline
+"Sixteen Stone", http://www.boardgamegeek.com/boardgame/173193/sixteen-stone (acedido em 7 de Outubro de 2015) \newline
 
-http://www.boardgamegeek.com/filepage/117073/sixteen-stone-rules-v10
+"Sixteen Stone - rules v.1.0", http://www.boardgamegeek.com/filepage/117073/sixteen-stone-rules-v10 (acedido em 7 de Outubro de 2015) \newline
 
 \end{document}
