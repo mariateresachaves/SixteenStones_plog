@@ -262,8 +262,15 @@ Para o \textit{Sacrifice} é usado o predicado \texttt{sacrifice(Stone, Board)},
 	\caption{Exemplo de um \textit{Sacrifice} (II).}
 \end{figure}
 
-Descrever a forma de representação do estado do tabuleiro (tipicamente uma lista de listas), com exemplificação em Prolog de posições iniciais do jogo, posições intermédias e finais, acompanhadas de imagens ilustrativas.
+Existe ainda um predicado \texttt{moveToPool(Stone, Player, Pool)} que move uma uma pedra (\texttt{Stone}) para o "banco" de um dado jogador (\texttt{Player}) retorna o "banco" do jogador (\texttt{Pool}) após a pedra ter sido movida.
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.2]{images/pool.png}
+	\caption{Exemplo de uma pedra a ser colocada no "banco" de um jogador.}
+\end{figure}
+
+\newpage
 
 %----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{Visualização do Tabuleiro}
