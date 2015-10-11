@@ -80,3 +80,6 @@ make_board(Size, Counter, Board):- Size > Counter,
    o - 1
    x - 2
 */
+
+draw_board(Size,L) :- make_board(Size,L),
+                      print_board(L).
