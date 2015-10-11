@@ -315,7 +315,14 @@ De uma forma mais visual, segue-se abaixo uma figura ilustrativa da fase respeti
 %----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{Movimentos}
 
-Elencar os movimentos (tipos de jogadas) possíveis e definir os cabeçalhos dos predicados que serão utilizados (ainda não precisam de estar implementados).
+Os movimentos que cada jogador pode efetuar são os seguintes:
+
+\begin{itemize}
+	\item \texttt{push/4 -  push(Stone\_src, Stone\_dst, Dir, Board)} - Predicado para a jogada do tipo \textit{Push} onde \textit{Stone\_src} e \textit{Stone\_dst} são as coordenadas de origem e destino das peças, \textit{Dir} é a direção do \textit{Push} efetuado e \textit{Board} é o tabuleiro de jogo alterado após o \textit{Push}
+	\item \texttt{move/3 -  move(Stone\_src, Cell\_dst, Board)} - Predicado para a jogada do tipo \textit{Move} onde \textit{Stone\_src} é a pedra que se pretende mover, \textit{Cell\_dst} a casa destino para onde se pretende mover a peça e \textit{Board} é o tabuleiro de jogo alterado após o \textit{Move}
+	\item \texttt{sacrifice/2 -  sacrifice(Stone, Board)} - Predicado para a jogada do tipo \textit{Sacrifice} onde \textit{Stone} é a pedra que o jogador sacrifica e \textit{Board} é o tabuleiro de jogo alterado após o \textit{Sacrifice}
+	\item \texttt{moveToPool/3 - moveToPool(Stone, Player, Pool)} - Predicado responsável por mover uma pedra \textit{Stone} de um jogador \textit{Player} para o seu banco, e retorna o banco \textit{Pool} desse jogador após efetuar essa operação
+\end{itemize}
 
 \newpage
 
