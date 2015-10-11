@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 16:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -569,35 +569,45 @@ File: move_no_cap.png Graphic file (type png)
 <use move_no_cap.png>
 Package pdftex.def Info: move_no_cap.png used on input line 201.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
- <push2.png, id=47, 343.2825pt x 338.26375pt>
-File: push2.png Graphic file (type png)
+ <sacrifice.png, id=47, 794.97pt x 591.20876pt>
+File: sacrifice.png Graphic file (type png)
 
-<use push2.png>
-Package pdftex.def Info: push2.png used on input line 211.
-(pdftex.def)             Requested size: 102.98553pt x 101.4799pt.
- [7 <./valid_invalid_move.png> <./move_cap.png> <./move_no_cap.png>] [8 <./push
-2.png>] [9] (./template.aux) ) 
+<use sacrifice.png>
+Package pdftex.def Info: sacrifice.png used on input line 211.
+(pdftex.def)             Requested size: 238.49284pt x 177.36398pt.
+ [7 <./valid_invalid_move.png> <./move_cap.png> <./move_no_cap.png>] [8 <./sacr
+ifice.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+
+ []
+
+[9] (./template.aux) ) 
 Here is how much of TeX's memory you used:
- 3341 strings out of 493089
- 45264 string characters out of 6134842
+ 3340 strings out of 493089
+ 45268 string characters out of 6134842
  120066 words of memory out of 5000000
- 6754 multiletter control sequences out of 15000+600000
+ 6753 multiletter control sequences out of 15000+600000
  10334 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,32p,618b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmti10.pfb>
-Output written on template.pdf (9 pages, 8050771 bytes).
+ 38i,8n,32p,723b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb>
+Output written on template.pdf (9 pages, 7970799 bytes).
 PDF statistics:
  96 PDF objects out of 1000 (max. 8388607)
  56 compressed objects within 1 object stream

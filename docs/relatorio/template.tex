@@ -86,7 +86,7 @@ Maria Teresa Chaves - up201306842 \\
 
 \section{O Jogo Sixteen Stones}
 
-Sixteen Stones é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrato - jogo de estratégia que tenta minimizar a sorte e não possui tema.} de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
+Sixteen Stones é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrato - jogo de estratégia que tenta minimizar a sorte e não possui tema.}\footnote{Informação obtida em https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato} de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
 
 \subsection{Tabuleiro de jogo}
 
@@ -101,7 +101,7 @@ Esta secção tem como objetivo introduzir o tabuleiro de jogo e os elementos qu
 Elementos do tabuleiro:
 
 \begin{itemize}
-	\item \textbf{Pedras} - cada jogador possui um certo número de pedras, sendo que o jogador 1 possui as pedras vermelhas e o 2 as pedras azuis
+	\item \textbf{Pedras} - cada jogador possui um certo número de pedras, sendo que o jogador 1 possui as pedras vermelhas e o 2 as pedras azuis.
 	\item \textbf{Banco} - cada jogador possui um banco onde estão guardadas as pedras que não estão em jogo.
 	\item \textbf{Tabuleiro} -  onde os jogadores colocam as suas pedras de jogo e podem efetuar vários movimentos.
 \end{itemize}
@@ -171,7 +171,7 @@ Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.3]{invalid_push.png} 
-	\caption{\textit{Push} inválido por realizar um \textit{Push}: nas suas próprias pedras(a); numa célula vazia (b).}
+	\caption{Push inválido: nas suas próprias pedras (a); numa célula vazia (b).}
 \end{figure}
 
 \newpage
@@ -208,45 +208,9 @@ Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{push2.png} 
-	\caption{Jogador azul realiza um \textit{Move}, um \textit{Sacrifice} e depois um \textit{Push} e ganha o jogo.}
+	\includegraphics[scale=0.3]{sacrifice.png} 
+	\caption{Jogador azul realiza um \textit{Move} (I), um \textit{Sacrifice} (II) e depois um \textit{Push} (III) e ganha o jogo.}
 \end{figure}
-
-\newpage
-
-\begin{itemize}
-	%\item Os jogadores têm turnos para fazer cada jogada
-	%\item Cada jogador pode no seu respetivo realizar cada uma das seguintes jogadas:
-			%\begin{itemize}
-				%\item[] \textbf{\textit{Push}}
-				%\begin{itemize}
-					%\item Para realizar um \textit{Push} é necessário que o jogador tenha mais peças nessa linha que o adversário
-					%\item Quando uma peça é empurrada para fora do tabuleiro, vai para o "banco" do respetivo jogador
-					%\item As peças que são empurradas, apenas se movem uma "casa" na direção do \textit{Push}
-					%\item É possível realizar um \textit{Push} em qualquer direção
-					%\item O número de peças máximo que um jogador pode empurrar é igual ao número das suas peças nessa linha menos um
-					%\item Um jogador não pode realizar um \textit{Push} nas suas próprias peças
-					%\item Para realizar um \textit{Push} é necessário que exista uma peça para ser empurrada
-				%\end{itemize}
-				%\item[] \textbf{\textit{Move}}
-				%\begin{itemize}
-					%\item É possível realizar um \textit{move} para qualquer "casa" desde que esta esteja vazia
-					%\item Uma peça pode ser movida em qualquer direção nas "casas" vizinhas
-					%\item Se, após um \textit{move}, alguma peça ficar cercada por peças adversárias, então esta é capturada.
-					%\item Uma peça capturada é substituída por uma peça do "banco" do jogador que a capturou
-					%\item Num \textit{move} em que a peça fica voluntariamente cercada, esta não é capturada
-				%\end{itemize}
-				%\item[] \textbf{\textit{Sacrifice}}
-				%\begin{itemize}
-					%\item Um jogador pode sacrificar uma peça do seu "banco", permanentemente, para poder realizar mais um \textit{push} ou um \textit{move} adicional
-				%\end{itemize}
-			%\end{itemize}
-	\item No primeiro turno de cada jogador, deve ser feito um \textit{push} ou um \textit{move}, mas nunca ambos
-	\item Se após um jogador realizar um \textit{Push}, uma das suas peças movidas não ocupa uma "casa" anteriormente ocupada por outra das suas peças,e esta cercar uma peça adversária, então esta é capturada
-	\item Se um jogador empurrar uma peça adversária para uma posição de cerco, então esta é capturada
-	\item Quando um jogador após uma captura substitui a peça capturada por uma do seu banco, esta não pode ser utilizada para capturar outra peça enquanto não for movida
-	\item Se um jogador não tem peças no banco então este não pode capturar peças adversárias
-\end{itemize}
 
 Descrever detalhadamente o jogo, a sua história e, principalmente, as suas regras.
 Devem ser incluidas imagens apropriadas para explicar o funcionamento do jogo.
@@ -271,8 +235,14 @@ Deve ser incluída pelo menos uma imagem correspondente ao output produzido pelo
 
 Elencar os movimentos (tipos de jogadas) possíveis e definir os cabeçalhos dos predicados que serão utilizados (ainda não precisam de estar implementados).
 
+\newpage
+
 \section*{Bibliografia}
 
-%https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato
+https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato \newline
+
+http://www.boardgamegeek.com/boardgame/173193/sixteen-stone \newline
+
+http://www.boardgamegeek.com/filepage/117073/sixteen-stone-rules-v10
 
 \end{document}
