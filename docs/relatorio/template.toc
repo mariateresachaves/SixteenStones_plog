@@ -7,5 +7,5 @@
 \contentsline {subsubsection}{\numberline {1.2.3}\textit {Move}}{7}
 \contentsline {subsubsection}{\numberline {1.2.4}\textit {Sacrifice}}{8}
 \contentsline {section}{\numberline {2}Representa\IeC {\c c}\IeC {\~a}o do Estado do Jogo}{9}
-\contentsline {section}{\numberline {3}Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{9}
+\contentsline {section}{\numberline {3}Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{10}
 \contentsline {section}{\numberline {4}Movimentos}{10}

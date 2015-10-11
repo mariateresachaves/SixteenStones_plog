@@ -238,6 +238,22 @@ A figura acima demonstra o estado do tabuleiro na sua fase inicial, sem nenhuma 
 
 O jogador pode realizar cada uma das três jogadas possíveis: \textit{Push}, \textit{Move} e \textit{Sacrifice}. Para o \textit{Push} é usado o predicado \texttt{push(Stone\_src, Stone\_dst, Dir, Board)}, onde \texttt{Stone\_src} e \texttt{Stone\_dst} são as coordenadas x-y (separadas por um traço) das pedras inicial e destino, \texttt{Dir} é a direção do \textit{Push} e pode ter os valores: 0 (cima), 1 (direita), 2 (baixo) ou 3 (esquerda) e \texttt{Board} é o tabuleiro que é retornado após o \textit{Push}.
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.2]{images/push.png}
+	\caption{Exemplo de um \textit{Push}.}
+\end{figure}
+
+\newpage
+
+Para o \textit{Move} é usado o predicado \texttt{move(Stone\_src, Cell\_dst, Board)}, onde \texttt{Stone\_src} é a pedra que se pretende mover, \texttt{Cell\_dst} é a célula de destino e o \texttt{Board} é o tabuleiro que é retornado.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.2]{images/move.png}
+	\caption{Exemplo de um \textit{Move}.}
+\end{figure}
+
 Descrever a forma de representação do estado do tabuleiro (tipicamente uma lista de listas), com exemplificação em Prolog de posições iniciais do jogo, posições intermédias e finais, acompanhadas de imagens ilustrativas.
 
 
