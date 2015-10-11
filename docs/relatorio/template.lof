@@ -1,7 +1,19 @@
 \select@language {portuguese}
-\contentsline {figure}{\numberline {1}{\ignorespaces Prepara\IeC {\c c}\IeC {\~a}o do tabuleiro\relax }}{3}
-\contentsline {figure}{\numberline {2}{\ignorespaces Dire\IeC {\c c}\IeC {\~o}es poss\IeC {\'\i }veis de um \textit {Push} e representa\IeC {\c c}\IeC {\~a}o do "banco"\relax }}{3}
-\contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de \textit {Push} sem que a pedra advers\IeC {\'a}ria seja "empurrada" para fora do tabuleiro\relax }}{4}
-\contentsline {figure}{\numberline {4}{\ignorespaces Push com tr\IeC {\^e}s pedras\relax }}{4}
-\contentsline {figure}{\numberline {5}{\ignorespaces Push inv\IeC {\'a}lido por realizar um \textit {Push} nas suas pr\IeC {\'o}prias pedras\relax }}{4}
-\contentsline {figure}{\numberline {6}{\ignorespaces Push inv\IeC {\'a}lido por falta de pedras do advers\IeC {\'a}rio\relax }}{5}
+\contentsline {figure}{\numberline {1}{\ignorespaces Explica\IeC {\c c}\IeC {\~a}o do tabuleiro.}}{3}
+\contentsline {figure}{\numberline {2}{\ignorespaces Prepara\IeC {\c c}\IeC {\~a}o do tabuleiro.}}{4}
+\contentsline {figure}{\numberline {3}{\ignorespaces Jogador vermelho realiza um \textit {Move} no seu primeiro turno.}}{4}
+\contentsline {figure}{\numberline {4}{\ignorespaces Dire\IeC {\c c}\IeC {\~o}es poss\IeC {\'\i }veis de um \textit {Push} e situa\IeC {\c c}\IeC {\~o}es em que a pedra do advers\IeC {\'a}rio \IeC {\'e} "empurrada" para fora do tabuleiro.}}{5}
+\contentsline {figure}{\numberline {5}{\ignorespaces \textit {Push} sem que a pedra advers\IeC {\'a}ria seja "empurrada" para fora do tabuleiro.}}{5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Push com tr\IeC {\^e}s pedras.}}{6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Push inv\IeC {\'a}lido: nas suas pr\IeC {\'o}prias pedras (a); numa c\IeC {\'e}lula vazia (b).}}{6}
+\contentsline {figure}{\numberline {8}{\ignorespaces \textit {Move} v\IeC {\'a}lido (a) e um \textit {Move} inv\IeC {\'a}lido (b).}}{7}
+\contentsline {figure}{\numberline {9}{\ignorespaces Pedra azul capturada ap\IeC {\'o}s um \textit {Move} de uma pedra vermelha.}}{7}
+\contentsline {figure}{\numberline {10}{\ignorespaces Pedra que ap\IeC {\'o}s um \textit {Move} n\IeC {\~a}o \IeC {\'e} capturada.}}{7}
+\contentsline {figure}{\numberline {11}{\ignorespaces Jogador azul realiza um \textit {Move} (I), um \textit {Sacrifice} (II) e depois um \textit {Push} (III) e ganha o jogo.}}{8}
+\contentsline {figure}{\numberline {12}{\ignorespaces Estado inicial do jogo.}}{9}
+\contentsline {figure}{\numberline {13}{\ignorespaces Tabuleiro de jogo.}}{9}
+\contentsline {figure}{\numberline {14}{\ignorespaces Exemplo de um \textit {Push}.}}{9}
+\contentsline {figure}{\numberline {15}{\ignorespaces Exemplo de um \textit {Move}.}}{10}
+\contentsline {figure}{\numberline {16}{\ignorespaces Exemplo de um \textit {Sacrifice} (II).}}{10}
+\contentsline {figure}{\numberline {17}{\ignorespaces Exemplo de uma pedra a ser colocada no "banco" de um jogador.}}{10}
+\contentsline {figure}{\numberline {18}{\ignorespaces Exemplo de chamada do predicado \texttt {draw\_board} para um tamanho de 5x5}}{11}

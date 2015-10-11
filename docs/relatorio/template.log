@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 23:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 23:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -531,160 +531,163 @@ s/feup-logo.png>] (./template.toc)
 \tf@toc=\write3
 \openout3 = `template.toc'.
 
- [2]
-<images/board_explained.png, id=17, 967.615pt x 853.1875pt>
+ (./template.lof)
+\tf@lof=\write4
+\openout4 = `template.lof'.
+
+ [2] <images/board_explained.png, id=18, 967.615pt x 853.1875pt>
 File: images/board_explained.png Graphic file (type png)
 
 <use images/board_explained.png>
-Package pdftex.def Info: images/board_explained.png used on input line 99.
+Package pdftex.def Info: images/board_explained.png used on input line 100.
 (pdftex.def)             Requested size: 290.28674pt x 255.95822pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 106.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 107.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 106.
- [3 <./images/board_explained.png>] <images/board_prep.png, id=25, 803.0pt x 60
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 107.
+ [3 <./images/board_explained.png>] <images/board_prep.png, id=26, 803.0pt x 60
 2.25pt>
 File: images/board_prep.png Graphic file (type png)
 
 <use images/board_prep.png>
-Package pdftex.def Info: images/board_prep.png used on input line 119.
+Package pdftex.def Info: images/board_prep.png used on input line 120.
 (pdftex.def)             Requested size: 240.90186pt x 180.67639pt.
 
-<images/first_move.png, id=26, 813.0375pt x 603.25375pt>
+<images/first_move.png, id=27, 813.0375pt x 603.25375pt>
 File: images/first_move.png Graphic file (type png)
 
 <use images/first_move.png>
-Package pdftex.def Info: images/first_move.png used on input line 132.
+Package pdftex.def Info: images/first_move.png used on input line 133.
 (pdftex.def)             Requested size: 243.91313pt x 180.97751pt.
  [4 <./images/board_prep.png> <./images/first_move.png>] <images/push_dirs.png,
- id=31, 1451.4225pt x 689.57625pt>
+ id=32, 1451.4225pt x 689.57625pt>
 File: images/push_dirs.png Graphic file (type png)
 
 <use images/push_dirs.png>
-Package pdftex.def Info: images/push_dirs.png used on input line 144.
+Package pdftex.def Info: images/push_dirs.png used on input line 145.
 (pdftex.def)             Requested size: 435.43011pt x 206.87447pt.
 
-<images/push_not_poll.png, id=32, 794.97pt x 555.07375pt>
+<images/push_not_poll.png, id=33, 794.97pt x 555.07375pt>
 File: images/push_not_poll.png Graphic file (type png)
 
 <use images/push_not_poll.png>
-Package pdftex.def Info: images/push_not_poll.png used on input line 150.
+Package pdftex.def Info: images/push_not_poll.png used on input line 151.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
  [5 <./images/push_dirs.png> <./images/push_not_poll.png>] <images/push_3_stone
-s.png, id=39, 794.97pt x 555.07375pt>
+s.png, id=40, 794.97pt x 555.07375pt>
 File: images/push_3_stones.png Graphic file (type png)
 
 <use images/push_3_stones.png>
-Package pdftex.def Info: images/push_3_stones.png used on input line 166.
+Package pdftex.def Info: images/push_3_stones.png used on input line 167.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
 
-<images/invalid_push.png, id=40, 794.97pt x 555.07375pt>
+<images/invalid_push.png, id=41, 794.97pt x 555.07375pt>
 File: images/invalid_push.png Graphic file (type png)
 
 <use images/invalid_push.png>
-Package pdftex.def Info: images/invalid_push.png used on input line 175.
+Package pdftex.def Info: images/invalid_push.png used on input line 176.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
  [6 <./images/push_3_stones.png> <./images/invalid_push.png>] <images/valid_inv
-alid_move.png, id=44, 682.55pt x 287.0725pt>
+alid_move.png, id=45, 682.55pt x 287.0725pt>
 File: images/valid_invalid_move.png Graphic file (type png)
 
 <use images/valid_invalid_move.png>
-Package pdftex.def Info: images/valid_invalid_move.png used on input line 187.
+Package pdftex.def Info: images/valid_invalid_move.png used on input line 188.
 (pdftex.def)             Requested size: 136.50758pt x 57.41347pt.
 
-<images/move_cap.png, id=45, 794.97pt x 555.07375pt>
+<images/move_cap.png, id=46, 794.97pt x 555.07375pt>
 File: images/move_cap.png Graphic file (type png)
  <use images/move_cap.png>
-Package pdftex.def Info: images/move_cap.png used on input line 195.
+Package pdftex.def Info: images/move_cap.png used on input line 196.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
 
-<images/move_no_cap.png, id=46, 794.97pt x 555.07375pt>
+<images/move_no_cap.png, id=47, 794.97pt x 555.07375pt>
 File: images/move_no_cap.png Graphic file (type png)
 
 <use images/move_no_cap.png>
-Package pdftex.def Info: images/move_no_cap.png used on input line 203.
+Package pdftex.def Info: images/move_no_cap.png used on input line 204.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
 
-<images/sacrifice.png, id=47, 794.97pt x 591.20876pt>
+<images/sacrifice.png, id=48, 794.97pt x 591.20876pt>
 File: images/sacrifice.png Graphic file (type png)
 
 <use images/sacrifice.png>
-Package pdftex.def Info: images/sacrifice.png used on input line 213.
+Package pdftex.def Info: images/sacrifice.png used on input line 214.
 (pdftex.def)             Requested size: 238.49284pt x 177.36398pt.
  [7 <./images/valid_invalid_move.png> <./images/move_cap.png> <./images/move_no
 _cap.png>] [8 <./images/sacrifice.png>]
-<images/make_board.png, id=57, 492.84125pt x 108.405pt>
+<images/make_board.png, id=58, 492.84125pt x 108.405pt>
 File: images/make_board.png Graphic file (type png)
 
 <use images/make_board.png>
-Package pdftex.def Info: images/make_board.png used on input line 227.
+Package pdftex.def Info: images/make_board.png used on input line 228.
 (pdftex.def)             Requested size: 295.70702pt x 65.04349pt.
- <images/board.png, id=58, 803.0pt x 602.25pt>
+ <images/board.png, id=59, 803.0pt x 602.25pt>
 File: images/board.png Graphic file (type png)
 
 <use images/board.png>
-Package pdftex.def Info: images/board.png used on input line 235.
+Package pdftex.def Info: images/board.png used on input line 236.
 (pdftex.def)             Requested size: 240.90186pt x 180.67639pt.
- <images/push.png, id=59, 301.125pt x 301.125pt>
+ <images/push.png, id=60, 301.125pt x 301.125pt>
 File: images/push.png Graphic file (type png)
 
 <use images/push.png>
-Package pdftex.def Info: images/push.png used on input line 243.
+Package pdftex.def Info: images/push.png used on input line 244.
 (pdftex.def)             Requested size: 60.22392pt x 60.22392pt.
  [9 <./images/make_board.png> <./images/board.png> <./images/push.png>] <images
 /move.png, id=67, 301.125pt x 301.125pt>
 File: images/move.png Graphic file (type png)
 
 <use images/move.png>
-Package pdftex.def Info: images/move.png used on input line 253.
+Package pdftex.def Info: images/move.png used on input line 254.
 (pdftex.def)             Requested size: 90.33818pt x 90.33818pt.
 File: images/sacrifice.png Graphic file (type png)
  <use images/sacrifice.png>
-Package pdftex.def Info: images/sacrifice.png used on input line 261.
+Package pdftex.def Info: images/sacrifice.png used on input line 262.
 (pdftex.def)             Requested size: 238.49284pt x 177.36398pt.
 
 <images/pool.png, id=68, 794.97pt x 582.175pt>
 File: images/pool.png Graphic file (type png)
  <use images/pool.png>
-Package pdftex.def Info: images/pool.png used on input line 269.
+Package pdftex.def Info: images/pool.png used on input line 270.
 (pdftex.def)             Requested size: 158.99118pt x 116.43294pt.
  [10 <./images/move.png> <./images/pool.png>]
 <images/draw_board.png, id=74, 491.8375pt x 107.40125pt>
 File: images/draw_board.png Graphic file (type png)
 
 <use images/draw_board.png>
-Package pdftex.def Info: images/draw_board.png used on input line 292.
+Package pdftex.def Info: images/draw_board.png used on input line 293.
 (pdftex.def)             Requested size: 295.10477pt x 64.44122pt.
  [11 <./images/draw_board.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
+Underfull \hbox (badness 10000) in paragraph at lines 312--313
 
  []
 
 
-Overfull \hbox (2.26437pt too wide) in paragraph at lines 313--314
+Overfull \hbox (2.26437pt too wide) in paragraph at lines 314--315
 []\OT1/cmr/m/n/10 "Sixteen Stone - ru-les v.1.0", http://www.boardgamegeek.com/
 filepage/117073/sixteen-stone-rules-v10 (ace-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
 
  []
 
 [12] (./template.aux) ) 
 Here is how much of TeX's memory you used:
- 4794 strings out of 493089
- 66638 string characters out of 6134842
- 155389 words of memory out of 5000000
+ 4797 strings out of 493089
+ 66668 string characters out of 6134842
+ 158389 words of memory out of 5000000
  8181 multiletter control sequences out of 15000+600000
  10502 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -703,7 +706,7 @@ cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 .pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
 fb>
-Output written on template.pdf (12 pages, 10052986 bytes).
+Output written on template.pdf (12 pages, 10054359 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream
