@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 19:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 19:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -616,40 +616,47 @@ File: images/sacrifice.png Graphic file (type png)
 Package pdftex.def Info: images/sacrifice.png used on input line 213.
 (pdftex.def)             Requested size: 238.49284pt x 177.36398pt.
  [7 <./images/valid_invalid_move.png> <./images/move_cap.png> <./images/move_no
-_cap.png>]
-<images/make_board.png, id=53, 492.84125pt x 108.405pt>
+_cap.png>] [8 <./images/sacrifice.png>]
+<images/make_board.png, id=57, 492.84125pt x 108.405pt>
 File: images/make_board.png Graphic file (type png)
 
 <use images/make_board.png>
-Package pdftex.def Info: images/make_board.png used on input line 225.
-(pdftex.def)             Requested size: 344.98651pt x 75.88297pt.
- [8 <./images/sacrifice.png> <./images/make_board.png>] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
+Package pdftex.def Info: images/make_board.png used on input line 227.
+(pdftex.def)             Requested size: 295.70702pt x 65.04349pt.
+ <images/board.png, id=58, 803.0pt x 602.25pt>
+File: images/board.png Graphic file (type png)
+
+<use images/board.png>
+Package pdftex.def Info: images/board.png used on input line 235.
+(pdftex.def)             Requested size: 240.90186pt x 180.67639pt.
+ [9 <./images/make_board.png> <./images/board.png>]
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
 
  []
 
 
-Overfull \hbox (2.26437pt too wide) in paragraph at lines 253--254
+Overfull \hbox (2.26437pt too wide) in paragraph at lines 262--263
 []\OT1/cmr/m/n/10 "Sixteen Stone - ru-les v.1.0", http://www.boardgamegeek.com/
 filepage/117073/sixteen-stone-rules-v10 (ace-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--254
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
 
  []
 
-[10] (./template.aux) ) 
+[11] (./template.aux) ) 
 Here is how much of TeX's memory you used:
- 4770 strings out of 493089
- 66172 string characters out of 6134842
+ 4775 strings out of 493089
+ 66264 string characters out of 6134842
  155389 words of memory out of 5000000
- 8161 multiletter control sequences out of 15000+600000
+ 8165 multiletter control sequences out of 15000+600000
  10502 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,8n,40p,722b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -667,10 +674,10 @@ cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 .pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
 fb>
-Output written on template.pdf (10 pages, 7982568 bytes).
+Output written on template.pdf (11 pages, 8871020 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -215,6 +215,8 @@ Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder
 \end{figure}
 
 %----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+
 \section{Representação do Estado do Jogo}
 
 O tabuleiro é representado por uma lista de listas  $L = \{L_1, L_2, ... , L_n\} , n > 0  \wedge n$ é múltiplo de $5$, em que $n$ é a dimensão do tabuleiro. \par
@@ -222,10 +224,17 @@ Com o predicado \texttt{make\_board} é possível criar um tabuleiro (\textit{Bo
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.7]{images/make_board.png}
+	\includegraphics[scale=0.6]{images/make_board.png}
 	\caption{Estado inicial do jogo.}
 \end{figure}
 
+A figura acima demonstra o estado do tabuleiro na sua fase inicial, sem nenhuma célula preenchida. De uma forma mais visual, segue-se abaixo uma figura demonstrativa do tabuleiro.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.3]{images/board.png}
+	\caption{Tabuleiro de jogo.}
+\end{figure}
 
 Descrever a forma de representação do estado do tabuleiro (tipicamente uma lista de listas), com exemplificação em Prolog de posições iniciais do jogo, posições intermédias e finais, acompanhadas de imagens ilustrativas.
 

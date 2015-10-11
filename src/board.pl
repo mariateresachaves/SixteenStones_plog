@@ -68,13 +68,12 @@ make_board(Size, Counter, Board):- Size > Counter,
                                    append(NewBoard, [Line], Board). 
                                                         %append the Line to NewBoard, thus creating the final Board
 
-
 /*
-   | _   _ | _ x _ | _   _ | _ o _ | _ o _ |
-   | _ o _ | _   _ | _ x _ | _ x _ | _ x _ |
-   | _ x _ | _   _ | _   _ | _ o _ | _ x _ |
-   | _   _ | _   _ | _ o _ | _ o _ | _   _ |
-   | _ x _ | _ x _ | _ o _ | _ o _ | _   _ |
+   | _ | x | _ | o | o |
+   | o | _ | x | x | x |
+   | x | _ | _ | o | x |
+   | _ | _ | o | o | _ |
+   | x | x | o | o | _ |
     
    
    _ - 0
