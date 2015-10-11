@@ -8,4 +8,4 @@
 \contentsline {subsubsection}{\numberline {1.2.4}\textit {Sacrifice}}{8}
 \contentsline {section}{\numberline {2}Representa\IeC {\c c}\IeC {\~a}o do Estado do Jogo}{8}
 \contentsline {section}{\numberline {3}Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{8}
-\contentsline {section}{\numberline {4}Movimentos}{8}
+\contentsline {section}{\numberline {4}Movimentos}{9}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 17:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  11 OCT 2015 19:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -379,35 +379,66 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count104
+\lst@gtempboxa=\box28
+\lst@token=\toks25
+\lst@length=\count105
+\lst@currlwidth=\dimen123
+\lst@column=\count106
+\lst@pos=\count107
+\lst@lostspace=\dimen124
+\lst@width=\dimen125
+\lst@newlines=\count108
+\lst@lineno=\count109
+\lst@maxwidth=\dimen126
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count110
+\lst@skipnumbers=\count111
+\lst@framebox=\box29
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2014/09/06 1.5e listings language file
+)
 (./template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
-\scratchdimen=\dimen123
-\scratchbox=\box28
-\nofMPsegments=\count105
-\nofMParguments=\count106
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count107
-\MPscratchDim=\dimen124
-\MPnumerator=\count108
-\makeMPintoPDFobject=\count109
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count112
+\scratchdimen=\dimen127
+\scratchbox=\box30
+\nofMPsegments=\count113
+\nofMParguments=\count114
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen128
+\MPnumerator=\count116
+\makeMPintoPDFobject=\count117
+\everyMPtoPDFconversion=\toks27
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -486,11 +517,12 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+\c@lstlisting=\count118
 <images/feup-logo.png, id=1, 2252.415pt x 742.775pt>
 File: images/feup-logo.png Graphic file (type png)
 
 <use images/feup-logo.png>
-Package pdftex.def Info: images/feup-logo.png used on input line 34.
+Package pdftex.def Info: images/feup-logo.png used on input line 36.
 (pdftex.def)             Requested size: 225.2547pt x 74.28185pt.
  [1
 
@@ -504,132 +536,140 @@ s/feup-logo.png>] (./template.toc)
 File: images/board_explained.png Graphic file (type png)
 
 <use images/board_explained.png>
-Package pdftex.def Info: images/board_explained.png used on input line 97.
+Package pdftex.def Info: images/board_explained.png used on input line 99.
 (pdftex.def)             Requested size: 290.28674pt x 255.95822pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 104.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 106.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 106.
  [3 <./images/board_explained.png>] <images/board_prep.png, id=25, 803.0pt x 60
 2.25pt>
 File: images/board_prep.png Graphic file (type png)
 
 <use images/board_prep.png>
-Package pdftex.def Info: images/board_prep.png used on input line 117.
+Package pdftex.def Info: images/board_prep.png used on input line 119.
 (pdftex.def)             Requested size: 240.90186pt x 180.67639pt.
 
 <images/first_move.png, id=26, 813.0375pt x 603.25375pt>
 File: images/first_move.png Graphic file (type png)
 
 <use images/first_move.png>
-Package pdftex.def Info: images/first_move.png used on input line 130.
+Package pdftex.def Info: images/first_move.png used on input line 132.
 (pdftex.def)             Requested size: 243.91313pt x 180.97751pt.
  [4 <./images/board_prep.png> <./images/first_move.png>] <images/push_dirs.png,
  id=31, 1451.4225pt x 689.57625pt>
 File: images/push_dirs.png Graphic file (type png)
 
 <use images/push_dirs.png>
-Package pdftex.def Info: images/push_dirs.png used on input line 142.
+Package pdftex.def Info: images/push_dirs.png used on input line 144.
 (pdftex.def)             Requested size: 435.43011pt x 206.87447pt.
 
 <images/push_not_poll.png, id=32, 794.97pt x 555.07375pt>
 File: images/push_not_poll.png Graphic file (type png)
 
 <use images/push_not_poll.png>
-Package pdftex.def Info: images/push_not_poll.png used on input line 148.
+Package pdftex.def Info: images/push_not_poll.png used on input line 150.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
  [5 <./images/push_dirs.png> <./images/push_not_poll.png>] <images/push_3_stone
 s.png, id=39, 794.97pt x 555.07375pt>
 File: images/push_3_stones.png Graphic file (type png)
 
 <use images/push_3_stones.png>
-Package pdftex.def Info: images/push_3_stones.png used on input line 164.
+Package pdftex.def Info: images/push_3_stones.png used on input line 166.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
 
 <images/invalid_push.png, id=40, 794.97pt x 555.07375pt>
 File: images/invalid_push.png Graphic file (type png)
 
 <use images/invalid_push.png>
-Package pdftex.def Info: images/invalid_push.png used on input line 173.
+Package pdftex.def Info: images/invalid_push.png used on input line 175.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
  [6 <./images/push_3_stones.png> <./images/invalid_push.png>] <images/valid_inv
 alid_move.png, id=44, 682.55pt x 287.0725pt>
 File: images/valid_invalid_move.png Graphic file (type png)
 
 <use images/valid_invalid_move.png>
-Package pdftex.def Info: images/valid_invalid_move.png used on input line 185.
+Package pdftex.def Info: images/valid_invalid_move.png used on input line 187.
 (pdftex.def)             Requested size: 136.50758pt x 57.41347pt.
 
 <images/move_cap.png, id=45, 794.97pt x 555.07375pt>
 File: images/move_cap.png Graphic file (type png)
  <use images/move_cap.png>
-Package pdftex.def Info: images/move_cap.png used on input line 193.
+Package pdftex.def Info: images/move_cap.png used on input line 195.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
 
 <images/move_no_cap.png, id=46, 794.97pt x 555.07375pt>
 File: images/move_no_cap.png Graphic file (type png)
 
 <use images/move_no_cap.png>
-Package pdftex.def Info: images/move_no_cap.png used on input line 201.
+Package pdftex.def Info: images/move_no_cap.png used on input line 203.
 (pdftex.def)             Requested size: 238.49284pt x 166.52339pt.
 
 <images/sacrifice.png, id=47, 794.97pt x 591.20876pt>
 File: images/sacrifice.png Graphic file (type png)
 
 <use images/sacrifice.png>
-Package pdftex.def Info: images/sacrifice.png used on input line 211.
+Package pdftex.def Info: images/sacrifice.png used on input line 213.
 (pdftex.def)             Requested size: 238.49284pt x 177.36398pt.
  [7 <./images/valid_invalid_move.png> <./images/move_cap.png> <./images/move_no
-_cap.png>] [8 <./images/sacrifice.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
+_cap.png>]
+<images/make_board.png, id=53, 492.84125pt x 108.405pt>
+File: images/make_board.png Graphic file (type png)
+
+<use images/make_board.png>
+Package pdftex.def Info: images/make_board.png used on input line 225.
+(pdftex.def)             Requested size: 147.8535pt x 32.52174pt.
+ [8 <./images/sacrifice.png> <./images/make_board.png>] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 
  []
 
 
-Overfull \hbox (2.26437pt too wide) in paragraph at lines 246--247
+Overfull \hbox (2.26437pt too wide) in paragraph at lines 253--254
 []\OT1/cmr/m/n/10 "Sixteen Stone - ru-les v.1.0", http://www.boardgamegeek.com/
 filepage/117073/sixteen-stone-rules-v10 (ace-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--247
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
 
  []
 
-[9] (./template.aux) ) 
+[10] (./template.aux) ) 
 Here is how much of TeX's memory you used:
- 3343 strings out of 493089
- 45643 string characters out of 6134842
- 120066 words of memory out of 5000000
- 6755 multiletter control sequences out of 15000+600000
+ 4768 strings out of 493089
+ 66151 string characters out of 6134842
+ 155389 words of memory out of 5000000
+ 8160 multiletter control sequences out of 15000+600000
  10334 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,32p,722b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
-.pfb>
-Output written on template.pdf (9 pages, 7970948 bytes).
+ 38i,8n,40p,722b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
+pfb>
+Output written on template.pdf (10 pages, 7972051 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 105 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
