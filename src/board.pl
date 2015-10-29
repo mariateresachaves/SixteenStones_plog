@@ -1,18 +1,18 @@
 /*
 
-TRANSLATE - convert a number to figure (_, O or X)
+TRANSLATE - Convert a number to figure (_, O or X)
 The first parameter is a possible board cell number.
 The second parameter is the respective translation to a figure.
 
 */
 
-translate(0, '_').
+translate(0, ' ').
 translate(1, 'O').
 translate(2, 'X').
 
 /*
 
-MAKE_LINE - make a game board line
+MAKE_LINE - Make a game board line
 Size - The size of the line
 Line - Line to be returned
 
@@ -21,40 +21,15 @@ Line - Line to be returned
 make_line(0, []).
 make_line(Size, Line):- NewSize is Size-1,
                         make_line(NewSize, NewLine), 
-                        append(NewLine, [0], Line).
+                        append(NewLine, [2], Line).
 
 /*
 
-PRINT_LINE - print a line of the board
-H - The H (head) is a board cell represented by one of the following numbers: 0, 1 or 2
-T - The T (tail) is the others cells of that line
-*/
-                                         
-print_line([]):- write(' |').
-
-print_line([H|T]):- write(' | '),
-                    translate(H, C), %convert number to figure (_, O or X)
-                    write(C),
-                    print_line(T).
-                                                
-/*
-
-PRINT_BOARD- print a size NxN board
-H - The H (head) is a line
-T - The T (tail) is the other lines
-
-*/
-                                                
-print_board([]).
-print_board([H|T]):- print_line(H), nl,
-                     print_board(T).
-
-/*
-
-MAKE_BOARD - make a board of size NxN
+MAKE_BOARD - Make a board of size NxN
 Size - Board's size
 Counter - Size's counter (starts in 0 and ends when Size = Counter)
 Board - Game board of size NxN
+
 */
                                         %Using cut (!) to ensure SICStus doesn't give more solutions
 make_board(Size, Board):- make_board(Size, 0, Board), !.
@@ -69,6 +44,139 @@ make_board(Size, Counter, Board):- Size > Counter,
                                                         %append the Line to NewBoard, thus creating the final Board
 
 /*
+
+DRAW_BOARD - Make board of size NxN and print it
+Size - Board's size
+Board - Game board of size NxN
+
+*/
+
+draw_board(Size, Board) :- make_board(Size, Board),
+                           draw_border(Size),
+                           draw_board_lines(Size, Board),
+                           nl,
+                           print('Player 1'),
+                           nl,
+                           draw_pools([1,1,1,1,1,0,0,1],Size),
+                           nl,
+                           print('Player 2'),
+                           nl,
+                           draw_pools([2,0,2,0,0,0,2,0],Size).
+
+/*
+
+DRAW_BORDER - Draw board limit
+Size - Board's size
+ 
+*/
+
+draw_border(0):- nl, !.
+
+draw_border(Size):- NewSize is Size - 1,
+                    print('-----------'),
+                    draw_border(NewSize).
+
+/*
+
+DRAW_BOARD_LINES - Draw each board line
+Size - Board's size
+Board - Game board of size NxN
+      
+*/
+
+draw_board_lines(_, []).
+
+draw_board_lines(Size, [H|T]):- draw_empty(Size),
+                                draw_line(Size, H),
+                                draw_empty(Size),
+                                draw_border(Size),
+                                draw_board_lines(Size, T).
+
+/*
+
+DRAW_EMPTY - Draw the board line without the characters
+Size - Board's size
+      
+*/
+
+draw_empty(0):- print('|'),
+                nl, !.
+
+draw_empty(Size):- print('|          '),
+                   Size > 0,
+                   NewSize is Size-1,
+                   draw_empty(NewSize).
+
+/*
+   
+DRAW_LINE - Draw the board line with the characters
+Size - Board's size
+Board - Game board of size NxN
+   
+*/
+
+draw_line(0,_):- print('|'),
+                 nl, !.
+
+draw_line(Size, [H|T]):- NewSize is Size-1,
+                         print('|    '),
+                         translate(H,Char),
+                         print(Char),
+                         print('     '),
+                         draw_line(NewSize, T).
+
+/*
+  
+DRAW_POOLS - draw each players pool
+Stones - List of players' stones
+Size - Board's size
+    
+*/
+
+draw_pools(Stones, Size):- PoolSize is round((8/5)*Size),
+                           draw_border(PoolSize),
+                           draw_empty(PoolSize),
+                           draw_line(PoolSize, Stones),
+                           draw_empty(PoolSize),
+                           draw_border(PoolSize),
+                           nl,!.
+                           
+
+
+/* ---------------------------------------------------
+   |         |         |         |         |         |  
+   |         |    X    |         |    O    |    O    | 
+   |         |         |         |         |         | 
+   ---------------------------------------------------
+   |         |         |         |         |         |  
+   |    O    |         |    X    |    X    |    X    | 
+   |         |         |         |         |         | 
+   ---------------------------------------------------
+   |         |         |         |         |         |  
+   |    X    |         |         |    O    |    X    | 
+   |         |         |         |         |         | 
+   ---------------------------------------------------
+   |         |         |         |         |         |  
+   |         |         |    O    |    O    |         | 
+   |         |         |         |         |         | 
+   ---------------------------------------------------
+   |         |         |         |         |         |  
+   |    X    |    X    |    O    |    O    |         | 
+   |         |         |         |         |         | 
+   ---------------------------------------------------
+   
+   -----------------------------------------------------------------------
+   |         |         |         |         |         |         |         |
+   |         |         |         |         |         |         |         |
+   |         |         |         |         |         |         |         |
+   -----------------------------------------------------------------------
+   
+   -----------------------------------------------------------------------
+   |         |         |         |         |         |         |         |
+   |         |         |         |         |         |         |         |
+   |         |         |         |         |         |         |         |
+   -----------------------------------------------------------------------
+   
    | _ | x | _ | o | o |
    | o | _ | x | x | x |
    | x | _ | _ | o | x |
@@ -80,6 +188,3 @@ make_board(Size, Counter, Board):- Size > Counter,
    o - 1
    x - 2
 */
-
-draw_board(Size,L) :- make_board(Size,L),
-                      print_board(L).
