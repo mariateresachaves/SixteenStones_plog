@@ -21,7 +21,7 @@ Line - Line to be returned
 make_line(0, []).
 make_line(Size, Line):- NewSize is Size-1,
                         make_line(NewSize, NewLine), 
-                        append(NewLine, [2], Line).
+                        append(NewLine, [0], Line).
 
 /*
 
@@ -55,13 +55,13 @@ draw_board(Size, Board) :- make_board(Size, Board),
                            draw_border(Size),
                            draw_board_lines(Size, Board),
                            nl,
-                           print('Player 1'),
+                           write('Player 1'),
                            nl,
-                           draw_pools([1,1,1,1,1,0,0,1],Size),
+                           draw_pools([1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1],Size),
                            nl,
-                           print('Player 2'),
+                           write('Player 2'),
                            nl,
-                           draw_pools([2,0,2,0,0,0,2,0],Size).
+                           draw_pools([2,0,2,0,0,0,2,0,2,0,2,0,0,0,2,0],Size).
 
 /*
 
@@ -73,7 +73,7 @@ Size - Board's size
 draw_border(0):- nl, !.
 
 draw_border(Size):- NewSize is Size - 1,
-                    print('-----------'),
+                    write('-----------'),
                     draw_border(NewSize).
 
 /*
@@ -99,10 +99,10 @@ Size - Board's size
       
 */
 
-draw_empty(0):- print('|'),
+draw_empty(0):- write('|'),
                 nl, !.
 
-draw_empty(Size):- print('|          '),
+draw_empty(Size):- write('|          '),
                    Size > 0,
                    NewSize is Size-1,
                    draw_empty(NewSize).
@@ -115,14 +115,14 @@ Board - Game board of size NxN
    
 */
 
-draw_line(0,_):- print('|'),
+draw_line(0,_):- write('|'),
                  nl, !.
 
 draw_line(Size, [H|T]):- NewSize is Size-1,
-                         print('|    '),
+                         write('|    '),
                          translate(H,Char),
-                         print(Char),
-                         print('     '),
+                         write(Char),
+                         write('     '),
                          draw_line(NewSize, T).
 
 /*
