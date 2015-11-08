@@ -83,9 +83,9 @@ replace_elem([], _, _, _, []).
 turn_loop(Board, Player, Moves):- ask_move(Board, Player, Moves).
 
 ask_move(Board, Player, Moves) :- Player is 1,
-                                  nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+                                  nl, write('Player 1s turn, pick your next move (push, move, sacrifice)?'), nl,
                                   read(Play), nl,          
-                                  Play == 'Push',
+                                  Play == 'push',
                                   nth0(0,Moves,Elem),
                                   Elem == 0,
                                   replace_elem(Moves, 0, 1, L),
@@ -94,12 +94,12 @@ ask_move(Board, Player, Moves) :- Player is 1,
                                   read(PieceX-PieceY), nl,
                                   write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
                                   read(Orientation), nl.
-                                  %Push(Board,Player,PieceX,PieceY,Orientation).
+                                  %pushPlay(Board,Player,PieceX,PieceY,Orientation).
 
 ask_move(Board,Player, Moves) :- Player = 1, !,
-                                 nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+                                 nl, write('Player 1s turn, pick your next move (push, move, sacrifice)?'), nl,
                                  read(Play), nl,                                
-                                 Play == 'Move', 
+                                 Play == 'move', 
                                  nth0(0,Moves,Elem),
                                  Elem == 0, !,
                                  replace_elem(Moves, 1, 1, L),
@@ -108,20 +108,20 @@ ask_move(Board,Player, Moves) :- Player = 1, !,
                                  read(PieceX-PieceY), nl,
                                  write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
                                  read(Orientation), nl.
-                                 %Move(Board,Player,PieceX,PieceY,Orientation).
+                                 %movePlay(Board,Player,PieceX,PieceY,Orientation).
 
 ask_move(Board,Player, Moves) :- Player = 1, !,
-                                 nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+                                 nl, write('Player 1s turn, pick your next move (push, move, sacrifice)?'), nl,
                                  read(Play), nl,                                
-                                 Play = 'Sacrifice', !,
+                                 Play = 'sacrifice', !,
                                  write('Piece to sacrifice? (X-Y): '),
                                  read(PieceX-PieceY), nl.
-                                 %Sacrifice(Board,Player,PieceX,PieceY).
+                                 %sacrificePlay(Board,Player,PieceX,PieceY).
 
 ask_move(Board,Player, Moves) :- Player = 2, !,
-                                 nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+                                 nl, write('Player 2s turn, pick your next move (push, move, sacrifice)?'), nl,
                                  read(Play), nl,                                
-                                 Play == 'Push', 
+                                 Play == 'push', 
                                  nth0(0,Moves,Elem),
                                  Elem == 0, !,
                                  replace_elem(Moves, 0, 1, L),
@@ -130,12 +130,12 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
                                  read(PieceX-PieceY), nl,
                                  write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
                                  read(Orientation), nl.
-                                 %Push(Board,Player,PieceX,PieceY,Orientation).
+                                 %pushPlay(Board,Player,PieceX,PieceY,Orientation).
 
 ask_move(Board,Player, Moves) :- Player = 2, !,
-                                 nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+                                 nl, write('Player 2s turn, pick your next move (push, move, sacrifice)?'), nl,
                                  read(Play), nl,                                
-                                 Play == 'Move',
+                                 Play == 'move',
                                  nth0(0,Moves,Elem),
                                  Elem == 0, !,
                                  replace_elem(Moves, 1, 1, L),
@@ -144,15 +144,15 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
                                  read(PieceX-PieceY), nl,
                                  write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
                                  read(Orientation), nl.
-                                 %Move(Board,Player,PieceX,PieceY,Orientation).
+                                 %movePlay(Board,Player,PieceX,PieceY,Orientation).
 
 ask_move(Board,Player, Moves) :- Player = 2, !,
-                                 nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+                                 nl, write('Player 2s turn, pick your next move (push, move, sacrifice)?'), nl,
                                  read(Play), nl,                                
-                                 Play = 'Sacrifice', !,
+                                 Play = 'sacrifice', !,
                                  write('Piece to sacrifice? (X-Y): '),
                                  read(PieceX-PieceY), nl.
-                                 %Sacrifice(Board,Player,PieceX,PieceY).
+                                 %sacrificePlay(Board,Player,PieceX,PieceY).
 
 % DIOGO
 % verificar se a jogada é válida
@@ -166,3 +166,24 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
 % TERESA
 % verificar se o jogo terminou - número de peças no board de um dos jogadores é 1
 % se não terminou troca de jogador e faz outra vez o ciclo de turno
+
+% DIOGO
+% Jogada Move
+% Move a peça e verifica se captura alguma peça adversária
+
+movePlay(Board,Player,PieceX,PieceY,Orientation) :-
+    Player = 1, !,
+    check_piece_player(Board,Player,PieceX,PieceY),
+    %check_empty_cell(Board,PieceX,PieceY,Orientation),
+    %move_aux(Board,PieceX,PieceY,NewPieceX,NewPieceY),
+    %check_capture_status(Board,NewPieceX,NewPieceY).
+
+check_piece_player(Board,Player,PieceX,PieceY) :-
+    getStone(Board,PieceX,PieceY,Stone),
+    Player = 1, !,
+    Stone = 1.
+
+check_piece_player(Board,Player,PieceX,PieceY) :-
+    getStone(Board,PieceX,PieceY,Stone),
+    Player = 2, !,
+    Stone = 2.
