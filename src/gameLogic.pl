@@ -67,6 +67,68 @@ initialize_board(Board, Size):- make_board(Size, Board),
 % pedir jogada ao jogador
 %       pode ser push move ou sacrifice
 
+ask_move(Board,Player,Play) :-
+    Player = 1, !,
+    nl, write("Player 1's turn, pick your next move (Push, Move, Sacrifice)?"), nl,
+    read(Play), nl,                                
+    Play = "Push", !,
+    write("Piece to push? (X-Y): "),
+    read(PieceX-PieceY), nl,
+    write("Which way to push to? (N,S,E,W,NW,NE,SE,SW)"),
+    read(Orientation), nl,
+    Push(Board,Player,PieceX,PieceY,Orientation).
+
+ask_move(Board,Player,Play) :-
+    Player = 1, !,
+    nl, write("Player 1's turn, pick your next move (Push, Move, Sacrifice)?"), nl,
+    read(Play), nl,                                
+    Play = "Move", !,
+    write("Piece to move? (X-Y): "),
+    read(PieceX-PieceY), nl,
+    write("Which way to move to? (N,S,E,W,NW,NE,SE,SW)"),
+    read(Orientation), nl,
+    Move(Board,Player,PieceX,PieceY,Orientation).
+
+ask_move(Board,Player,Play) :-
+    Player = 1, !,
+    nl, write("Player 1's turn, pick your next move (Push, Move, Sacrifice)?"), nl,
+    read(Play), nl,                                
+    Play = "Sacrifice", !,
+    write("Piece to sacrifice? (X-Y): "),
+    read(PieceX-PieceY), nl,
+    Sacrifice(Board,Player,PieceX,PieceY).
+
+ask_move(Board,Player,Play) :-
+    Player = 2, !,
+    nl, write("Player 2's turn, pick your next move (Push, Move, Sacrifice)?"), nl,
+    read(Play), nl,                                
+    Play = "Push", !,
+    write("Piece to push? (X-Y): "),
+    read(PieceX-PieceY), nl,
+    write("Which way to push to? (N,S,E,W,NW,NE,SE,SW)"),
+    read(Orientation), nl,
+    Push(Board,Player,PieceX,PieceY,Orientation).
+
+ask_move(Board,Player,Play) :-
+    Player = 2, !,
+    nl, write("Player 2's turn, pick your next move (Push, Move, Sacrifice)?"), nl,
+    read(Play), nl,                                
+    Play = "Move", !,
+    write("Piece to move? (X-Y): "),
+    read(PieceX-PieceY), nl,
+    write("Which way to move to? (N,S,E,W,NW,NE,SE,SW)"),
+    read(Orientation), nl,
+    Move(Board,Player,PieceX,PieceY,Orientation).
+
+ask_move(Board,Player,Play) :-
+    Player = 2, !,
+    nl, write("Player 2's turn, pick your next move (Push, Move, Sacrifice)?"), nl,
+    read(Play), nl,                                
+    Play = "Sacrifice", !,
+    write("Piece to sacrifice? (X-Y): "),
+    read(PieceX-PieceY), nl,
+    Sacrifice(Board,Player,PieceX,PieceY).
+
 % DIOGO
 % verificar se a jogada é válida
 % se jogada é válida efectuar jogada
