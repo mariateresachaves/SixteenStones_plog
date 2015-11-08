@@ -176,9 +176,15 @@ movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation) :-
     Player = 1, !,
     check_piece_player(Board,Player,PieceX,PieceY),
     get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),
-    check_empty_cell(Board,NewX,NewY).
-    %move_aux(Board,PieceX,PieceY,NewPieceX,NewPieceY),
+    check_empty_cell(Board,NewX,NewY),
+    move_aux(Board,BoardSize,Player,PieceX,PieceY,NewPieceX,NewPieceY,ReturnBoard).
     %check_capture_status(Board,NewPieceX,NewPieceY).
+
+move_aux(Board,BoardSize,PieceX,PieceY,NewPieceX, NewPieceY, ReturnBoard) :- %draw_board(BoardSize,Board),
+                                                                             getStone(Board,PieceX,PieceY,Stone),
+                                                                             replace(Board,NewPieceX,NewPieceY,Stone,TempBoard),
+                                                                             replace(TempBoard,PieceX,PieceY,0,ReturnBoard).
+                                                                             %draw_board(BoardSize,ReturnBoard).
 
 check_piece_player(Board,Player,PieceX,PieceY) :- getStone(Board,PieceX,PieceY,Stone),
                                                   Player == 1, !,
@@ -270,10 +276,5 @@ get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- 
                                                                                 NewX < BoardSize,
                                                                                 NewY < BoardSize. 
 
-
 % for testing purposes only
-% Board = [    [0, 0, 0, 1, 1],
-%              [0, 0, 0, 0, 0],
-%              [0, 0, 0, 0, 0],
-%              [1, 0, 0, 0, 0],
-%              [1, 0, 0, 0, 2]].                                                                   
+% Board = [[0, 0, 0, 1, 1],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[1, 0, 0, 0, 0],[1, 0, 0, 0, 2]].                                                                   
