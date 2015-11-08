@@ -159,10 +159,24 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
 % verificar se a jogada é válida
 % se jogada é válida efectuar jogada
 
-movePlay(Board,Player,PieceX,PieceY,Orientation) :-
+% TERESA
+% verificar jogadas disponíveis
+% caso não hajam jogadas disponíveis terminar turno do jogador
+% se ainda tiver jogadas disponíveis volta a pedir jogada ao jogador
+
+% TERESA
+% verificar se o jogo terminou - número de peças no board de um dos jogadores é 1
+% se não terminou troca de jogador e faz outra vez o ciclo de turno
+
+% DIOGO
+% Jogada Move
+% Move a peça e verifica se captura alguma peça adversária
+
+movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation) :-
     Player = 1, !,
-    check_piece_player(Board,Player,PieceX,PieceY).
-    check_empty_cell(Board,PieceX,PieceY,Orientation).
+    check_piece_player(Board,Player,PieceX,PieceY),
+    get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),
+    check_empty_cell(Board,NewX,NewY).
     %move_aux(Board,PieceX,PieceY,NewPieceX,NewPieceY),
     %check_capture_status(Board,NewPieceX,NewPieceY).
 
@@ -176,9 +190,8 @@ check_piece_player(Board,Player,PieceX,PieceY) :- getStone(Board,PieceX,PieceY,S
                                                   Stone == 2.
     
 
-check_empty_cell(Board,BoardSize,PieceX,PieceY,Orientation) :- get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),        
-                                                               getStone(Board,NewX,NewY,Stone),                                            
-                                                               Stone == 0.   
+check_empty_cell(Board,X,Y) :- getStone(Board,X,Y,Stone),                                            
+                               Stone == 0.   
     
 
 get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'n' ,!,
