@@ -1,19 +1,81 @@
 :-use_module(library(lists)).
 :-consult('board.pl').
 
-/*
+replace(Board, X , Y , Player , NewBoard ):- append(RowPfx, [Row|RowSfx], Board),
+                                             XX is X-1,
+                                             length(RowPfx, XX),
+                                             append(ColPfx, [_|ColSfx], Row),
+                                             YY is Y-1,
+                                             length(ColPfx, YY),
+                                             append(ColPfx, [Player|ColSfx], NewRow),
+                                             append(RowPfx, [NewRow|RowSfx], NewBoard).
 
-INITIALIZE_BOARD - Players choose the initial position of their stones
-Size - Board's size
+getStone(Board, X, Y, Stone):- nth1(X, Board, Line),
+                               nth1(Y, Line, Stone).
+
+update_board(Board, NewBoard, X, Y, Player, Valid):- getStone(Board, X, Y, Stone),
+                                                     write(Stone),
+                                                     nl,
+                                                     Stone == 0,
+                                                     replace(Board, X, Y, Player, NewBoard),
+                                                     Valid is 1.
+
+update_board(_, _, _, _, _, 0).
+
+play(Board, NewBoard, Player):- read(X-Y),
+                                update_board(Board, NewBoard, X, Y, Player, Valid),
+                                Valid == 1,
+                                write(NewBoard).
+
+play(Board, NewBoard, Player):- read(X-Y),
+                                update_board(Board, NewBoard, X, Y, Player, Valid),
+                                Valid == 0,
+                                play(Board, NewBoard, Player).
+
+/*
+INIT_BOARD_TURN - Players choose the initial position of their stones
 Board - Game board of size NxN
-    
+Size - Board's size
 */
 
-initialize_board(Size, Board):- Player is 1,
-                                write('Player 1: '),
-                                read(X-Y),
-                                print(Player),
-                                nl,
-                                print(X),
-                                nl,
-                                print(Y).
+init_board_turn(B, B, 0).
+
+init_board_turn(Board, ResultBoard, Turns):- write('Player 1: '),
+                                             play(Board, NewBoard, 1),
+                                             write('Player 2: '),
+                                             play(NewBoard, NewBoard2, 2),
+                                             NewTurns is Turns-1,
+                                             init_board_turn(NewBoard2, ResultBoard, NewTurns).
+
+/*
+INITIALIZE_BOARD - Players play (8/5)*Size turns
+Board - Game board of size NxN
+Size - Board's size
+*/
+
+initialize_board(Board, Size):- make_board(Size, Board),
+                                Turns is round((8/5)*Size),
+                                init_board_turn(Board, ResultBoard, Turns).
+
+% TERESA
+% loop de round((8/5)*Size*2 vezes - número de peças de cada jogador - alternando entre cada jogador
+% verificar no board se na posição X-Y existe alguma peça
+% se não existir atualizar o board
+% se já existir uma peça nessa posição pedir novamente uma posição ao utilizador
+
+% DIOGO
+% pedir jogada ao jogador
+%       pode ser push move ou sacrifice
+
+% DIOGO
+% verificar se a jogada é válida
+% se jogada é válida efectuar jogada
+
+% TERESA
+% verificar jogadas disponíveis
+% caso não hajam jogadas disponíveis terminar turno do jogador
+% se ainda tiver jogadas disponíveis volta a pedir jogada ao jogador
+
+% TERESA
+% verificar se o jogo terminou - número de peças no board de um dos jogadores é 1
+% se não terminou troca de jogador e faz outra vez o ciclo de turno

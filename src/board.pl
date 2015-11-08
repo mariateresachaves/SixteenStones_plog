@@ -51,7 +51,7 @@ Board - Game board of size NxN
 
 */
 
-draw_board(Size, Board) :- make_board(Size, Board),
+draw_board(Size, Board) :- %make_board(Size, Board),
                            draw_border(Size),
                            draw_board_lines(Size, Board),
                            nl,
