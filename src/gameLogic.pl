@@ -161,7 +161,7 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
 
 movePlay(Board,Player,PieceX,PieceY,Orientation) :-
     Player = 1, !,
-    check_piece_player(Board,Player,PieceX,PieceY),
+    check_piece_player(Board,Player,PieceX,PieceY).
     %check_empty_cell(Board,PieceX,PieceY,Orientation),
     %move_aux(Board,PieceX,PieceY,NewPieceX,NewPieceY),
     %check_capture_status(Board,NewPieceX,NewPieceY).

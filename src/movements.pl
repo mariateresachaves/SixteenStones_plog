@@ -1,42 +1,42 @@
 %Pool do jogador adversário
 
-push_n(Board, Player, X, Y, Count, X, NewY):- YY is Y+1,
-                                              nth1(X, Board, Line),
-                                              nth1(YY, Line, Stone),
-                                              Stone == Player,
-                                              push_n(Board, Player, X, YY, NewCount, X, NewY),
-                                              Count is NewCount+1.
-
-push_n(_, _, _, Y, 0, _, NewY):- NewY is Y.
-
-push_s(Board, Player, X, Y, Count, X, NewY):- YY is Y-1,
-                                              nth1(X, Board, Line),
-                                              nth1(YY, Line, Stone),
-                                              Stone == Player,
-                                              push_s(Board, Player, X, YY, NewCount, X, NewY),
-                                              Count is NewCount+1.
-
-push_s(_, _, _, Y, 0, _, NewY):- NewY is Y.
-
-push_e(Board, Player, X, Y, Count, NewX, Y):- XX is X+1,
+push_n(Board, Player, X, Y, Count, NewX, Y):- XX is X-1,
                                               nth1(XX, Board, Line),
                                               nth1(Y, Line, Stone),
                                               Stone == Player,
-                                              push_e(Board, Player, XX, Y, NewCount, NewX, Y),
+                                              push_n(Board, Player, XX, Y, NewCount, NewX, Y),
                                               Count is NewCount+1.
 
-push_e(_, _, X, _, 0, NewX, _):- NewX is X.
+push_n(_, _, X, _, 0, NewX, _):- NewX is X.
 
-push_o(Board, Player, X, Y, Count, NewX, Y):- XX is X-1,
+push_s(Board, Player, X, Y, Count, NewX, Y):- XX is X+1,
                                               nth1(XX, Board, Line),
                                               nth1(Y, Line, Stone),
                                               Stone == Player,
-                                              push_o(Board, Player, XX, Y, NewCount, NewX, Y),
+                                              push_s(Board, Player, XX, Y, NewCount, NewX, Y),
                                               Count is NewCount+1.
 
-push_o(_, _, X, _, 0, NewX, _):- NewX is X.
+push_s(_, _, X, _, 0, NewX, _):- NewX is X.
 
-push_ne(Board, Player, X, Y, Count, NewX, NewY):- XX is X+1,
+push_e(Board, Player, X, Y, Count, X, NewY):- YY is Y+1,
+                                              nth1(X, Board, Line),
+                                              nth1(YY, Line, Stone),
+                                              Stone == Player,
+                                              push_e(Board, Player, X, YY, NewCount, X, NewY),
+                                              Count is NewCount+1.
+
+push_e(_, _, _, Y, 0, _, NewY):- NewY is Y.
+
+push_o(Board, Player, X, Y, Count, X, NewY):- YY is Y-1,
+                                              nth1(X, Board, Line),
+                                              nth1(YY, Line, Stone),
+                                              Stone == Player,
+                                              push_o(Board, Player, X, YY, NewCount, X, NewY),
+                                              Count is NewCount+1.
+
+push_o(_, _, _, Y, 0, _, NewY):- NewY is Y.
+
+push_ne(Board, Player, X, Y, Count, NewX, NewY):- XX is X-1,
                                                   YY is Y+1,
                                                   nth1(XX, Board, Line),
                                                   nth1(YY, Line, Stone),
@@ -47,7 +47,7 @@ push_ne(Board, Player, X, Y, Count, NewX, NewY):- XX is X+1,
 push_ne(_, _, X, Y, 0, NewX, NewY):- NewX is X,
                                      NewY is Y.
 
-push_so(Board, Player, X, Y, Count, NewX, NewY):- XX is X-1,
+push_so(Board, Player, X, Y, Count, NewX, NewY):- XX is X+1,
                                                   YY is Y-1,
                                                   nth1(XX, Board, Line),
                                                   nth1(YY, Line, Stone),
@@ -59,7 +59,7 @@ push_so(_, _, X, Y, 0, NewX, NewY):- NewX is X,
                                      NewY is Y.
 
 push_no(Board, Player, X, Y, Count, NewX, NewY):- XX is X-1,
-                                                  YY is Y+1,
+                                                  YY is Y-1,
                                                   nth1(XX, Board, Line),
                                                   nth1(YY, Line, Stone),
                                                   Stone == Player,
@@ -70,7 +70,7 @@ push_no(_, _, X, Y, 0, NewX, NewY):- NewX is X,
                                      NewY is Y.
 
 push_se(Board, Player, X, Y, Count, NewX, NewY):- XX is X+1,
-                                                  YY is Y-1,
+                                                  YY is Y+1,
                                                   nth1(XX, Board, Line),
                                                   nth1(YY, Line, Stone),
                                                   Stone == Player,
@@ -82,16 +82,67 @@ push_se(_, _, X, Y, 0, NewX, NewY):- NewX is X,
 
 get_op_player(Player, Opposite):- Opposite is 2 // Player.
 
-valid_push(Board, NextX, NextY, Size, Valid):- nth1(NextX, Board, NextLine),
+valid_push(Board, NextX, NextY, Valid):- nth1(NextX, Board, NextLine),
                                                nth1(NextY, NextLine, NextStone),
                                                NextStone == 0,
                                                Valid = 1.
                
-valid_push(Board, NextX, NextY, Size, Valid):- nth1(NextX, Board, NextLine),
-                                               nth1(NextY, NextLine, NextStone),
-                                               length(NextLine, L),
-                                               
-                           Valid = 1.
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      Orientation == 'n',
+                                                      NextX == 0,
+                                                      Valid = 1.
+
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      length(NextLine, L),
+                                                      Orientation == 's',
+                                                      NextX == L,
+                                                      Valid = 1.
+
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      length(NextLine, L),
+                                                      Orientation == 'e',
+                                                      NextY == L,
+                                                      Valid = 1.           
+      
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      Orientation == 'o',
+                                                      NextY == 0,
+                                                      Valid = 1.                                        
+
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      length(NextLine, L),
+                                                      Orientation == 'ne',
+                                                      NextY == L,
+                                                      NextX == 0,
+                                                      Valid = 1. 
+
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      length(NextLine, L),
+                                                      Orientation == 'se',
+                                                      NextY == L,
+                                                      NextX == L,
+                                                      Valid = 1.
+
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      length(NextLine, L),
+                                                      Orientation == 'so',
+                                                      NextY == 0,
+                                                      NextX == L,
+                                                      Valid = 1.
+
+valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLine),
+                                                      nth1(NextY, NextLine, _),
+                                                      Orientation == 'no',
+                                                      NextY == 0,
+                                                      NextX == 0,
+                                                      Valid = 1.
 
 push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
                                            nth1(Y, Line, Stone),
@@ -101,22 +152,85 @@ push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
                                            get_op_player(Player, Opposite),
                                            push_n(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
                                            Count > OppositeCount-1,
-                                           
-                                           NextStone == 0,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
+
+push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
+                                           nth1(Y, Line, Stone),
+                                           Stone == Player,
                                            Orientation == 's',
-                                           push_s(Board, Player, X, Y, Count, NewX, NewY),
+                                           push_s(Board, Player, X, Y, Count, OppositeX, OppositeY),
+                                           get_op_player(Player, Opposite),
+                                           push_s(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
+                                           Count > OppositeCount-1,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
+
+push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
+                                           nth1(Y, Line, Stone),
+                                           Stone == Player,
                                            Orientation == 'e',
-                                           push_e(Board, Player, X, Y, Count, NewX, NewY),
+                                           push_e(Board, Player, X, Y, Count, OppositeX, OppositeY),
+                                           get_op_player(Player, Opposite),
+                                           push_e(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
+                                           Count > OppositeCount-1,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
+
+push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
+                                           nth1(Y, Line, Stone),
+                                           Stone == Player,
                                            Orientation == 'o',
-                                           push_o(Board, Player, X, Y, Count, NewX, NewY),
+                                           push_o(Board, Player, X, Y, Count, OppositeX, OppositeY),
+                                           get_op_player(Player, Opposite),
+                                           push_o(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
+                                           Count > OppositeCount-1,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
+
+push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
+                                           nth1(Y, Line, Stone),
+                                           Stone == Player,
                                            Orientation == 'ne',
-                                           push_ne(Board, Player, X, Y, Count, NewX, NewY),
-                                           Orientation == 'so',
-                                           push_so(Board, Player, X, Y, Count, NewX, NewY),
-                                           Orientation == 'no',
-                                           push_no(Board, Player, X, Y, Count, NewX, NewY),
+                                           push_ne(Board, Player, X, Y, Count, OppositeX, OppositeY),
+                                           get_op_player(Player, Opposite),
+                                           push_ne(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
+                                           Count > OppositeCount-1,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
+
+push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
+                                           nth1(Y, Line, Stone),
+                                           Stone == Player,
                                            Orientation == 'se',
-                                           push_se(Board, Player, X, Y, Count, NewX, NewY).
+                                           push_se(Board, Player, X, Y, Count, OppositeX, OppositeY),
+                                           get_op_player(Player, Opposite),
+                                           push_se(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
+                                           Count > OppositeCount-1,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
+
+push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
+                                           nth1(Y, Line, Stone),
+                                           Stone == Player,
+                                           Orientation == 'so',
+                                           push_so(Board, Player, X, Y, Count, OppositeX, OppositeY),
+                                           get_op_player(Player, Opposite),
+                                           push_so(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
+                                           Count > OppositeCount-1,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
+
+push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
+                                           nth1(Y, Line, Stone),
+                                           Stone == Player,
+                                           Orientation == 'no',
+                                           push_no(Board, Player, X, Y, Count, OppositeX, OppositeY),
+                                           get_op_player(Player, Opposite),
+                                           push_no(Board, Opposite, OppositeX, OppositeY, OppositeCount, NextX, NextY),
+                                           Count > OppositeCount-1,
+                                           valid_push(Board, NextX, NextY, Valid, Orientation),
+                                           Valid == 1.
 
 % verificar se existe uma peça do jogador nessa posição
 % verificar o número de peças consecutivas que tem depois da coordenada X-Y na direção orientação
