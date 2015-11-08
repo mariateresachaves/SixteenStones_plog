@@ -178,7 +178,17 @@ movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation) :-
     get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),
     check_empty_cell(Board,NewX,NewY),
     move_aux(Board,BoardSize,Player,PieceX,PieceY,NewPieceX,NewPieceY,ReturnBoard).
-    %check_capture_status(Board,NewPieceX,NewPieceY).
+    %check_capture_status(Board,NewPieceX,NewPieceY,Player).
+
+% Retorna o adversário
+opposite_player(1,2).
+opposite_player(2,1).
+
+%check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player) :- getStone(Board,NewPieceX,NewPieceY,PlayerStone),
+                                                                    %PlayerStone == Player,
+                                                                    %opposite_player(Player,OppositePlayer),
+                                                                    %get_position_from_orientation(BoardSize)
+
 
 move_aux(Board,BoardSize,PieceX,PieceY,NewPieceX, NewPieceY, ReturnBoard) :- %draw_board(BoardSize,Board),
                                                                              getStone(Board,PieceX,PieceY,Stone),
