@@ -162,7 +162,7 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
 movePlay(Board,Player,PieceX,PieceY,Orientation) :-
     Player = 1, !,
     check_piece_player(Board,Player,PieceX,PieceY).
-    %check_empty_cell(Board,PieceX,PieceY,Orientation),
+    check_empty_cell(Board,PieceX,PieceY,Orientation).
     %move_aux(Board,PieceX,PieceY,NewPieceX,NewPieceY),
     %check_capture_status(Board,NewPieceX,NewPieceY).
 
@@ -176,57 +176,91 @@ check_piece_player(Board,Player,PieceX,PieceY) :- getStone(Board,PieceX,PieceY,S
                                                   Stone == 2.
     
 
-%check_empty_cell(Board,PieceX,PieceY,Orientation) :- 
+check_empty_cell(Board,BoardSize,PieceX,PieceY,Orientation) :- get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),        
+                                                               getStone(Board,NewX,NewY,Stone),                                            
+                                                               Stone == 0.   
     
 
-get_position_from_orientation(_,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'n' ,!,
-                                                                        PieceY-1 > 0,
-                                                                        NewX is PieceX,
-                                                                        NewY is PieceY-1,
-                                                                        write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.
+get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'n' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
+                                                                                PieceY-1 > 0,
+                                                                                NewX is PieceX,
+                                                                                NewY is PieceY-1,
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize.                                                                    
 
 get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 's' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
                                                                                 PieceY+1 < BoardSize,
                                                                                 NewX is PieceX,
                                                                                 NewY is PieceY+1,
-                                                                                write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize.
 
 get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'e' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
                                                                                 PieceX+1 < BoardSize,
                                                                                 NewX is PieceX+1,
                                                                                 NewY is PieceY,
-                                                                                write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize.
 
-get_position_from_orientation(_,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'w' ,!,
-                                                                        PieceX-1 > 0,
-                                                                        NewX is PieceX-1,
-                                                                        NewY is PieceY,
-                                                                        write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.                           
+get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'w' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
+                                                                                PieceX-1 > 0,
+                                                                                NewX is PieceX-1,
+                                                                                NewY is PieceY,
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize.                           
 
-get_position_from_orientation(_,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'nw' ,!,
-                                                                        PieceX-1 > 0,
-                                                                        PieceY-1 > 0,
-                                                                        NewX is PieceX-1,
-                                                                        NewY is PieceY-1,
-                                                                        write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.
+get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'nw' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
+                                                                                PieceX-1 > 0,
+                                                                                PieceY-1 > 0,
+                                                                                NewX is PieceX-1,
+                                                                                NewY is PieceY-1,
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize.  
 
 get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'ne' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
                                                                                 PieceX+1 < BoardSize,
                                                                                 PieceY-1 > 0,
                                                                                 NewX is PieceX+1,
                                                                                 NewY is PieceY-1,
-                                                                                write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize. 
 
 get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'sw' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
                                                                                 PieceX-1 > 0,
                                                                                 PieceY+1 < BoardSize,
                                                                                 NewX is PieceX-1,
                                                                                 NewY is PieceY+1,
-                                                                                write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize. 
 
 get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'se' ,!,
+                                                                                PieceX > 0,
+                                                                                PieceY > 0,
                                                                                 PieceX+1 < BoardSize,
                                                                                 PieceY+1 < BoardSize,
                                                                                 NewX is PieceX+1,
                                                                                 NewY is PieceY+1,
-                                                                                write('NewX: '),write(NewX),write('NewY: '),write(NewY),nl.                                                                       
+                                                                                NewX < BoardSize,
+                                                                                NewY < BoardSize. 
+
+
+% for testing purposes only
+% Board = [    [0, 0, 0, 1, 1],
+%              [0, 0, 0, 0, 0],
+%              [0, 0, 0, 0, 0],
+%              [1, 0, 0, 0, 0],
+%              [1, 0, 0, 0, 2]].                                                                   
