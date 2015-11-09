@@ -159,19 +159,6 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
 % verificar se a jogada é válida
 % se jogada é válida efectuar jogada
 
-% TERESA
-% verificar jogadas disponíveis
-% caso não hajam jogadas disponíveis terminar turno do jogador
-% se ainda tiver jogadas disponíveis volta a pedir jogada ao jogador
-
-% TERESA
-% verificar se o jogo terminou - número de peças no board de um dos jogadores é 1
-% se não terminou troca de jogador e faz outra vez o ciclo de turno
-
-% DIOGO
-% Jogada Move
-% Move a peça e verifica se captura alguma peça adversária
-
 movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation) :-
     Player = 1, !,
     check_piece_player(Board,Player,PieceX,PieceY),
@@ -287,4 +274,13 @@ get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- 
                                                                                 NewY < BoardSize. 
 
 % for testing purposes only
-% Board = [[0, 0, 0, 1, 1],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[1, 0, 0, 0, 0],[1, 0, 0, 0, 2]].                                                                   
+% Board = [[0, 0, 0, 1, 1],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[1, 0, 0, 0, 0],[1, 0, 0, 0, 2]].
+
+% TERESA
+% verificar jogadas disponíveis
+% caso não hajam jogadas disponíveis terminar turno do jogador
+% se ainda tiver jogadas disponíveis volta a pedir jogada ao jogador
+
+% TERESA
+% verificar se o jogo terminou - número de peças no board de um dos jogadores é 1
+% se não terminou troca de jogador e faz outra vez o ciclo de turno

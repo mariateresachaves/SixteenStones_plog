@@ -144,6 +144,59 @@ valid_push(Board, NextX, NextY, Valid, Orientation):- nth1(NextX, Board, NextLin
                                                       NextX == 0,
                                                       Valid = 1.
 
+before_list(L, N, R):- before_list(L, N, 0, R).
+
+before_list([H|T], N, Counter, R):- N > Counter - 1,
+                                    NewCounter is Counter + 1,
+                                    before_list(T, N, NewCounter, LR),
+                                    append([H], LR, R).
+
+before_list(_, N, N, []).
+
+after_list(L, N, R):- after_list(L, N, 0, R).
+
+after_list([_|T], N, Counter, R):- N >= Counter,
+                                   NewCounter is Counter + 1,
+                                   after_list(T, N, NewCounter, R).
+
+after_list([H|T], N, Counter, R):- Counter > N,
+                                   NewCounter is Counter + 1,
+                                   after_list(T, N, NewCounter, LR),
+                                   append([H], LR, R).
+
+remove_last([_], []).
+
+remove_last([H|T], [H|NewList]) :- remove_last(T, NewList).
+
+remove_first([_|T], T).
+
+
+push_Stones(Board, X, Y, NewBoard, Orientation, Stone):- Orientation == 'e',
+                                                         nth1(X, Board, Line),
+                                                         nth1(Y, Line, Stone),
+                                                         after_list(Line, Y, After),
+                                                         before_list(Line, Y, Before),
+                                                         append(Before, [0], Tmp),
+                                                         append(Tmp, After, TmpFinal),
+                                                         remove_last(TmpFinal, FinalList),
+                                                         after_list(Board, X, After),
+                                                         before_list(Board, X, Before),
+                                                         append(Before, FinalList, B),
+                                                         append(B, After, NewBoard).
+
+push_Stones(Board, X, Y, NewBoard, Orientation, Stone):- Orientation == 'o',
+                                                         nth1(X, Board, Line),
+                                                         nth1(Y, Line, Stone),
+                                                         after_list(Line, Y, After),
+                                                         before_list(Line, Y, Before),
+                                                         append(Before, [0], Tmp),
+                                                         append(Tmp, After, TmpFinal),
+                                                         remove_first(TmpFinal, FinalList),
+                                                         after_list(Board, X, After),
+                                                         before_list(Board, X, Before),
+                                                         append(Before, FinalList, B),
+                                                         append(B, After, NewBoard).
+
 push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
                                            nth1(Y, Line, Stone),
                                            Stone == Player,
@@ -232,6 +285,8 @@ push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
                                            valid_push(Board, NextX, NextY, Valid, Orientation),
                                            Valid == 1.
 
+
+
 % verificar se existe uma peça do jogador nessa posição
 % verificar o número de peças consecutivas que tem depois da coordenada X-Y na direção orientação
 % verificar depois dessas peças o número de peças adversárias consecutivas que existem naquela direção
@@ -241,7 +296,7 @@ push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
 % | 
 % | 
 % | o
-% | o o o o o o o x x x x x |
+% | o o o o   o o x     x x |
 % | x o o o o o o x x x x x |  o
 % _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
@@ -249,4 +304,12 @@ push(Board,Player,X,Y,Orientation, Pool):- nth1(X, Board, Line),
 % 2 - 1
 % 7 - 6
                                                      
-% 
+% 1,1,1,1,0
+% Stone = 0
+% 1,1,2,0,0,2,2
+% Stone = 1
+% 1,1,1,1,0,1
+% Stone = 1
+% 1,1,1,1,0,1,1
+%Stone = 2
+% 1,1,1,1,0,1,2
