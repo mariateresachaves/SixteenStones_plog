@@ -170,6 +170,73 @@ remove_last([H|T], [H|NewList]) :- remove_last(T, NewList).
 
 remove_first([_|T], T).
 
+push_column_n(Board, X, Y, 1, NewBoard):- replace(Board, X, Y, 0, NewBoard).
+
+push_column_n(Board, X, Y, NumStones, Result):- NewX is X-NumStones,
+                                                XX is NewX+1,
+                                                nth1(XX, Board, Line2),
+                                                nth1(Y, Line2, Stone2),
+                                                replace(Board, NewX, Y, Stone2, NewBoard), 
+                                                NewNumStones is NumStones-1,
+                                                push_column_n(NewBoard, X, Y, NewNumStones, Result).
+
+push_column_s(Board, X, Y, 1, NewBoard):- replace(Board, X, Y, 0, NewBoard).
+
+push_column_s(Board, X, Y, NumStones, Result):- NewX is X+NumStones,
+                                                XX is NewX-1,
+                                                nth1(XX, Board, Line2),
+                                                nth1(Y, Line2, Stone2),
+                                                replace(Board, NewX, Y, Stone2, NewBoard), 
+                                                NewNumStones is NumStones-1,
+                                                push_column_s(NewBoard, X, Y, NewNumStones, Result).
+
+push_column_ne(Board, X, Y, 1, NewBoard):- replace(Board, X, Y, 0, NewBoard).
+
+push_column_ne(Board, X, Y, NumStones, Result):- NewX is X-NumStones,
+                                                 NewY is Y+NumStones,
+                                                 XX is NewX+1,
+                                                 YY is NewY-1,
+                                                 nth1(XX, Board, Line2),
+                                                 nth1(YY, Line2, Stone2),
+                                                 replace(Board, NewX, NewY, Stone2, NewBoard), 
+                                                 NewNumStones is NumStones-1,
+                                                 push_column_ne(NewBoard, X, Y, NewNumStones, Result).
+
+push_column_so(Board, X, Y, 1, NewBoard):- replace(Board, X, Y, 0, NewBoard).
+
+push_column_so(Board, X, Y, NumStones, Result):- NewX is X+NumStones,
+                                                 NewY is Y-NumStones,
+                                                 XX is NewX-1,
+                                                 YY is NewY+1,
+                                                 nth1(XX, Board, Line2),
+                                                 nth1(YY, Line2, Stone2),
+                                                 replace(Board, NewX, NewY, Stone2, NewBoard), 
+                                                 NewNumStones is NumStones-1,
+                                                 push_column_so(NewBoard, X, Y, NewNumStones, Result).
+
+push_column_no(Board, X, Y, 1, NewBoard):- replace(Board, X, Y, 0, NewBoard).
+
+push_column_no(Board, X, Y, NumStones, Result):- NewX is X-NumStones,
+                                                 NewY is Y-NumStones,
+                                                 XX is NewX+1,
+                                                 YY is NewY+1,
+                                                 nth1(XX, Board, Line2),
+                                                 nth1(YY, Line2, Stone2),
+                                                 replace(Board, NewX, NewY, Stone2, NewBoard), 
+                                                 NewNumStones is NumStones-1,
+                                                 push_column_no(NewBoard, X, Y, NewNumStones, Result).
+
+push_column_se(Board, X, Y, 1, NewBoard):- replace(Board, X, Y, 0, NewBoard).
+
+push_column_se(Board, X, Y, NumStones, Result):- NewX is X+NumStones,
+                                                 NewY is Y+NumStones,
+                                                 XX is NewX-1,
+                                                 YY is NewY-1,
+                                                 nth1(XX, Board, Line2),
+                                                 nth1(YY, Line2, Stone2),
+                                                 replace(Board, NewX, NewY, Stone2, NewBoard), 
+                                                 NewNumStones is NumStones-1,
+                                                 push_column_se(NewBoard, X, Y, NewNumStones, Result).
 
 push_Stones(Board, X, Y, NewBoard, Orientation, Stone):- Orientation == 'e',
                                                          nth1(X, Board, Line),
@@ -185,6 +252,19 @@ push_Stones(Board, X, Y, NewBoard, Orientation, Stone):- Orientation == 'e',
                                                          append(B, After, NewBoard).
 
 push_Stones(Board, X, Y, NewBoard, Orientation, Stone):- Orientation == 'o',
+                                                         nth1(X, Board, Line),
+                                                         nth1(Y, Line, Stone),
+                                                         after_list(Line, Y, After),
+                                                         before_list(Line, Y, Before),
+                                                         append(Before, [0], Tmp),
+                                                         append(Tmp, After, TmpFinal),
+                                                         remove_first(TmpFinal, FinalList),
+                                                         after_list(Board, X, After),
+                                                         before_list(Board, X, Before),
+                                                         append(Before, FinalList, B),
+                                                         append(B, After, NewBoard).
+
+push_Stones(Board, X, Y, NewBoard, Orientation, Stone):- Orientation == 'n',
                                                          nth1(X, Board, Line),
                                                          nth1(Y, Line, Stone),
                                                          after_list(Line, Y, After),
