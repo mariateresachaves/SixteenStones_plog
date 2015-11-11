@@ -173,7 +173,21 @@ ask_move(Board,Player, Moves) :- Player = 2, !,
 % Move a peça e verifica se captura alguma peça adversária
 
 movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation,Pool,PoolResult) :-
-    Player = 1, !,
+    Player == 1, !,
+    check_piece_player(Board,Player,PieceX,PieceY),
+    get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),
+    check_empty_cell(Board,NewX,NewY),
+    move_aux(Board,BoardSize,Player,PieceX,PieceY,NewPieceX,NewPieceY,ReturnBoard),
+    check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY),
+    getStone(Board,CapturedPieceX,CapturedPieceY,ResultStone),
+    opposite_player(Player,OppositePlayer),
+    ResultStone == OppositePlayer,
+    add_to_pool(Pool,ResultStone,0,PoolResult),
+    replace(Board,CapturedPieceX,CapturedPieceY,0,ResultBoard),
+    Board is ResultBoard.
+
+movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation,Pool,PoolResult) :-
+    Player == 2, !,
     check_piece_player(Board,Player,PieceX,PieceY),
     get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),
     check_empty_cell(Board,NewX,NewY),
