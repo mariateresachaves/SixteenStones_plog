@@ -706,23 +706,23 @@ push(Board, Player, X, Y, 'nw', Pool, PoolResult, Result):-
    ****** MOVE ******
 */
 
-movePlay(Board, BoardSize, 1, PieceX, PieceY, Orientation, Pool, ResultPool, ResultBoard) :-
-        check_piece_player(Board, Player, PieceX, PieceY),
-        get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY),
+move(Board, BoardSize, 1, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
+        getStone(Board,X,Y,Stone),
+        Stone == 1,
+        get_position_from_orientation(X, Y, Orientation, NewX, NewY),
         check_empty_cell(Board, NewX, NewY),
-        move_aux(Board, PieceX, PieceY, NewPieceX, NewPieceY, ReturnBoard),
-        check_capture_status(ReturnBoard, BoardSize, NewPieceX, NewPieceY, Player, Captures),
-        get_op_player(Player, OppositePlayer),
-        remove_captured_stones(ReturnBoard, OppositePlayer, Captures, Pool, ResultPool, ResultBoard).
+        move_aux(Board, X, Y, NewX, NewY, ReturnBoard),
+        check_capture_status(ReturnBoard, BoardSize, NewX, NewY, 1, Captures),
+        remove_captured_stones(ReturnBoard, 2, Captures, Pool, ResultPool, ResultBoard).
 
-movePlay(Board, BoardSize, 2, PieceX, PieceY, Orientation, Pool, ResultPool, ResultBoard) :-
-        check_piece_player(Board, Player, PieceX, PieceY),
-        get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY),
+move(Board, BoardSize, 2, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
+        getStone(Board,X,Y,Stone),
+        Stone == 2,
+        get_position_from_orientation(X, Y, Orientation, NewX, NewY),
         check_empty_cell(Board, NewX, NewY),
-        move_aux(Board, PieceX, PieceY, NewPieceX, NewPieceY, ReturnBoard),
-        check_capture_status(ReturnBoard, BoardSize, NewPieceX, NewPieceY, Player, Captures),
-        get_op_player(Player, OppositePlayer),
-        remove_captured_stones(ReturnBoard, OppositePlayer, Captures, Pool, ResultPool, ResultBoard).
+        move_aux(Board, X, Y, NewX, NewY, ReturnBoard),
+        check_capture_status(ReturnBoard, BoardSize, X, Y, 2, Captures),
+        remove_captured_stones(ReturnBoard, 1, Captures, Pool, ResultPool, ResultBoard).
 
 % --- REMOVE_CAPTURED_STONES ---
 
@@ -735,154 +735,129 @@ remove_captured_stones(Board, OppositePlayer, [[X-Y]|TC], Pool, ResultPool, Resu
 
 % --- CHECK_CAPTURE_STATUS ---
 
-check_capture_status(Board, BoardSize, NewPieceX, NewPieceY, Player, Captures) :- 
-        check_capture_status(Board, BoardSize, 'n', NewPieceX, NewPieceY, Player, [], RC1),
-        check_capture_status(Board, BoardSize, 's', NewPieceX, NewPieceY, Player, RC1, RC2),
-        check_capture_status(Board, BoardSize, 'e', NewPieceX, NewPieceY, Player, RC2, RC3),
-        check_capture_status(Board, BoardSize, 'w', NewPieceX, NewPieceY, Player, RC3, RC4),
-        check_capture_status(Board, BoardSize, 'nw', NewPieceX, NewPieceY, Player, RC4, RC5),
-        check_capture_status(Board, BoardSize, 'ne', NewPieceX, NewPieceY, Player, RC5, RC6),
-        check_capture_status(Board, BoardSize, 'sw', NewPieceX, NewPieceY, Player, RC6, RC7),
-        check_capture_status(Board, BoardSize, 'se', NewPieceX, NewPieceY, Player, RC7, RC8),
+check_capture_status(Board, BoardSize, NewX, NewY, Player, Captures) :- 
+        check_capture_status(Board, BoardSize, 'n', NewX, NewY, Player, [], RC1),
+        check_capture_status(Board, BoardSize, 's', NewX, NewY, Player, RC1, RC2),
+        check_capture_status(Board, BoardSize, 'e', NewX, NewY, Player, RC2, RC3),
+        check_capture_status(Board, BoardSize, 'w', NewX, NewY, Player, RC3, RC4),
+        check_capture_status(Board, BoardSize, 'nw', NewX, NewY, Player, RC4, RC5),
+        check_capture_status(Board, BoardSize, 'ne', NewX, NewY, Player, RC5, RC6),
+        check_capture_status(Board, BoardSize, 'sw', NewX, NewY, Player, RC6, RC7),
+        check_capture_status(Board, BoardSize, 'se', NewX, NewY, Player, RC7, RC8),
         Captures is RC8.
 
-check_capture_status(Board, BoardSize, Orientation, NewPieceX, NewPieceY, Player, CL, RCL) :- 
-        getStone(Board, NewPieceX, NewPieceY, PlayerStone),
+check_capture_status(Board, _, Orientation, NewX, NewY, Player, CL, RCL) :- 
+        getStone(Board, NewX, NewY, PlayerStone),
         PlayerStone == Player,
-        opposite_player(Player, OppositePlayer),
-        get_position_from_orientation(BoardSize, NewPieceX, NewPieceY, Orientation, CheckPieceX, CheckPieceY),
-        getStone(Board, CheckPieceX, CheckPieceY, CheckStone),
+        get_op_player(Player, OppositePlayer),
+        get_position_from_orientation(NewX, NewY, Orientation, CheckX, CheckY),
+        getStone(Board, CheckX, CheckY, CheckStone),
         CheckStone == OppositePlayer,
-        get_position_from_orientation(BoardSize, CheckPieceX, CheckPieceY, Orientation, SurroundPieceX, SurroundPieceY),
-        getStone(Board, SurroundPieceX, SurroundPieceY, PossibleSurroundStone),
+        get_position_from_orientation(CheckX, CheckY, Orientation, SurroundX, SurroundY),
+        getStone(Board, SurroundX, SurroundY, PossibleSurroundStone),
         PossibleSurroundStone == Player,
-        append(CL, [CheckPieceX-CheckPieceY], RCL).
+        append(CL, [CheckX-CheckY], RCL).
+
+check_capture_status(Board, _, Orientation, NewX, NewY, Player, CL, CL):-
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_op_player(Player, OppositePlayer),
+        get_position_from_orientation(NewX, NewY, Orientation, CheckX, CheckY),
+        getStone(Board, CheckX, CheckY, CheckStone),
+        CheckStone \= OppositePlayer.
+
+check_capture_status(Board, _, Orientation, NewX, NewY, Player, _, _):-
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, CheckX, _),
+        CheckX == 0.
+
+check_capture_status(Board, BoardSize, Orientation, NewX, NewY, Player, _, _):-
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, CheckX, _),
+        CheckX == BoardSize.
+
+check_capture_status(Board, _, Orientation, NewX, NewY, Player, _, _):-
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, _, CheckY),
+        CheckY == 0.
+
+check_capture_status(Board, BoardSize, Orientation, NewX, NewY, Player, _, _):-
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, _, CheckY),
+        CheckY == BoardSize.
 
 % --- MOVE_AUX ---
 
-move_aux(Board,PieceX,PieceY,NewPieceX, NewPieceY, ReturnBoard) :- 
-        getStone(Board,PieceX,PieceY,Stone),
-        replace(Board,NewPieceX,NewPieceY,Stone,TempBoard),
-        replace(TempBoard,PieceX,PieceY,0,ReturnBoard).
-
-% --- CHECK_PIECE_PLAYER ---
-
-check_piece_player(Board,Player,PieceX,PieceY) :- 
-        getStone(Board,PieceX,PieceY,Stone),
-        Player == 1, !,
-        Stone == 1.
-    
-
-check_piece_player(Board,Player,PieceX,PieceY) :- 
-        getStone(Board,PieceX,PieceY,Stone),
-        Player == 2, !,
-        Stone == 2.
+move_aux(Board, X, Y, NewX, NewY, ReturnBoard) :- 
+        getStone(Board, X, Y, Stone),
+        replace(Board, NewX, NewY, Stone, TempBoard),
+        replace(TempBoard, X, Y, 0, ReturnBoard).
 
 % --- CHECK_EMPTY_CELL ---
 
-check_empty_cell(Board,X,Y) :- 
-        getStone(Board,X,Y,Stone),                                            
+check_empty_cell(Board, X, Y) :- 
+        getStone(Board, X, Y, Stone),                                            
         Stone == 0.
 
 % --- GET_POSITION_FROM_ORIENTATION N ---
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'n' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceX-1 > 0,
-        NewX is PieceX-1,
-        NewY is PieceY,
-        NewX =< BoardSize,
-        NewY =< BoardSize.                           
+        NewX is X-1,
+        NewY is Y.                        
 
 % --- GET_POSITION_FROM_ORIENTATION S ---
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 's' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceX+1 < BoardSize,
-        NewX is PieceX+1,
-        NewY is PieceY,
-        NewX =< BoardSize,
-        NewY =< BoardSize.
+        NewX is X+1,
+        NewY is Y.
 
 % --- GET_POSITION_FROM_ORIENTATION E ---
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'e' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceY-1 > 0,
-        NewX is PieceX,
-        NewY is PieceY-1,
-        NewX =< BoardSize,
-        NewY =< BoardSize.
+        NewX is X,
+        NewY is Y-1.
 
 % --- GET_POSITION_FROM_ORIENTATION  W ---
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'w' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceY+1 < BoardSize,
-        NewX is PieceX,
-        NewY is PieceY+1,
-        NewX =< BoardSize,
-        NewY =< BoardSize.           
+        NewX is X,
+        NewY is Y+1.           
 
 % --- GET_POSITION_FROM_ORIENTATION NW ---                
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'nw' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceX-1 < 0,
-        PieceY-1 < 0,
-        NewX is PieceX-1,
-        NewY is PieceY-1,
-        NewX =< BoardSize,
-        NewY =< BoardSize.
+        NewX is X-1,
+        NewY is Y-1.
 
 % --- GET_POSITION_FROM_ORIENTATION NE ---
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'ne' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceX-1 > 0,
-        PieceY+1 < BoardSize,
-        NewX is PieceX-1,
-        NewY is PieceY+1,
-        NewX =< BoardSize,
-        NewY =< BoardSize. 
+        NewX is X-1,
+        NewY is Y+1. 
 
 % --- GET_POSITION_FROM_ORIENTATION SW ---
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'sw' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceX+1 < BoardSize,
-        PieceY-1 > 0,
-        NewX is PieceX+1,
-        NewY is PieceY-1,
-        NewX =< BoardSize,
-        NewY =< BoardSize. 
+        NewX is X+1,
+        NewY is Y-1.
 
 % --- GET_POSITION_FROM_ORIENTATION SE ---
 
-get_position_from_orientation(BoardSize, PieceX, PieceY, Orientation, NewX, NewY) :- 
+get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'se' ,!,
-        PieceX > 0,
-        PieceY > 0,
-        PieceX+1 < BoardSize,
-        PieceY+1 < BoardSize,
-        NewX is PieceX+1,
-        NewY is PieceY+1,
-        NewX =< BoardSize,
-        NewY =< BoardSize. 
+        NewX is X+1,
+        NewY is Y+1.
 
 % for testing purposes only
 % Board = [[0, 0, 0, 1, 1],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[1, 0, 0, 0, 0],[1, 0, 0, 0, 2]].

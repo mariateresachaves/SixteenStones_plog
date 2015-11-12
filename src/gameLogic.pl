@@ -94,16 +94,16 @@ replace_elem([H|T], N, Counter, Elem, LR):-
 
 replace_elem([], _, _, _, []).
 
-% --- ASK_MOVE ---
+% --- ASK_MOVE PUSH ---
 
 ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :- 
-        nl, write('Pick your next move (Push, Move, Sacrifice)?'), nl,
+        nl, write('Pick your next move (push, move, sacrifice)?'), nl,
         read(Play), nl,          
         Play == 'push',
-        nth0(0,Moves,Elem),
+        nth0(0, Moves, Elem),
         Elem == 0,
         replace_elem(Moves, 0, 1, L),
-        write('Piece to push? (X-Y): '),
+        write('Stone to push? (X-Y): '),
         read(X-Y), nl,
         write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
         read(Orientation), nl,
@@ -112,81 +112,73 @@ ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :-
         length(Line, Size),
         get_op_player(Player, OppositePlayer),
         draw_board(Size, RB, ROP, OppositePlayer),nl,
-        ask_move(RB, Player, L, ROP, TmpBoard, TmpOppositePool),
-        ResultBoard is TmpBoard,
-        ResultOppositePool is TmpOppositePool.
+        ask_move(RB, Player, L, ROP, ResultBoard, ResultOppositePool).
 
 ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :- 
-        nl, write('Pick your next move (Push, Move, Sacrifice)?'), nl,
+        nl, write('Pick your next move (push, move, sacrifice)?'), nl,
         read(Play), nl,          
         Play == 'push',
-        nth0(0,Moves,Elem0),
+        nth0(0, Moves, Elem0),
         Elem0 == 1,
-        nth0(0,Moves,Elem2),
+        nth0(2, Moves, Elem2),
         Elem2 == 1,
-        replace_elem(Moves, 0, 1, L),
-        write('Piece to push? (X-Y): '),
+        replace_elem(Moves, 0, 2, L),
+        write('Stone to push? (X-Y): '),
         read(X-Y), nl,
         write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
         read(Orientation), nl,
         push(Board, Player, X, Y, Orientation, OppositePool, ROP, RB),
-        ask_move(RB, Player, L, ROP, TmpBoard, TmpOppositePool),
-        ResultBoard is TmpBoard,
-        ResultOppositePool is TmpOppositePool.
+        ask_move(RB, Player, L, ROP, ResultBoard, ResultOppositePool).
 
-ask_move(Board,Player, Moves) :- 
-        Player = 1, !,
-        nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-        read(Play), nl,                                
-        Play == 'move', 
-        nth0(0,Moves,Elem),
-        Elem == 0, !,
-        replace_elem(Moves, 1, 1, L),
-        write(L),
-        write('Piece to move? (X-Y): '),
-        read(PieceX-PieceY), nl,
-        write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
-        read(Orientation), nl.
-        %movePlay(Board,Player,PieceX,PieceY,Orientation).
+% --- ASK_MOVE MOVE ---
 
-ask_move(Board,Player, Moves) :- 
-        Player = 1, !,
-        nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-        read(Play), nl,                                
-        Play = 'sacrifice', !,
-        write('Piece to sacrifice? (X-Y): '),
-        read(PieceX-PieceY), nl.
-        %sacrificePlay(Board,Player,PieceX,PieceY).
-
-ask_move(Board,Player, Moves) :- 
-        Player = 2, !,
-        nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-        read(Play), nl,                                
-        Play == 'push', 
-        nth0(0,Moves,Elem),
-        Elem == 0, !,
-        replace_elem(Moves, 0, 1, L),
-        write(L),
-        write('Piece to push? (X-Y): '),
-        read(PieceX-PieceY), nl,
-        write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
-        read(Orientation), nl.
-        %pushPlay(Board,Player,PieceX,PieceY,Orientation).
-
-ask_move(Board,Player, Moves) :- 
-        Player = 2, !,
-        nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-        read(Play), nl,                                
+ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :- 
+        nl, write('Pick your next move (push, move, sacrifice)?'), nl,
+        read(Play), nl,          
         Play == 'move',
-        nth0(0,Moves,Elem),
-        Elem == 0, !,
+        nth0(1, Moves, Elem),
+        Elem == 0,
         replace_elem(Moves, 1, 1, L),
-        write(L),
-        write('Piece to move? (X-Y): '),
-        read(PieceX-PieceY), nl,
+        write('Stone to move? (X-Y): '),
+        read(X-Y), nl,
         write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
-        read(Orientation), nl.
-        %movePlay(Board,Player,PieceX,PieceY,Orientation).
+        read(Orientation), nl,
+        nth0(Board, 0, Line),
+        length(Line, Size),
+        move(Board, Size, Player, X, Y, Orientation, OppositePool, ROP, RB),
+        get_op_player(Player, OppositePlayer),
+        draw_board(Size, RB, ROP, OppositePlayer),nl,
+        ask_move(RB, Player, L, ROP, ResultBoard, ResultOppositePool).
+
+ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :- 
+        nl, write('Pick your next move (push, move, sacrifice)?'), nl,
+        read(Play), nl,          
+        Play == 'move',
+        nth0(1, Moves, Elem1),
+        Elem1 == 1,
+        nth0(2, Moves, Elem2),
+        Elem2 == 1,
+        replace_elem(Moves, 1, 2, L),
+        write('Piece to move? (X-Y): '),
+        read(X-Y), nl,
+        write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
+        read(Orientation), nl,
+        nth0(Board, 0, Line),
+        length(Line, Size),
+        move(Board, Size, Player, X, Y, Orientation, OppositePool, ROP, RB),
+        ask_move(RB, Player, L, ROP, ResultBoard, ResultOppositePool).
+
+% --- ASK_MOVE SACRIFICE ---
+
+/*
+ask_move(Board,Player, Moves) :- 
+        Player = 1, !,
+        nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,                                
+        Play = 'sacrifice', !,
+        write('Piece to sacrifice? (X-Y): '),
+        read(PieceX-PieceY), nl.
+        %sacrificePlay(Board,Player,PieceX,PieceY).
 
 ask_move(Board,Player, Moves) :- 
         Player = 2, !,
@@ -196,3 +188,5 @@ ask_move(Board,Player, Moves) :-
         write('Piece to sacrifice? (X-Y): '),
         read(PieceX-PieceY), nl.
         %sacrificePlay(Board,Player,PieceX,PieceY).
+        
+*/
