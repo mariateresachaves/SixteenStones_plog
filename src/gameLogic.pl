@@ -15,8 +15,6 @@ getStone(Board, X, Y, Stone):- nth1(X, Board, Line),
                                nth1(Y, Line, Stone).
 
 update_board(Board, NewBoard, X, Y, Player, Valid):- getStone(Board, X, Y, Stone),
-                                                     write(Stone),
-                                                     nl,
                                                      Stone == 0,
                                                      replace(Board, X, Y, Player, NewBoard),
                                                      Valid is 1.
@@ -26,7 +24,7 @@ update_board(_, _, _, _, _, 0).
 play(Board, NewBoard, Player):- read(X-Y),
                                 update_board(Board, NewBoard, X, Y, Player, Valid),
                                 Valid == 1,
-                                write(NewBoard).
+                                write(NewBoard),nl.
 
 play(Board, NewBoard, Player):- read(X-Y),
                                 update_board(Board, NewBoard, X, Y, Player, Valid),
@@ -41,10 +39,16 @@ Size - Board's size
 
 init_board_turn(B, B, 0).
 
-init_board_turn(Board, ResultBoard, Turns):- write('Player 1: '),
+init_board_turn(Board, ResultBoard, Turns):- nth0(0,Board,Line),
+                                             length(Line, Size),
+                                             write('Player 1: '), nl,
                                              play(Board, NewBoard, 1),
-                                             write('Player 2: '),
+                                             nl, write('Actual board'), nl,
+                                             draw_board(Size, NewBoard), nl,
+                                             write('Player 2: '), nl,
                                              play(NewBoard, NewBoard2, 2),
+                                             nl, write('Actual board'), nl,
+                                             draw_board(Size, NewBoard2), nl,
                                              NewTurns is Turns-1,
                                              init_board_turn(NewBoard2, ResultBoard, NewTurns).
 
@@ -54,358 +58,141 @@ Board - Game board of size NxN
 Size - Board's size
 */
 
-initialize_board(Board, Size):- make_board(Size, Board),
-                                Turns is round((8/5)*Size),
-                                init_board_turn(Board, ResultBoard, Turns).
+initialize_board(Board, Size, ResultBoard):- make_board(Size, Board),
+                                             Turns is round((8/5)*Size),
+                                             make_line(Turns, Pool1),
+                                             make_line(Turns, Pool2),
+                                             write('--- Initialize Board ---'), nl,
+                                             draw_board(Size, Board), nl,
+                                             init_board_turn(Board, ResultBoard, Turns),
+                                             game_loop(ResultBoard, Pool1, Pool2, RB, RP1, RP2),
+                                             draw_board(Size, RB, RP1, RP2).
 
-% TERESA
-% loop de round((8/5)*Size*2 vezes - número de peças de cada jogador - alternando entre cada jogador
-% verificar no board se na posição X-Y existe alguma peça
-% se não existir atualizar o board
-% se já existir uma peça nessa posição pedir novamente uma posição ao utilizador
+game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
+        write('--- Turn ---'), nl,
+        write('Player 1: '),
+        ask_move(Board, 1, [0,0,0], Pool2, RB, RP2),
+        write('Player 2: '),
+        ask_move(RB, 2, [0,0,0], Pool1, RB2, RP1),
+        game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
 
-replace_elem(L, N, Elem, LR):- replace_elem(L, N, 0, Elem, LR), !.
+% --- REPLACE_ELEM ---
 
-replace_elem([_|T], N, Counter, Elem, LR):- N == Counter,
-                                            NewCounter is Counter + 1,
-                                            replace_elem(T, N, NewCounter, Elem, NLR),
-                                            append([Elem], NLR, LR).
+replace_elem(L, N, Elem, LR):- 
+        replace_elem(L, N, 0, Elem, LR), !.
 
-replace_elem([H|T], N, Counter, Elem, LR):- NewCounter is Counter + 1,
-                                            replace_elem(T, N, NewCounter, Elem, NLR),
-                                            append([H], NLR, LR).
+replace_elem([_|T], N, Counter, Elem, LR):- 
+        N == Counter,
+        NewCounter is Counter + 1,
+        replace_elem(T, N, NewCounter, Elem, NLR),
+        append([Elem], NLR, LR).
+
+replace_elem([H|T], N, Counter, Elem, LR):- 
+        NewCounter is Counter + 1,
+        replace_elem(T, N, NewCounter, Elem, NLR),
+        append([H], NLR, LR).
 
 replace_elem([], _, _, _, []).
 
-turn_loop(Board, Player, Moves):- ask_move(Board, Player, Moves).
+% --- ASK_MOVE ---
 
-% DIOGO
-% pedir jogada ao jogador
-%       pode ser push move ou sacrifice
+ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :- 
+        nl, write('Pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,          
+        Play == 'push',
+        nth0(0,Moves,Elem),
+        Elem == 0,
+        replace_elem(Moves, 0, 1, L),
+        write('Piece to push? (X-Y): '),
+        read(X-Y), nl,
+        write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
+        read(Orientation), nl,
+        push(Board, Player, X, Y, Orientation, OppositePool, ROP, RB),
+        nth0(0,Board,Line),
+        length(Line, Size),
+        get_op_player(Player, OppositePlayer),
+        draw_board(Size, RB, ROP, OppositePlayer),nl,
+        ask_move(RB, Player, L, ROP, TmpBoard, TmpOppositePool),
+        ResultBoard is TmpBoard,
+        ResultOppositePool is TmpOppositePool.
 
-ask_move(Board, Player, Moves) :- Player is 1,
-                                  nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-                                  read(Play), nl,          
-                                  Play == 'push',
-                                  nth0(0,Moves,Elem),
-                                  Elem == 0,
-                                  replace_elem(Moves, 0, 1, L),
-                                  write(L),
-                                  write('Piece to push? (X-Y): '),
-                                  read(PieceX-PieceY), nl,
-                                  write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
-                                  read(Orientation), nl.
-                                  %pushPlay(Board,Player,PieceX,PieceY,Orientation).
+ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :- 
+        nl, write('Pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,          
+        Play == 'push',
+        nth0(0,Moves,Elem0),
+        Elem0 == 1,
+        nth0(0,Moves,Elem2),
+        Elem2 == 1,
+        replace_elem(Moves, 0, 1, L),
+        write('Piece to push? (X-Y): '),
+        read(X-Y), nl,
+        write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
+        read(Orientation), nl,
+        push(Board, Player, X, Y, Orientation, OppositePool, ROP, RB),
+        ask_move(RB, Player, L, ROP, TmpBoard, TmpOppositePool),
+        ResultBoard is TmpBoard,
+        ResultOppositePool is TmpOppositePool.
 
-ask_move(Board,Player, Moves) :- Player = 1, !,
-                                 nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-                                 read(Play), nl,                                
-                                 Play == 'move', 
-                                 nth0(0,Moves,Elem),
-                                 Elem == 0, !,
-                                 replace_elem(Moves, 1, 1, L),
-                                 write(L),
-                                 write('Piece to move? (X-Y): '),
-                                 read(PieceX-PieceY), nl,
-                                 write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
-                                 read(Orientation), nl.
-                                 %movePlay(Board,Player,PieceX,PieceY,Orientation).
+ask_move(Board,Player, Moves) :- 
+        Player = 1, !,
+        nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,                                
+        Play == 'move', 
+        nth0(0,Moves,Elem),
+        Elem == 0, !,
+        replace_elem(Moves, 1, 1, L),
+        write(L),
+        write('Piece to move? (X-Y): '),
+        read(PieceX-PieceY), nl,
+        write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
+        read(Orientation), nl.
+        %movePlay(Board,Player,PieceX,PieceY,Orientation).
 
-ask_move(Board,Player, Moves) :- Player = 1, !,
-                                 nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-                                 read(Play), nl,                                
-                                 Play = 'sacrifice', !,
-                                 write('Piece to sacrifice? (X-Y): '),
-                                 read(PieceX-PieceY), nl.
-                                 %sacrificePlay(Board,Player,PieceX,PieceY).
+ask_move(Board,Player, Moves) :- 
+        Player = 1, !,
+        nl, write('Player 1s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,                                
+        Play = 'sacrifice', !,
+        write('Piece to sacrifice? (X-Y): '),
+        read(PieceX-PieceY), nl.
+        %sacrificePlay(Board,Player,PieceX,PieceY).
 
-ask_move(Board,Player, Moves) :- Player = 2, !,
-                                 nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-                                 read(Play), nl,                                
-                                 Play == 'push', 
-                                 nth0(0,Moves,Elem),
-                                 Elem == 0, !,
-                                 replace_elem(Moves, 0, 1, L),
-                                 write(L),
-                                 write('Piece to push? (X-Y): '),
-                                 read(PieceX-PieceY), nl,
-                                 write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
-                                 read(Orientation), nl.
-                                 %pushPlay(Board,Player,PieceX,PieceY,Orientation).
+ask_move(Board,Player, Moves) :- 
+        Player = 2, !,
+        nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,                                
+        Play == 'push', 
+        nth0(0,Moves,Elem),
+        Elem == 0, !,
+        replace_elem(Moves, 0, 1, L),
+        write(L),
+        write('Piece to push? (X-Y): '),
+        read(PieceX-PieceY), nl,
+        write('Which way to push to? (n,s,e,w,nw,ne,se,sw)'),
+        read(Orientation), nl.
+        %pushPlay(Board,Player,PieceX,PieceY,Orientation).
 
-ask_move(Board,Player, Moves) :- Player = 2, !,
-                                 nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-                                 read(Play), nl,                                
-                                 Play == 'move',
-                                 nth0(0,Moves,Elem),
-                                 Elem == 0, !,
-                                 replace_elem(Moves, 1, 1, L),
-                                 write(L),
-                                 write('Piece to move? (X-Y): '),
-                                 read(PieceX-PieceY), nl,
-                                 write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
-                                 read(Orientation), nl.
-                                 %movePlay(Board,Player,PieceX,PieceY,Orientation).
+ask_move(Board,Player, Moves) :- 
+        Player = 2, !,
+        nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,                                
+        Play == 'move',
+        nth0(0,Moves,Elem),
+        Elem == 0, !,
+        replace_elem(Moves, 1, 1, L),
+        write(L),
+        write('Piece to move? (X-Y): '),
+        read(PieceX-PieceY), nl,
+        write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
+        read(Orientation), nl.
+        %movePlay(Board,Player,PieceX,PieceY,Orientation).
 
-ask_move(Board,Player, Moves) :- Player = 2, !,
-                                 nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
-                                 read(Play), nl,                                
-                                 Play = 'sacrifice', !,
-                                 write('Piece to sacrifice? (X-Y): '),
-                                 read(PieceX-PieceY), nl.
-                                 %sacrificePlay(Board,Player,PieceX,PieceY).
-
-% DIOGO
-% verificar se a jogada é válida
-% se jogada é válida efectuar jogada
-
-% TERESA
-% verificar jogadas disponíveis
-% caso não hajam jogadas disponíveis terminar turno do jogador
-% se ainda tiver jogadas disponíveis volta a pedir jogada ao jogador
-
-% TERESA
-% verificar se o jogo terminou - número de peças no board de um dos jogadores é 1
-% se não terminou troca de jogador e faz outra vez o ciclo de turno
-
-% DIOGO
-% Jogada Move
-% Move a peça e verifica se captura alguma peça adversária
-
-movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation,Pool,PoolResult) :-
-    Player == 1, !,
-    check_piece_player(Board,Player,PieceX,PieceY),
-    get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),
-    check_empty_cell(Board,NewX,NewY),
-    move_aux(Board,BoardSize,Player,PieceX,PieceY,NewPieceX,NewPieceY,ReturnBoard),
-    check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY),
-    getStone(Board,CapturedPieceX,CapturedPieceY,ResultStone),
-    opposite_player(Player,OppositePlayer),
-    ResultStone == OppositePlayer,
-    add_to_pool(Pool,ResultStone,0,PoolResult),
-    replace(Board,CapturedPieceX,CapturedPieceY,0,ResultBoard),
-    Board is ResultBoard.
-
-movePlay(Board,BoardSize,Player,PieceX,PieceY,Orientation,Pool,PoolResult) :-
-    Player == 2, !,
-    check_piece_player(Board,Player,PieceX,PieceY),
-    get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY),
-    check_empty_cell(Board,NewX,NewY),
-    move_aux(Board,BoardSize,Player,PieceX,PieceY,NewPieceX,NewPieceY,ReturnBoard),
-    check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY),
-    getStone(Board,CapturedPieceX,CapturedPieceY,ResultStone),
-    opposite_player(Player,OppositePlayer),
-    ResultStone == OppositePlayer,
-    add_to_pool(Pool,ResultStone,0,PoolResult),
-    replace(Board,CapturedPieceX,CapturedPieceY,0,ResultBoard),
-    Board is ResultBoard.
-
-% Retorna o adversário
-opposite_player(1,2).
-opposite_player(2,1).
-
-check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-    getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'n',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'n',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY.
-
- check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-   getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'s',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'s',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY.
-
-
- check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-   getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'e',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'e',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY.
-
- check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-   getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'w',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'w',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY.
-
- check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-   getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'nw',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'nw',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY.
-
- check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-   getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'ne',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'ne',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY.    
-
- check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-   getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'se',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'se',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY. 
-
-check_capture_status(Board,BoardSize,NewPieceX,NewPieceY,Player,CapturedPieceX,CapturedPieceY) :-   getStone(Board,NewPieceX,NewPieceY,PlayerStone),
-                                                                                                     PlayerStone == Player,
-                                                                                                     opposite_player(Player,OppositePlayer),
-                                                                                                     get_position_from_orientation(BoardSize,NewPieceX,NewPieceY,'sw',CheckPieceX,CheckPieceY),
-                                                                                                     getStone(Board,CheckPieceX,CheckPieceY,CheckStone),
-                                                                                                     CheckStone == OppositePlayer,
-                                                                                                     get_position_from_orientation(BoardSize,CheckPieceX,CheckPieceY,'sw',SurroundPieceX,SurroundPieceY),
-                                                                                                     getStone(Board,SurroundPieceX,SurroundPieceY,PossibleSurroundStone),
-                                                                                                     PossibleSurroundStone == Player,
-                                                                                                     CapturedPieceX is CheckPieceX,
-                                                                                                     CapturedPieceY is CheckPieceY.                                                                                         
-
-
-move_aux(Board,BoardSize,_,PieceX,PieceY,NewPieceX, NewPieceY, ReturnBoard) :- %draw_board(BoardSize,Board),
-                                                                             getStone(Board,PieceX,PieceY,Stone),
-                                                                             replace(Board,NewPieceX,NewPieceY,Stone,TempBoard),
-                                                                             replace(TempBoard,PieceX,PieceY,0,ReturnBoard).
-                                                                             %draw_board(BoardSize,ReturnBoard).
-
-check_piece_player(Board,Player,PieceX,PieceY) :- getStone(Board,PieceX,PieceY,Stone),
-                                                  Player == 1, !,
-                                                  Stone == 1.
-    
-
-check_piece_player(Board,Player,PieceX,PieceY) :- getStone(Board,PieceX,PieceY,Stone),
-                                                  Player == 2, !,
-                                                  Stone == 2.
-    
-
-check_empty_cell(Board,X,Y) :- getStone(Board,X,Y,Stone),                                            
-                               Stone == 0.   
-    
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'n' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceY-1 > 0,
-                                                                                NewX is PieceX,
-                                                                                NewY is PieceY-1,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize.                                                                    
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 's' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceY+1 < BoardSize,
-                                                                                NewX is PieceX,
-                                                                                NewY is PieceY+1,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize.
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'e' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceX+1 < BoardSize,
-                                                                                NewX is PieceX+1,
-                                                                                NewY is PieceY,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize.
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'w' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceX-1 > 0,
-                                                                                NewX is PieceX-1,
-                                                                                NewY is PieceY,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize.                           
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'nw' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceX-1 > 0,
-                                                                                PieceY-1 > 0,
-                                                                                NewX is PieceX-1,
-                                                                                NewY is PieceY-1,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize.  
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'ne' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceX+1 < BoardSize,
-                                                                                PieceY-1 > 0,
-                                                                                NewX is PieceX+1,
-                                                                                NewY is PieceY-1,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize. 
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'sw' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceX-1 > 0,
-                                                                                PieceY+1 < BoardSize,
-                                                                                NewX is PieceX-1,
-                                                                                NewY is PieceY+1,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize. 
-
-get_position_from_orientation(BoardSize,PieceX,PieceY,Orientation,NewX,NewY) :- Orientation == 'se' ,!,
-                                                                                PieceX > 0,
-                                                                                PieceY > 0,
-                                                                                PieceX+1 < BoardSize,
-                                                                                PieceY+1 < BoardSize,
-                                                                                NewX is PieceX+1,
-                                                                                NewY is PieceY+1,
-                                                                                NewX =< BoardSize,
-                                                                                NewY =< BoardSize. 
-
-% for testing purposes only
-% Board = [[0, 0, 0, 1, 1],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[1, 0, 0, 0, 0],[1, 0, 0, 0, 2]].
-
-% TERESA
-% verificar jogadas disponíveis
-% caso não hajam jogadas disponíveis terminar turno do jogador
-% se ainda tiver jogadas disponíveis volta a pedir jogada ao jogador
-
-% TERESA
-% verificar se o jogo terminou - número de peças no board de um dos jogadores é 1
-% se não terminou troca de jogador e faz outra vez o ciclo de turno
+ask_move(Board,Player, Moves) :- 
+        Player = 2, !,
+        nl, write('Player 2s turn, pick your next move (Push, Move, Sacrifice)?'), nl,
+        read(Play), nl,                                
+        Play = 'sacrifice', !,
+        write('Piece to sacrifice? (X-Y): '),
+        read(PieceX-PieceY), nl.
+        %sacrificePlay(Board,Player,PieceX,PieceY).
