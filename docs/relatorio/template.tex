@@ -1,7 +1,5 @@
 \documentclass[a4paper]{article}
 
-%use the english line for english reports
-%usepackage[english]{babel}
 \usepackage[portuguese]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
@@ -32,200 +30,140 @@ Maria Teresa Chaves - up201306842 \\
 \linebreak\linebreak \\
  \\ Faculdade de Engenharia da Universidade do Porto \\ Rua Roberto Frias, s\/n, 4200-465 Porto, Portugal \linebreak\linebreak\linebreak
 \linebreak\linebreak\vspace{1cm}}
+\date{Novembro 2015}
 
 \maketitle
 \thispagestyle{empty}
 
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%************************************************************************************************
+%************************************************************************************************
 
 \newpage
 
-%Todas as figuras devem ser referidas no texto. %\ref{fig:codigoFigura}
-%
-%%Exemplo de código para inserção de figuras
-%%\begin{figure}[h!]
-%%\begin{center}
-%%escolher entre uma das seguintes três linhas:
-%%\includegraphics[height=20cm,width=15cm]{path relativo da imagem}
-%%\includegraphics[scale=0.5]{path relativo da imagem}
-%%\includegraphics{path relativo da imagem}
-%%\caption{legenda da figura}
-%%\label{fig:codigoFigura}
-%%\end{center}
-%%\end{figure}
-%
-%
-%\textit{Para escrever em itálico}
-%\textbf{Para escrever em negrito}
-%Para escrever em letra normal
-%``Para escrever texto entre aspas''
-%
-%Para fazer parágrafo, deixar uma linha em branco.
-%
-%Como fazer bullet points:
-%\begin{itemize}
-	%\item Item1
-	%\item Item2
-%\end{itemize}
-%
-%Como enumerar itens:
-%\begin{enumerate}
-	%\item Item 1
-	%\item Item 2
-%\end{enumerate}
-%
-%\begin{quote}``Isto é uma citação''\end{quote}
+\section*{Resumo}
 
+Nesta disciplina foi-nos proposto desenvolver um jogo de tabuleiro utilizando uma linguagem de programação em lógica, \textit{Prolog}. O nosso projeto incide sobre o jogo \textit{Sixteen Stones}. A aplicação que desenvolvemos centra-se na representação do tabuleiro de jogo quadrado, composto por células que serão ocupadas pelas pedras dos dois jogadores (Humano/Humano, Humano/Computador ou Computador/Computador) e movimentos que cada jogador poderá realizar.
 
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Os resultados deste trabalho foram uma aplicação baseada no jogo \textit{Sixteen Stones}, fornecendo ao utilizador uma interface em modo texto. No modo Computador/Computador utilizamos inteligência artificial de forma a que, dependendo do nível de dificuldade escolhido, as jogadas fossem o mais parecidas com as jogadas que um ser humano faria.
+
+\newpage
 
 \tableofcontents
-\listoffigures
+
+%************************************************************************************************
+%************************************************************************************************
+
+%*************************************************************************************************
+%************************************************************************************************
 
 \newpage
 
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
 
-\section{O Jogo Sixteen Stone}
+Pretende-se neste trabalho implementar, em linguagem Prolog, um jogo de tabuleiro para dois jogadores. Um jogo de tabuleiro caracteriza-se pelo tipo de tabuleiro e de peças, pelas regras de movimentação das peças (jogadas possíveis) e pelas condições de terminação do jogo com derrota, vitória ou empate. Pretende-se desenvolver uma aplicação para jogar um jogo deste tipo, usando o Prolog como linguagem de implementação. O jogo deve permitir três modos de utilização: Humano/Humano, Humano/Computador e Computador/Computador. Devem ser incluídos pelo menos dois níveis de jogo para o computador. Deve ser construída uma interface adequada com o utilizador, em modo de texto.
+A aplicação terá um visualizador gráfico 3D, a realizar na
 
-Sixteen Stone é o nome de um jogo de tabuleiro abstrato \footnote{Jogo abstrato - jogo de estratégia que tenta minimizar a sorte e não possui tema.}\footnote{Informação obtida em https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato} de forma quadrada, jogado normalmente num tabuleiro de 5x5, para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis, colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
+Descrever os objetivos e motivação do trabalho. Descrever num parágrafo breve a estrutura do relatório.
 
-\subsection{Tabuleiro de jogo}
 
-Esta secção tem como objetivo introduzir o tabuleiro de jogo e os elementos que dele fazem parte.
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{O Jogo Sixteen Stones}
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.3]{images/board_explained.png} 
-	\caption{Explicação do tabuleiro.}
-\end{figure}
+Sixteen Stone é o nome de um jogo de tabuleiro abstrato de forma quadrada, jogado normalmente num tabuleiro de 5x5 (pode ter outras dimensões), para dois jogadores. Inicialmente, cada jogador tem 8 pedras vermelhas ou azuis (tabuleiro 5x5), colocando-as de forma alternada em qualquer uma das células livres, sendo que o jogador vermelho é o primeiro a jogar. Assim que todas as pedras estejam no tabuleiro, o jogo começa. 
 
-Elementos do tabuleiro:
+O jogador vermelho começa a jogar e alterna de turno com o jogador adversário. Um jogador pode no seu respetivo turno realizar cada uma das seguintes jogadas: \textit{Push}, \textit{Move} e \textit{Sacrifice}. No primeiro turno de cada jogador, deve ser feito um \textit{Push} ou um \textit{Move}, mas nunca ambos. \\
 
-\begin{itemize}
-	\item \textbf{Pedras} - cada jogador possui um certo número de pedras, sendo que o jogador 1 possui as pedras vermelhas e o 2 as pedras azuis.
-	\item \textbf{Banco} - cada jogador possui um banco onde estão guardadas as pedras que não estão em jogo.
-	\item \textbf{Tabuleiro} -  onde os jogadores colocam as suas pedras de jogo e podem efetuar vários movimentos.
-\end{itemize}
+\textbf{Push}\\
 
-\newpage
+Para realizar um  \textit{Push} é necessário que o jogador tenha mais pedras nessa linha que o adversário. Assim, se após um  \textit{Push}, a pedra do adversário é "empurrada" para fora do tabuleiro, então vai para o "banco" do respetivo jogador. As pedras que são "empurradas" apenas se movem uma célula na direção do \textit{Push}, que pode ser realizado em qualquer direção. O número de pedras máximo (PE) que um jogador pode "empurrar" é igual a:
 
-\subsection{Regras}
-
-No início do jogo distribui-se 8 pedras (vermelhas ou azuis) para cada jogador. De forma alternada os jogadores devem colocá-las em qualquer uma das células livres, começando as pedras vermelhas.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.3]{images/board_prep.png}
-	\caption{Preparação do tabuleiro.}
-\end{figure}
-
-Quando as pedras estiverem todas colocadas no tabuleiro, o jogador vermelho começa a jogar e alterna de turno com o jogador adversário.
-
-\subsubsection{Jogadas possíveis}
-
-Um jogador pode no seu respetivo turno realizar cada uma das seguintes jogadas: \textit{Push}, \textit{Move} e \textit{Sacrifice}.
-No primeiro turno de cada jogador, deve ser feito um \textit{Push} ou um \textit{Move}, mas nunca ambos.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.3]{images/first_move.png}
-	\caption{Jogador vermelho realiza um \textit{Move} no seu primeiro turno.}
-\end{figure}
-
-\newpage
-
-\subsubsection{\textit{Push}}
-
-Para realizar um  \textit{Push} é necessário que o jogador tenha mais pedras nessa linha que o adversário. Assim, se após um  \textit{Push}, a pedra do adversário é "empurrada" para fora do tabuleiro, então vai para o "banco" do respetivo jogador. As pedras que são "empurradas" apenas se movem uma célula na direção do \textit{Push}, que pode ser realizado em qualquer direção.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.3]{images/push_dirs.png} 
-	\caption{Direções possíveis de um \textit{Push} e situações em que a pedra do adversário é "empurrada" para fora do tabuleiro.}
-\end{figure}
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.3]{images/push_not_poll.png} 
-	\caption{\textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
-\end{figure}
-
-O número de pedras máximo (PE) que um jogador pode "empurrar" é igual a:
+Um jogador não pode realizar um  \textit{Push} nas suas próprias pedras. 
+Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para ser "empurrada".
 
 \begin{equation}
 	PE = P - 1 \text{\hspace{7mm}(sendo P o número das suas pedras nessa linha)}
 \end{equation}
 
-\newpage
-
-Isto é, por exemplo, caso numa linha o jogador azul tenha três pedras, então pode realizar um  \textit{Push} a uma pedra ou a duas do adversário. Mas caso tenha duas apenas pode realizar um  \textit{Push} a uma pedra vermelha.
-
 \begin{figure}[!htb]
+\minipage{0.5\textwidth}
 	\centering
-	\includegraphics[scale=0.3]{images/push_3_stones.png}
-	\caption{Push com três pedras.}
+  	\includegraphics[scale=0.2]{images/push_not_pool.png}
+	\caption{\textit{Push} sem que a pedra adversária seja "empurrada" para fora do tabuleiro.}
+\endminipage\hfill
+\minipage{0.5\textwidth}
+ \vspace*{2.3cm}
+	\centering
+	 \includegraphics[scale=0.2]{images/push_pool.png} \vspace*{0.3cm}
+	\caption{\textit{Push} em que a pedra do adversário é "empurrada" para fora do tabuleiro.}
+\endminipage
 \end{figure}
 
-Além das regras referidas anteriormente, um jogador não pode realizar um  \textit{Push} nas suas próprias pedras.
-Por fim, para realizar um \textit{Push} é necessário que exista uma pedra para ser "empurrada". Por exemplo, caso numa coluna o jogador vermelho tenha duas pedras, mas nessa coluna o jogador vermelho não tem pedras, então realizar um  \textit{Push} é uma jogada inválida.
+\newpage
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{images/invalid_push.png} 
+	\includegraphics[scale=0.2]{images/invalid_push.png} 
 	\caption{Push inválido: nas suas próprias pedras (a); numa célula vazia (b).}
 \end{figure}
 
-\newpage
-
-\subsubsection{\textit{Move}}
+\textbf{Move}\\
 
 É possível realizar um  \textit{Move} para uma célula vazia em qualquer direção. Se o jogador tentar realizar um \textit{Move} para uma célula ocupada, então é considerado uma jogada inválida.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.2]{images/valid_invalid_move.png} 
-	\caption{\textit{Move} válido (a) e um \textit{Move} inválido (b).}
-\end{figure}
-
-Após um \textit{Move} se alguma das pedras adversárias ficar cercada\footnote{Uma pedra fica cercada quando existem pelo menos em duas direções opostas pedras adversárias.}, então esta é capturada e substituída por uma pedra do "banco" do jogador que a capturou.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.3]{images/move_cap.png} 
-	\caption{Pedra azul capturada após um \textit{Move} de uma pedra vermelha.}
-\end{figure}
 
 Se um jogador realizar um \textit{Move} e a sua pedra ficar voluntariamente cercada, esta não é capturada.
 
 \begin{figure}[!htb]
+\minipage{0.5\textwidth}
 	\centering
-	\includegraphics[scale=0.3]{images/move_no_cap.png} 
-	\caption{Pedra que após um \textit{Move} não é capturada.}
+  	\includegraphics[scale=0.3]{images/move_cap.png} 
+	\caption{Pedra azul capturada após um \textit{Move} de uma pedra vermelha.}
+\endminipage\hfill
+\minipage{0.5\textwidth}
+	\vspace*{3.1cm}
+	\centering
+	\includegraphics[scale=0.2]{images/valid_invalid_move.png} \vspace*{0.3cm}
+	\caption{\textit{Move} válido (a) e um \textit{Move} inválido (b).}
+\endminipage
 \end{figure}
 
-\subsubsection{\textit{Sacrifice}}
+\textbf{Sacrifice}\\
 
-Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder realizar um \textit{Push} ou um \textit{Move} adicional.
+Um jogador pode sacrificar uma pedra do seu "banco", permanentemente, para poder realizar um \textit{Push} ou um \textit{Move} adicional.\\
+
+% falta imagem para o sacrifice...
+
+\textbf{Capture}\\
+
+Uma pedra fica cercada quando existem pelo menos em duas direções opostas pedras adversárias. Por exemplo se após um \textit{Move} se alguma das pedras adversárias ficar cercada, então esta é capturada e substituída por uma pedra do "banco" do jogador que a capturou.
+
+Após um \textit{Push}, se uma das pedras do jogador atual se move para uma posição que já esta ocupada por uma das suas pedras e fica a cercar uma pedra adversária então é capturada.
+
+Se após um \textit{Push} uma das pedras do adversário fica cercada, então é capturada.
+
+Quando uma pedra adversária é capturada, esta pedra é colocada na \textit{Pool} do adversário e é substituída por outra da \textit{Pool} do jogador que efetuou a jogada.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.3]{images/sacrifice.png}
-	\caption{Jogador azul realiza um \textit{Move} (I), um \textit{Sacrifice} (II) e depois um \textit{Push} (III) e ganha o jogo.}
+	\includegraphics[scale=0.3]{images/move_cap.png} 
+	\caption{Pedra azul capturada após um \textit{Move} de uma pedra vermelha.} %melhorar imagem...
 \end{figure}
 
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-\newpage
+O jogo termina quando o jogador vencedor consegue reduzir para um o número de pedras em jogo do adversário.
 
-\section{Representação do Estado do Jogo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lógica do Jogo}
+
+Descrever o projeto e implementação da lógica do jogo em Prolog, incluindo a forma de representação do estado do tabuleiro e sua visualização, execução de movimentos, verificação do cumprimento das regras do jogo, determinação do final do jogo e cálculo das jogadas a realizar pelo computador utilizando diversos níveis de jogo. Sugere-se a estruturação desta secção da seguinte forma:
+
+\subsection{Representação do Estado do Jogo}
 
 O tabuleiro é representado por uma lista de listas  $L = \{L_1, L_2, ... , L_n\} , n > 0  \wedge n$ é múltiplo de $5$, em que $n$ é a dimensão do tabuleiro. \par
 Com o predicado \texttt{make\_board} é possível criar um tabuleiro (\textit{Board}) com um tamanho \textit{Size}. Para isso o \texttt{make\_board} utiliza o predicado \texttt{make\_line} para criar uma linha e depois usa o \texttt{make\_board} recursivamente. De forma a tornar mais clara a visualização do tabuleiro de jogo, após criá-lo com o \texttt{make\_board} utiliza-se o predicado \texttt{print\_board} que o imprime no ecrã.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.6]{images/make_board.png}
+	\includegraphics[scale=0.45]{images/make_board.png}
 	\caption{Estado inicial do jogo.}
 \end{figure}
 
@@ -271,67 +209,39 @@ Existe ainda um predicado \texttt{moveToPool(Stone, Player, Pool)} que move uma 
 	\caption{Exemplo de uma pedra a ser colocada no "banco" de um jogador.}
 \end{figure}
 
-\newpage
+\subsection{Visualização do Tabuleiro} (Pode ser idêntico ao descrito no relatório intercalar.)
 
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-\section{Visualização do Tabuleiro}
+\subsection{Lista de Jogadas Válidas} Obtenção de uma lista de jogadas possíveis. Exemplo: \textit{valid\_moves(+Board, -ListOfMoves)}.
 
-A cor das pedras dos jogadores são representadas pelos carateres \texttt{x} para as pedras azuis e \texttt{o} para as pedras vermelhas, sendo que o carater \texttt{\_} é usado para representar casas vazias.
+\subsection{Execução de Jogadas} Validação e execução de uma jogada num tabuleiro, obtendo o novo estado do jogo. Exemplo: \textit{move(+Move, +Board, -NewBoard)}.
 
-Os predicados utilizados para construir e visualizar o tabuleiro são:
+\subsection{Avaliação do Tabuleiro} Avaliação do estado do jogo, que permitirá comparar a aplicação das diversas jogadas disponíveis. Exemplo: \textit{value(+Board, +Player, -Value)}.
 
-\begin{itemize}
-	\item \texttt{make\_line/2} - Gera uma linha do tabuleiro
-	\item \texttt{make\_board/2} - Gera um tabuleiro de jogo com o tamanho especificado
-	\item \texttt{print\_line/1} - Predicado para imprimir uma linha do tabuleiro
-	\item \texttt{print\_board/1} - Predicado que imprime o tabuleiro, passado sob a forma de uma lista de listas
-	\item \texttt{draw\_board/2} - Predicado que chama os predicados anteriores para gerar um tabuleiro com um tamanho especificado e imprime-o no ecrã
-\end{itemize}
+\subsection{Final do Jogo} Verificação do fim do jogo, com identificação do vencedor. Exemplo: \textit{game\_over(+Board, -Winner)}.
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.6]{images/draw_board.png}
-	\caption{Exemplo de chamada do predicado \texttt{draw\_board} para um tamanho de 5x5}
-\end{figure}
+\subsection{Jogada do Computador} Escolha da jogada a efetuar pelo computador, dependendo do nível de dificuldade. Por exemplo: \textit{choose\_move(+Level, +Board, -Move)}.
 
-Numa fase já intermédia do jogo, o tabuleiro poderá atingir um ponto com o seguinte o formato:
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.5]{images/board_prolog.png}
-	\caption{Exemplo de fase intermédia do jogo.}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Interface com o Utilizador}
 
-De uma forma mais visual, segue-se abaixo uma figura ilustrativa da fase respetiva do tabuleiro.
+Descrever o módulo de interface com o utilizador em modo de texto.
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.6]{images/board_inter.png}
-	\caption{Forma mais visual de uma fase intermédia do jogo.}
-\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusões}
+Que conclui deste projecto? Como poderia melhorar o trabalho desenvolvido?
+
+
+\clearpage
+\addcontentsline{toc}{section}{Bibliografia}
+\renewcommand\refname{Bibliografia}
+\bibliographystyle{plain}
+\bibliography{myrefs}
 
 \newpage
-
-%----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-\section{Movimentos}
-
-Os movimentos que cada jogador pode efetuar são os seguintes:
-
-\begin{itemize}
-	\item \texttt{push/4 -  push(Stone\_src, Stone\_dst, Dir, Board)} - Predicado para a jogada do tipo \textit{Push} onde \textit{Stone\_src} e \textit{Stone\_dst} são as coordenadas de origem e destino das peças, \textit{Dir} é a direção do \textit{Push} efetuado e \textit{Board} é o tabuleiro de jogo alterado após o \textit{Push}
-	\item \texttt{move/3 -  move(Stone\_src, Cell\_dst, Board)} - Predicado para a jogada do tipo \textit{Move} onde \textit{Stone\_src} é a pedra que se pretende mover, \textit{Cell\_dst} a casa destino para onde se pretende mover a peça e \textit{Board} é o tabuleiro de jogo alterado após o \textit{Move}
-	\item \texttt{sacrifice/2 -  sacrifice(Stone, Board)} - Predicado para a jogada do tipo \textit{Sacrifice} onde \textit{Stone} é a pedra que o jogador sacrifica e \textit{Board} é o tabuleiro de jogo alterado após o \textit{Sacrifice}
-	\item \texttt{moveToPool/3 - moveToPool(Stone, Player, Pool)} - Predicado responsável por mover uma pedra \textit{Stone} de um jogador \textit{Player} para o seu banco, e retorna o banco \textit{Pool} desse jogador após efetuar essa operação
-\end{itemize}
-
-\newpage
-
-\section*{Bibliografia}
-
-"Jogo de estratégia abstrato", https://pt.wikipedia.org/wiki/Jogo\_de\_estrat\%C3\%A9gia\_abstrato (acedido em 7 de Outubro de 2015) \newline
-
-"Sixteen Stone", http://www.boardgamegeek.com/boardgame/173193/sixteen-stone (acedido em 7 de Outubro de 2015) \newline
-
-"Sixteen Stone - rules v.1.0", http://www.boardgamegeek.com/filepage/117073/sixteen-stone-rules-v10 (acedido em 7 de Outubro de 2015) \newline
+\appendix
+\section{Nome do Anexo}
+Código Prolog implementado devidamente comentado e outros elementos úteis que não sejam essenciais ao relatório.
 
 \end{document}
