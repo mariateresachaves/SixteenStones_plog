@@ -740,8 +740,6 @@ remove_captured_stones(Board, OppositePlayer, [X-Y|TC], Pool, ResultPool, Result
 
 % --- CHECK_CAPTURE_STATUS ---
 
-
-
 check_capture_status(Board, NewX, NewY, Player, _, ResultCaptures) :- 
         check_capture_status(Board, 'n', NewX, NewY, Player, [], RC1),
         check_capture_status(Board, 's', NewX, NewY, Player, RC1, RC2),
@@ -916,3 +914,15 @@ get_position_from_orientation(X, Y, Orientation, NewX, NewY) :-
         Orientation == 'se' ,!,
         NewX is X+1,
         NewY is Y+1.
+
+/*
+   ****** SACRIFICE ******
+*/
+
+sacrifice(Pool, ResultPool) :-
+        nth1(1,Pool,Stone),
+        Stone \= 0,
+        remove_first(Pool,RP),
+        append(RP,[0],ResultPool).
+
+sacrifice(Pool, Pool).
