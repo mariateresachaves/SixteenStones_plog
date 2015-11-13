@@ -712,8 +712,7 @@ move(Board, 1, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
         get_position_from_orientation(X, Y, Orientation, NewX, NewY),
         check_empty_cell(Board, NewX, NewY),
         move_aux(Board, X, Y, NewX, NewY, ReturnBoard),
-        check_capture_status(ReturnBoard, X, Y, 1, _, ResultCaptures),
-                write(ResultCaptures),
+        check_capture_status(ReturnBoard, NewX, NewY, 1, Pool, ResultCaptures),
         remove_captured_stones(ReturnBoard, 2, ResultCaptures, Pool, ResultPool, ResultBoard).
 
 move(Board, 2, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
@@ -722,7 +721,7 @@ move(Board, 2, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
         get_position_from_orientation(X, Y, Orientation, NewX, NewY),
         check_empty_cell(Board, NewX, NewY),
         move_aux(Board, X, Y, NewX, NewY, ReturnBoard),
-        check_capture_status(ReturnBoard, X, Y, 2, _, ResultCaptures),
+        check_capture_status(ReturnBoard, NewX, NewY, 2, _, ResultCaptures),
         remove_captured_stones(ReturnBoard, 1, ResultCaptures, Pool, ResultPool, ResultBoard).
 
 % --- REMOVE_CAPTURED_STONES ---
@@ -740,6 +739,8 @@ remove_captured_stones(Board, OppositePlayer, [X-Y|TC], Pool, ResultPool, Result
         remove_captured_stones(RB, OppositePlayer, TC, RP, ResultPool, ResultBoard).
 
 % --- CHECK_CAPTURE_STATUS ---
+
+
 
 check_capture_status(Board, NewX, NewY, Player, _, ResultCaptures) :- 
         check_capture_status(Board, 'n', NewX, NewY, Player, [], RC1),
@@ -762,6 +763,52 @@ check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :-
         getStone(Board, SurroundX, SurroundY, PossibleSurroundStone),
         PossibleSurroundStone == Player,
         append(CL, [CheckX-CheckY], RCL).
+
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :- 
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, CheckX, _),
+        CheckX == 0,
+        append(CL, [], RCL).
+   
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :- 
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, _, CheckY),
+        CheckY == 0,
+        append(CL, [], RCL).
+
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :- 
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, CheckX, _),
+        CheckX > 0,
+        append(CL, [], RCL).
+
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :- 
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, _, CheckY),
+        CheckY > 0,
+        append(CL, [], RCL).
+
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :- 
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, CheckX, _),
+        nth1(1,Board,Line),
+        length(Line,Size),
+        CheckX > Size,
+        append(CL, [], RCL).
+
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :- 
+        getStone(Board, NewX, NewY, PlayerStone),
+        PlayerStone == Player,
+        get_position_from_orientation(NewX, NewY, Orientation, _, CheckY),
+        nth1(1,Board,Line),
+        length(Line,Size),
+        CheckY > Size,
+        append(CL, [], RCL).
 
 check_capture_status(Board, Orientation, NewX, NewY, Player, CL, CL):-
         getStone(Board, NewX, NewY, PlayerStone),
@@ -869,6 +916,3 @@ get_position_from_orientation(X, Y, Orientation, NewX, NewY) :-
         Orientation == 'se' ,!,
         NewX is X+1,
         NewY is Y+1.
-
-% for testing purposes only
-% Board = [[0, 0, 0, 1, 1],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[1, 0, 0, 0, 0],[1, 0, 0, 0, 2]].

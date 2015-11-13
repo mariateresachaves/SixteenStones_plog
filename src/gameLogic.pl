@@ -72,7 +72,7 @@ initialize_board(Board, Size, ResultBoard):-
         write('--- Initialize Board ---'), nl,
         draw_board(Size, Board), nl,
         init_board_turn(Board, ResultBoard, Turns),
-        game_loop(ResultBoard, Pool1, Pool2, RB, RP1, RP2),
+        game_loop([[1,2,1,2,2],[0,2,0,1,0],[0,0,1,1,0],[1,2,2,2,0],[1,2,0,0,1]], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], RB, RP1, RP2),
         draw_board(Size, RB, RP1, RP2).
 
 game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
@@ -104,9 +104,13 @@ replace_elem([], _, _, _, []).
 % --- ASK_MOVE PUSH ---
 
 play_ask_move(Board, Player, Moves, OppositePool, ResultBoard, ResultOppositePool):- 
-        nl, write('Pick your next move (push, move, sacrifice)?'), nl,
+        nl, write('Pick your next move (push, move, sacrifice, finish)?'), nl,
         read(Play), nl,
         ask_move(Board, Play, Player, Moves, OppositePool, ResultBoard, ResultOppositePool).
+
+play_ask_move(Board, _, _, OppositePool, Board, OppositePool).
+
+ask_move(_, 'finish', _, _, _, _).
 
 ask_move(Board, 'push', Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :- 
         nth0(0, Moves, Elem),
@@ -120,7 +124,7 @@ ask_move(Board, 'push', Player, Moves, OppositePool, ResultBoard, ResultOpposite
         nth0(0,Board,Line),
         length(Line, Size),
         get_op_player(Player, OppositePlayer),
-        draw_board(Size, RB, ROP, OppositePlayer),nl,
+        draw_board(Size, RB, ROP, OppositePlayer),nl,!,
         play_ask_move(RB, Player, L, ROP, ResultBoard, ResultOppositePool).
 
 ask_move(Board, 'push', Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :-
@@ -150,7 +154,7 @@ ask_move(Board, 'move', Player, Moves, OppositePool, ResultBoard, ResultOpposite
         length(Line, Size),
         move(Board, Player, X, Y, Orientation, OppositePool, ROP, RB),
         get_op_player(Player, OppositePlayer),
-        draw_board(Size, RB, ROP, OppositePlayer),nl,
+        draw_board(Size, RB, ROP, OppositePlayer),nl,!,
         play_ask_move(RB, Player, L, ROP, ResultBoard, ResultOppositePool).
 
 ask_move(Board, 'move', Player, Moves, OppositePool, ResultBoard, ResultOppositePool) :-
@@ -163,11 +167,7 @@ ask_move(Board, 'move', Player, Moves, OppositePool, ResultBoard, ResultOpposite
         read(X-Y), nl,
         write('Which way to move to? (n,s,e,w,nw,ne,se,sw)'),
         read(Orientation), nl,
-        nth0(0, Board, Line),
-        length(Line, Size),
         move(Board, Player, X, Y, Orientation, OppositePool, ROP, RB),
-        get_op_player(Player, OppositePlayer),
-        draw_board(Size, RB, ROP, OppositePlayer),nl,
         play_ask_move(RB, Player, L, ROP, ResultBoard, ResultOppositePool).
 
 % --- ASK_MOVE SACRIFICE ---
