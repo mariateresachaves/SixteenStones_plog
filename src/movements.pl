@@ -706,47 +706,52 @@ push(Board, Player, X, Y, 'nw', Pool, PoolResult, Result):-
    ****** MOVE ******
 */
 
-move(Board, BoardSize, 1, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
+move(Board, 1, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
         getStone(Board,X,Y,Stone),
         Stone == 1,
         get_position_from_orientation(X, Y, Orientation, NewX, NewY),
         check_empty_cell(Board, NewX, NewY),
         move_aux(Board, X, Y, NewX, NewY, ReturnBoard),
-        check_capture_status(ReturnBoard, BoardSize, NewX, NewY, 1, Captures),
-        remove_captured_stones(ReturnBoard, 2, Captures, Pool, ResultPool, ResultBoard).
+        check_capture_status(ReturnBoard, X, Y, 1, _, ResultCaptures),
+                write(ResultCaptures),
+        remove_captured_stones(ReturnBoard, 2, ResultCaptures, Pool, ResultPool, ResultBoard).
 
-move(Board, BoardSize, 2, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
+move(Board, 2, X, Y, Orientation, Pool, ResultPool, ResultBoard) :-
         getStone(Board,X,Y,Stone),
         Stone == 2,
         get_position_from_orientation(X, Y, Orientation, NewX, NewY),
         check_empty_cell(Board, NewX, NewY),
         move_aux(Board, X, Y, NewX, NewY, ReturnBoard),
-        check_capture_status(ReturnBoard, BoardSize, X, Y, 2, Captures),
-        remove_captured_stones(ReturnBoard, 1, Captures, Pool, ResultPool, ResultBoard).
+        check_capture_status(ReturnBoard, X, Y, 2, _, ResultCaptures),
+        remove_captured_stones(ReturnBoard, 1, ResultCaptures, Pool, ResultPool, ResultBoard).
 
 % --- REMOVE_CAPTURED_STONES ---
 
 remove_captured_stones(Board, _, [], Pool, Pool, Board).
 
-remove_captured_stones(Board, OppositePlayer, [[X-Y]|TC], Pool, ResultPool, ResultBoard):-
+remove_captured_stones(Board, OppositePlayer, [X-Y], Pool, ResultPool, ResultBoard):-
+        replace(Board, X, Y, 0, RB),
+        add_to_pool(Pool, OppositePlayer, 0, RP),
+        remove_captured_stones(RB, OppositePlayer, [], RP, ResultPool, ResultBoard).
+
+remove_captured_stones(Board, OppositePlayer, [X-Y|TC], Pool, ResultPool, ResultBoard):-
         replace(Board, X, Y, 0, RB),
         add_to_pool(Pool, OppositePlayer, 0, RP),
         remove_captured_stones(RB, OppositePlayer, TC, RP, ResultPool, ResultBoard).
 
 % --- CHECK_CAPTURE_STATUS ---
 
-check_capture_status(Board, BoardSize, NewX, NewY, Player, Captures) :- 
-        check_capture_status(Board, BoardSize, 'n', NewX, NewY, Player, [], RC1),
-        check_capture_status(Board, BoardSize, 's', NewX, NewY, Player, RC1, RC2),
-        check_capture_status(Board, BoardSize, 'e', NewX, NewY, Player, RC2, RC3),
-        check_capture_status(Board, BoardSize, 'w', NewX, NewY, Player, RC3, RC4),
-        check_capture_status(Board, BoardSize, 'nw', NewX, NewY, Player, RC4, RC5),
-        check_capture_status(Board, BoardSize, 'ne', NewX, NewY, Player, RC5, RC6),
-        check_capture_status(Board, BoardSize, 'sw', NewX, NewY, Player, RC6, RC7),
-        check_capture_status(Board, BoardSize, 'se', NewX, NewY, Player, RC7, RC8),
-        Captures is RC8.
+check_capture_status(Board, NewX, NewY, Player, _, ResultCaptures) :- 
+        check_capture_status(Board, 'n', NewX, NewY, Player, [], RC1),
+        check_capture_status(Board, 's', NewX, NewY, Player, RC1, RC2),
+        check_capture_status(Board, 'e', NewX, NewY, Player, RC2, RC3),
+        check_capture_status(Board, 'w', NewX, NewY, Player, RC3, RC4),
+        check_capture_status(Board, 'nw', NewX, NewY, Player, RC4, RC5),
+        check_capture_status(Board, 'ne', NewX, NewY, Player, RC5, RC6),
+        check_capture_status(Board, 'sw', NewX, NewY, Player, RC6, RC7),
+        check_capture_status(Board, 'se', NewX, NewY, Player, RC7, ResultCaptures), !.
 
-check_capture_status(Board, _, Orientation, NewX, NewY, Player, CL, RCL) :- 
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, RCL) :- 
         getStone(Board, NewX, NewY, PlayerStone),
         PlayerStone == Player,
         get_op_player(Player, OppositePlayer),
@@ -758,7 +763,7 @@ check_capture_status(Board, _, Orientation, NewX, NewY, Player, CL, RCL) :-
         PossibleSurroundStone == Player,
         append(CL, [CheckX-CheckY], RCL).
 
-check_capture_status(Board, _, Orientation, NewX, NewY, Player, CL, CL):-
+check_capture_status(Board, Orientation, NewX, NewY, Player, CL, CL):-
         getStone(Board, NewX, NewY, PlayerStone),
         PlayerStone == Player,
         get_op_player(Player, OppositePlayer),
@@ -766,30 +771,36 @@ check_capture_status(Board, _, Orientation, NewX, NewY, Player, CL, CL):-
         getStone(Board, CheckX, CheckY, CheckStone),
         CheckStone \= OppositePlayer.
 
-check_capture_status(Board, _, Orientation, NewX, NewY, Player, _, _):-
+check_capture_status(Board, Orientation, NewX, NewY, Player, _, _):-
         getStone(Board, NewX, NewY, PlayerStone),
         PlayerStone == Player,
         get_position_from_orientation(NewX, NewY, Orientation, CheckX, _),
         CheckX == 0.
 
-check_capture_status(Board, BoardSize, Orientation, NewX, NewY, Player, _, _):-
+check_capture_status(Board, Orientation, NewX, NewY, Player, _, _):-
         getStone(Board, NewX, NewY, PlayerStone),
         PlayerStone == Player,
         get_position_from_orientation(NewX, NewY, Orientation, CheckX, _),
-        CheckX == BoardSize.
+        nth1(1,Board,Line),
+        length(Line,Size),
+        CheckX == Size.
 
-check_capture_status(Board, _, Orientation, NewX, NewY, Player, _, _):-
+check_capture_status(Board, Orientation, NewX, NewY, Player, _, _):-
         getStone(Board, NewX, NewY, PlayerStone),
         PlayerStone == Player,
         get_position_from_orientation(NewX, NewY, Orientation, _, CheckY),
         CheckY == 0.
 
-check_capture_status(Board, BoardSize, Orientation, NewX, NewY, Player, _, _):-
+check_capture_status(Board, Orientation, NewX, NewY, Player, _, _):-
         getStone(Board, NewX, NewY, PlayerStone),
         PlayerStone == Player,
         get_position_from_orientation(NewX, NewY, Orientation, _, CheckY),
-        CheckY == BoardSize.
+        nth1(1,Board,Line),
+        length(Line,Size),
+        CheckY == Size.
 
+check_capture_status(_, _, _, _, _, Captures, Captures).
+                
 % --- MOVE_AUX ---
 
 move_aux(Board, X, Y, NewX, NewY, ReturnBoard) :- 
@@ -822,14 +833,14 @@ get_position_from_orientation(X, Y, Orientation, NewX, NewY) :-
 get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'e' ,!,
         NewX is X,
-        NewY is Y-1.
+        NewY is Y+1.
 
 % --- GET_POSITION_FROM_ORIENTATION  W ---
 
 get_position_from_orientation(X, Y, Orientation, NewX, NewY) :- 
         Orientation == 'w' ,!,
         NewX is X,
-        NewY is Y+1.           
+        NewY is Y-1.           
 
 % --- GET_POSITION_FROM_ORIENTATION NW ---                
 
