@@ -64,6 +64,23 @@ Board - Game board of size NxN
 Size - Board's size
 */
 
+count_stones_line([H|T], Player, Stones):-
+    H == Player,
+    count_stones_line(T, Player, NewStones),
+    Stones is NewStones+1.
+
+count_stones_line([_|T], Player, Stones):-
+    count_stones_line(T, Player, Stones).
+
+count_stones_line([], _, 0).
+
+count_stones_board([], _, 0).
+    
+count_stones_board([BH|BT], P, S):-
+    count_stones_line(BH, P, LS),
+    count_stones_board(BT, P, SS),
+    S is SS + LS.
+
 initialize_board(Board, Size, ResultBoard):- 
         make_board(Size, Board),
         Turns is round((8/5)*Size),
@@ -73,16 +90,50 @@ initialize_board(Board, Size, ResultBoard):-
         draw_board(Size, Board), nl,
         init_board_turn(Board, ResultBoard, Turns),
         game_loop(Board, Pool1, Pool2, RB, RP1, RP2),
-        %game_loop([[1,2,1,2,2],[0,2,0,1,0],[0,0,1,1,0],[1,2,2,2,0],[1,2,0,0,1]], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], RB, RP1, RP2),
+        %game_loop([[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,2,2,0,0],[1,0,0,0,0]], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], RB, RP1, RP2),
         draw_board(Size, RB, RP1, RP2).
 
 game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
+        count_stones_board(Board, 1, SP1),
+        SP1 > 1,
+        count_stones_board(Board, 2, SP2),
+        SP2 > 1,
         write('--- Turn ---'), nl,
         write('Player 1: '),
         play_ask_move(Board, 1, [0,0,0], Pool2, Pool1, RB, RP2, RP1),
         write('Player 2: '),
         play_ask_move(RB, 2, [0,0,0], Pool1, Pool2, RB2, RP1, RP2),
         game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
+
+game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):- 
+        count_stones_board(Board, 2, SP2),
+        SP2 > 1,
+        write('--- Turn ---'), nl,
+        write('Player 1: '),
+        play_ask_move(Board, 1, [0,0,0], Pool2, Pool1, RB, RP2, RP1),
+        write('Player 2: '),
+        play_ask_move(RB, 2, [0,0,0], Pool1, Pool2, RB2, RP1, RP2),
+        game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
+
+game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
+        count_stones_board(Board, 1, SP1),
+        SP1 > 1,
+        write('--- Turn ---'), nl,
+        write('Player 1: '),
+        play_ask_move(Board, 1, [0,0,0], Pool2, Pool1, RB, RP2, RP1),
+        write('Player 2: '),
+        play_ask_move(RB, 2, [0,0,0], Pool1, Pool2, RB2, RP1, RP2),
+        game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
+
+game_loop(Board, _, _, _, _, _):-
+        count_stones_board(Board, 1, SP1),
+        SP1 == 1,
+        write('Player 2 wins!'), nl.
+
+game_loop(Board, _, _, _, _, _):-
+        count_stones_board(Board, 2, SP2),
+        SP2 == 1,
+        write('Player 1 wins!'), nl.
 
 % --- REPLACE_ELEM ---
 
