@@ -45,6 +45,7 @@ Size - Board's size
 init_board_turn(B, B, 0).
 
 init_board_turn(Board, ResultBoard, Turns):- 
+        Turns > 0,
         nth0(0,Board,Line),
         length(Line, Size),
         write('Player 1: '), nl,
@@ -65,7 +66,7 @@ Size - Board's size
 */
 
 count_stones_line([H|T], Player, Stones):-
-    H == Player,
+    H == Player, !,
     count_stones_line(T, Player, NewStones),
     Stones is NewStones+1.
 
@@ -81,6 +82,17 @@ count_stones_board([BH|BT], P, S):-
     count_stones_board(BT, P, SS),
     S is SS + LS.
 
+initialize_board(_, Size, _):- 
+        Size < 5,
+        write('Invalid size for board! Please pick a number higher than 5 that is also a multiple of 5! '),!,
+        fail.
+
+initialize_board(_, Size, _):- 
+        Remain is mod(Size,5),
+        Remain \= 0,
+        write('Invalid size for board! Please pick a number higher than 5 that is also a multiple of 5! '),!,
+        fail.
+
 initialize_board(Board, Size, ResultBoard):- 
         make_board(Size, Board),
         Turns is round((8/5)*Size),
@@ -89,12 +101,15 @@ initialize_board(Board, Size, ResultBoard):-
         write('--- Initialize Board ---'), nl,
         draw_board(Size, Board), nl,
         init_board_turn(Board, ResultBoard, Turns),
-        game_loop(Board, Pool1, Pool2, RB, RP1, RP2),
+        game_loop(ResultBoard, Pool1, Pool2, RB, RP1, RP2),
         %game_loop([[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,2,2,0,0],[1,0,0,0,0]], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], RB, RP1, RP2),
         draw_board(Size, RB, RP1, RP2).
 
 game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
+        write('entrei no loop'),
         count_stones_board(Board, 1, SP1),
+        write('Stones P1: '),
+        write(SP1),
         SP1 > 1,
         count_stones_board(Board, 2, SP2),
         SP2 > 1,
@@ -106,6 +121,7 @@ game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-
         game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
 
 game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):- 
+        write('entrei no loop2'),
         count_stones_board(Board, 2, SP2),
         SP2 > 1,
         write('--- Turn ---'), nl,
@@ -116,6 +132,7 @@ game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-
         game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
 
 game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
+        write('entrei no loop3'),
         count_stones_board(Board, 1, SP1),
         SP1 > 1,
         write('--- Turn ---'), nl,
@@ -126,11 +143,13 @@ game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-
         game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
 
 game_loop(Board, _, _, _, _, _):-
+        write('entrei no loop4'),
         count_stones_board(Board, 1, SP1),
         SP1 == 1,
         write('Player 2 wins!'), nl.
 
 game_loop(Board, _, _, _, _, _):-
+        write('entrei no loop5'),
         count_stones_board(Board, 2, SP2),
         SP2 == 1,
         write('Player 1 wins!'), nl.
