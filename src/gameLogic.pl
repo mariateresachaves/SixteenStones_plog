@@ -105,11 +105,18 @@ initialize_board(Board, Size, ResultBoard):-
         %game_loop([[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,2,2,0,0],[1,0,0,0,0]], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], RB, RP1, RP2),
         draw_board(Size, RB, RP1, RP2).
 
-game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
-        write('entrei no loop'),
+game_loop(Board, _, _, _, _, _):-
         count_stones_board(Board, 1, SP1),
-        write('Stones P1: '),
-        write(SP1),
+        SP1 == 1,
+        write('Player 2 wins!'), nl.
+
+game_loop(Board, _, _, _, _, _):-
+        count_stones_board(Board, 2, SP2),
+        SP2 == 1,
+        write('Player 1 wins!'), nl.
+
+game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
+        count_stones_board(Board, 1, SP1),
         SP1 > 1,
         count_stones_board(Board, 2, SP2),
         SP2 > 1,
@@ -121,7 +128,6 @@ game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-
         game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
 
 game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):- 
-        write('entrei no loop2'),
         count_stones_board(Board, 2, SP2),
         SP2 > 1,
         write('--- Turn ---'), nl,
@@ -132,7 +138,6 @@ game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-
         game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
 
 game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-  
-        write('entrei no loop3'),
         count_stones_board(Board, 1, SP1),
         SP1 > 1,
         write('--- Turn ---'), nl,
@@ -141,18 +146,6 @@ game_loop(Board, Pool1, Pool2, ResultBoard, ResultPool1, ResultPool2):-
         write('Player 2: '),
         play_ask_move(RB, 2, [0,0,0], Pool1, Pool2, RB2, RP1, RP2),
         game_loop(RB2, RP1, RP2, ResultBoard, ResultPool1, ResultPool2).
-
-game_loop(Board, _, _, _, _, _):-
-        write('entrei no loop4'),
-        count_stones_board(Board, 1, SP1),
-        SP1 == 1,
-        write('Player 2 wins!'), nl.
-
-game_loop(Board, _, _, _, _, _):-
-        write('entrei no loop5'),
-        count_stones_board(Board, 2, SP2),
-        SP2 == 1,
-        write('Player 1 wins!'), nl.
 
 % --- REPLACE_ELEM ---
 

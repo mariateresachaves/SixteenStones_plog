@@ -6,10 +6,10 @@
 \contentsline {section}{\numberline {4}Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{9}
 \contentsline {subsection}{\numberline {4.1}Lista de Jogadas V\IeC {\'a}lidas}{10}
 \contentsline {subsection}{\numberline {4.2}Execu\IeC {\c c}\IeC {\~a}o de Jogadas}{10}
-\contentsline {subsection}{\numberline {4.3}Avalia\IeC {\c c}\IeC {\~a}o do Tabuleiro}{10}
-\contentsline {subsection}{\numberline {4.4}Final do Jogo}{10}
+\contentsline {subsection}{\numberline {4.3}Avalia\IeC {\c c}\IeC {\~a}o do Tabuleiro}{11}
+\contentsline {subsection}{\numberline {4.4}Final do Jogo}{11}
 \contentsline {subsection}{\numberline {4.5}Jogada do Computador}{11}
-\contentsline {section}{\numberline {5}Interface com o Utilizador}{11}
-\contentsline {section}{\numberline {6}Conclus\IeC {\~o}es}{11}
-\contentsline {section}{Bibliografia}{12}
-\contentsline {section}{\numberline {A}Nome do Anexo}{12}
+\contentsline {section}{\numberline {5}Interface com o Utilizador}{12}
+\contentsline {section}{\numberline {6}Conclus\IeC {\~o}es}{12}
+\contentsline {section}{Bibliografia}{13}
+\contentsline {section}{\numberline {A}Nome do Anexo}{13}
